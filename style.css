@@ -60,6 +60,7 @@
 body {
   background: var(--background);
   color: var(--black);
+  padding-top: 84px; /* offset navbar fixed-top */
 }
 
 /* Card */
@@ -196,4 +197,288 @@ a:hover {
 
 .navbar .nav-link.active::after {
   width: 70%;
+}
+
+/* Page: kopikenangan.html (Detail Lowongan) */
+
+.btn-back {
+  color: var(--primary-light);
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  color: var(--primary);
+}
+
+/* Placeholder Gambar */
+.img-placeholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+  background-color: var(--surface-secondary);
+  background-image: linear-gradient(
+      45deg,
+      transparent 100%,
+      var(--stroke) 49%,
+      var(--stroke) 51%,
+      transparent 100%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 100%,
+      var(--stroke) 49%,
+      var(--stroke) 51%,
+      transparent 100%
+    );
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.img-placeholder img {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.logo-placeholder {
+  width: 100px;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.cover-placeholder {
+  min-height: 260px;
+}
+
+.gallery-placeholder {
+  min-height: 180px;
+}
+
+/* Info Card */
+.info-card {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  height: 100%;
+}
+
+.info-card .info-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--surface-secondary);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.6rem;
+  font-size: 1.1rem;
+}
+
+.info-card .info-label {
+  font-size: 0.8rem;
+  color: var(--black-50);
+  margin-bottom: 0.1rem;
+}
+
+.info-card .info-value {
+  font-weight: 600;
+}
+
+/* Checklist */
+.check-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.check-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.check-list i {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+/* Job Card */
+.job-card {
+  padding: 1.25rem 1.5rem;
+  height: 100%;
+}
+
+.job-card-featured {
+  border: 1.5px solid var(--accent);
+}
+
+.badge-featured {
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  padding: 0.3rem 0.65rem;
+}
+
+.job-meta {
+  font-size: 0.85rem;
+  color: var(--black-50);
+}
+
+.job-meta i {
+  color: var(--primary-light);
+  margin-right: 0.25rem;
+}
+
+.job-tag {
+  font-size: 0.75rem;
+  color: var(--black-50);
+}
+
+.job-price {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.job-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface-secondary);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.job-card:hover .job-arrow {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Benefit Card */
+.benefit-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  height: 100%;
+}
+
+.benefit-card .benefit-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  font-size: 1.2rem;
+}
+
+.benefit-card .benefit-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Requirement Item */
+.requirement-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.15rem;
+}
+
+.requirement-item i {
+  color: var(--accent);
+  font-size: 1.2rem;
+  margin-top: 0.15rem;
+}
+
+.requirement-item .req-title {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.requirement-item .req-desc {
+  font-size: 0.85rem;
+  color: var(--black-50);
+}
+
+/* Document Item */
+.doc-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.doc-item i {
+  color: var(--primary);
+  font-size: 1.15rem;
+}
+
+.doc-info-card {
+  display: block;
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.doc-info-card .pdf-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-secondary);
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.doc-info-card p {
+  font-size: 0.9rem;
+  color: var(--black-75);
+}
+
+.badge-max-size {
+  display: inline-block;
+  width: auto;
+  align-self: flex-start;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* CTA Section */
+.cta-section {
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+}
+
+.cta-section h2 {
+  color: #fff;
+}
+
+.cta-section p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.cta-note {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
 }
