@@ -484,19 +484,6 @@
     <script>
       const jobs = [
         {
-          company: "Gojek",
-          title: "Mitra Driver GoRide",
-          salaryValue: 3000000,
-          salary: "Rp3.000.000 / bln",
-          location: "Jakarta",
-          shift: "Fleksibel",
-          experience: "Tanpa Pengalaman",
-          kategori: "Transportasi",
-          type: "Part-Time",
-          desc: "Mengantar penumpang dan pesanan dengan aplikasi Gojek sesuai jam kerja yang kamu pilih sendiri.",
-          icon: "bi-scooter",
-        },
-        {
           company: "Kopi Kenangan",
           title: "Barista",
           salaryValue: 1900000,
@@ -508,6 +495,20 @@
           type: "Part-Time",
           desc: "Menyajikan minuman berkualitas dan memberikan pelayanan terbaik kepada pelanggan di gerai.",
           icon: "bi-cup-hot",
+          detailUrl: "kopikenangan.html",
+        },
+        {
+          company: "Gojek",
+          title: "Mitra Driver GoRide",
+          salaryValue: 3000000,
+          salary: "Rp3.000.000 / bln",
+          location: "Jakarta",
+          shift: "Fleksibel",
+          experience: "Tanpa Pengalaman",
+          kategori: "Transportasi",
+          type: "Part-Time",
+          desc: "Mengantar penumpang dan pesanan dengan aplikasi Gojek sesuai jam kerja yang kamu pilih sendiri.",
+          icon: "bi-scooter",
         },
         {
           company: "Grab",
@@ -650,7 +651,7 @@
                   </p>
                   <p class="card-text small text-truncate">${job.desc}</p>
                   <div class="d-flex gap-2 mt-auto">
-                    <button class="btn btn-outline-primary btn-sm flex-fill">Lihat Detail</button>
+                    <a href="${job.detailUrl || '#'}" class="btn btn-outline-primary btn-sm flex-fill">Lihat Detail</a>
                     <button class="btn btn-primary btn-sm flex-fill">Lamar</button>
                   </div>
                 </div>
