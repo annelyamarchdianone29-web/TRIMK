@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cari Lowongan - PartTimeHub</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .ikon-alasan {
+      border-radius: 50%;
+      background-color: var(--accent-light);
+      max-width: fit-content;
+      max-height: fit-content;
+      padding: 15px;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">PartTimeHub</a>
+        <ul class="navbar-nav flex-row gap-4 mx-auto d-none d-lg-flex">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link fw-bold" href="#">Cari Lowongan</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Tentang</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Search Hero -->
+    <section class="pt-5 mt-5 text-center">
+      <div class="container">
+        <h1 class="display-5 fw-bold">Cari Lowongan Part-Time</h1>
+        <p class="text-secondary">
+          Temukan pekerjaan sesuai jadwal, lokasi, dan preferensimu.
+        </p>
+
+        <div class="row justify-content-center mt-4">
+          <div class="col-lg-7">
+            <div class="input-group input-group-lg border rounded-3 bg-white p-1">
+              <span class="input-group-text bg-transparent border-0">
+                <i class="bi bi-search"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control border-0"
+                id="searchInput"
+                placeholder="Posisi, Perusahaan, atau Kata Kunci..."
+              />
+              <button class="btn btn-dark px-4 fw-bold rounded-2" id="searchBtn">Cari</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="container py-5">
+      <div class="d-flex justify-content-end align-items-center border-bottom pb-3 mb-4">
+        <div>
+          <label class="text-secondary me-2">Urutkan:</label>
+          <select class="form-select form-select-sm d-inline-block w-auto" id="sortSelect">
+            <option value="terbaru">Terbaru</option>
+            <option value="gaji">Gaji Tertinggi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- Sidebar -->
+        <aside class="col-lg-3">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="mb-0">Filter</h5>
+            <a href="#" class="small" id="resetFilter">Reset Filter</a>
+          </div>
+
+          <div class="accordion" id="filterAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#fKategori"
+                >
+                  Kategori
+                </button>
+              </h2>
+              <div id="fKategori" class="accordion-collapse collapse show" data-bs-parent="#filterAccordion">
+                <div class="accordion-body">
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="kategori" data-value="Food & Beverage" type="checkbox" id="cat1" />
+                    <label class="form-check-label" for="cat1">Food &amp; Beverage</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="kategori" data-value="Admin & Kasir" type="checkbox" id="cat2" />
+                    <label class="form-check-label" for="cat2">Admin &amp; Kasir</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="kategori" data-value="Pendidikan" type="checkbox" id="cat3" />
+                    <label class="form-check-label" for="cat3">Pendidikan</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="kategori" data-value="Transportasi" type="checkbox" id="cat4" />
+                    <label class="form-check-label" for="cat4">Transportasi</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#fLokasi"
+                >
+                  Lokasi
+                </button>
+              </h2>
+              <div id="fLokasi" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                <div class="accordion-body">
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="lokasi" data-value="Jakarta" type="checkbox" id="loc1" />
+                    <label class="form-check-label" for="loc1">Jakarta</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="lokasi" data-value="Salatiga" type="checkbox" id="loc2" />
+                    <label class="form-check-label" for="loc2">Salatiga</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="lokasi" data-value="Remote" type="checkbox" id="loc3" />
+                    <label class="form-check-label" for="loc3">Remote</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#fJam"
+                >
+                  Jam Kerja
+                </button>
+              </h2>
+              <div id="fJam" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                <div class="accordion-body">
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="jam" data-value="Shift Pagi" type="checkbox" id="jam1" />
+                    <label class="form-check-label" for="jam1">Shift Pagi</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="jam" data-value="Shift Siang" type="checkbox" id="jam3" />
+                    <label class="form-check-label" for="jam3">Shift Siang</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="jam" data-value="Shift Malam" type="checkbox" id="jam2" />
+                    <label class="form-check-label" for="jam2">Shift Malam</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="jam" data-value="Fleksibel" type="checkbox" id="jam4" />
+                    <label class="form-check-label" for="jam4">Fleksibel</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#fPengalaman"
+                >
+                  Pengalaman
+                </button>
+              </h2>
+              <div id="fPengalaman" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                <div class="accordion-body">
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="pengalaman" data-value="Tanpa Pengalaman" type="checkbox" id="exp1" />
+                    <label class="form-check-label" for="exp1">Tanpa Pengalaman</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="pengalaman" data-value="Minimal 1 Tahun" type="checkbox" id="exp2" />
+                    <label class="form-check-label" for="exp2">Minimal 1 Tahun</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#fGaji"
+                >
+                  Rentang Gaji
+                </button>
+              </h2>
+              <div id="fGaji" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+                <div class="accordion-body">
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="gaji" data-min="0" data-max="1500000" type="checkbox" id="gaji1" />
+                    <label class="form-check-label" for="gaji1">&lt; Rp1.500.000</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="gaji" data-min="1500000" data-max="2500000" type="checkbox" id="gaji2" />
+                    <label class="form-check-label" for="gaji2">Rp1.500.000 - Rp2.500.000</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input filter-input" data-group="gaji" data-min="2500000" data-max="999999999" type="checkbox" id="gaji3" />
+                    <label class="form-check-label" for="gaji3">&gt; Rp2.500.000</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Job list -->
+        <div class="col-lg-9">
+          <div class="row g-4" id="job-grid"></div>
+          <div id="empty-state" class="text-center text-secondary py-5 d-none">
+            <i class="bi bi-search fs-1 d-block mb-2"></i>
+            Tidak ada lowongan yang cocok dengan filter kamu.
+          </div>
+
+          <nav class="d-flex justify-content-center mt-5">
+            <ul class="pagination">
+              <li class="page-item disabled">
+                <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const jobs = [
+        {
+          company: "Gojek",
+          title: "Mitra Driver GoRide",
+          salaryValue: 3000000,
+          salary: "Rp3.000.000 / bln",
+          location: "Jakarta",
+          shift: "Fleksibel",
+          experience: "Tanpa Pengalaman",
+          kategori: "Transportasi",
+          type: "Part-Time",
+          desc: "Mengantar penumpang dan pesanan dengan aplikasi Gojek sesuai jam kerja yang kamu pilih sendiri.",
+          icon: "bi-scooter",
+        },
+        {
+          company: "Kopi Kenangan",
+          title: "Barista",
+          salaryValue: 1900000,
+          salary: "Rp1.900.000 / bln",
+          location: "Jakarta",
+          shift: "Shift Pagi",
+          experience: "Tanpa Pengalaman",
+          kategori: "Food & Beverage",
+          type: "Part-Time",
+          desc: "Menyajikan minuman berkualitas dan memberikan pelayanan terbaik kepada pelanggan di gerai.",
+          icon: "bi-cup-hot",
+        },
+        {
+          company: "Grab",
+          title: "Mitra Pengemudi GrabBike",
+          salaryValue: 2800000,
+          salary: "Rp2.800.000 / bln",
+          location: "Jakarta",
+          shift: "Shift Malam",
+          experience: "Tanpa Pengalaman",
+          kategori: "Transportasi",
+          type: "Part-Time",
+          desc: "Melayani layanan transportasi dan pengantaran barang dengan jadwal kerja fleksibel.",
+          icon: "bi-bicycle",
+        },
+        {
+          company: "Tokopedia",
+          title: "Admin Gudang",
+          salaryValue: 2200000,
+          salary: "Rp2.200.000 / bln",
+          location: "Jakarta",
+          shift: "Shift Pagi",
+          experience: "Minimal 1 Tahun",
+          kategori: "Admin & Kasir",
+          type: "Part-Time",
+          desc: "Mengelola stok barang, input data, dan membantu proses pengemasan pesanan pelanggan.",
+          icon: "bi-box-seam",
+        },
+        {
+          company: "Indomaret",
+          title: "Kasir",
+          salaryValue: 1700000,
+          salary: "Rp1.700.000 / bln",
+          location: "Salatiga",
+          shift: "Shift Pagi",
+          experience: "Tanpa Pengalaman",
+          kategori: "Admin & Kasir",
+          type: "Part-Time",
+          desc: "Melayani transaksi pembayaran pelanggan dan menjaga kerapian area kasir dan rak toko.",
+          icon: "bi-cash-coin",
+        },
+        {
+          company: "Ruangguru",
+          title: "Tutor Online Paruh Waktu",
+          salaryValue: 2500000,
+          salary: "Rp2.500.000 / bln",
+          location: "Remote",
+          shift: "Fleksibel",
+          experience: "Minimal 1 Tahun",
+          kategori: "Pendidikan",
+          type: "Part-Time",
+          desc: "Mengajar siswa secara online melalui platform sesuai jadwal dan mata pelajaran yang dikuasai.",
+          icon: "bi-book",
+        },
+        {
+          company: "McDonald's",
+          title: "Crew Store",
+          salaryValue: 2000000,
+          salary: "Rp2.000.000 / bln",
+          location: "Jakarta",
+          shift: "Shift Malam",
+          experience: "Tanpa Pengalaman",
+          kategori: "Food & Beverage",
+          type: "Part-Time",
+          desc: "Melayani pelanggan di kasir maupun dapur serta menjaga kebersihan dan kecepatan pelayanan.",
+          icon: "bi-shop",
+        },
+        {
+          company: "Alfamart",
+          title: "Kasir",
+          salaryValue: 1600000,
+          salary: "Rp1.600.000 / bln",
+          location: "Salatiga",
+          shift: "Shift Siang",
+          experience: "Tanpa Pengalaman",
+          kategori: "Admin & Kasir",
+          type: "Part-Time",
+          desc: "Menangani transaksi penjualan, penataan produk, dan pelayanan pelanggan di toko.",
+          icon: "bi-cash-coin",
+        },
+        {
+          company: "Zenius",
+          title: "Tutor Privat",
+          salaryValue: 2300000,
+          salary: "Rp2.300.000 / bln",
+          location: "Remote",
+          shift: "Fleksibel",
+          experience: "Minimal 1 Tahun",
+          kategori: "Pendidikan",
+          type: "Part-Time",
+          desc: "Memberikan bimbingan belajar privat secara online untuk siswa SD hingga SMA.",
+          icon: "bi-mortarboard",
+        },
+      ];
+
+      const grid = document.getElementById("job-grid");
+      const emptyState = document.getElementById("empty-state");
+      const sortSelect = document.getElementById("sortSelect");
+
+      function getSelectedValues(group) {
+        return Array.from(
+          document.querySelectorAll(`.filter-input[data-group="${group}"]:checked`)
+        ).map((el) => el.dataset.value);
+      }
+
+      function getSelectedRanges() {
+        return Array.from(
+          document.querySelectorAll('.filter-input[data-group="gaji"]:checked')
+        ).map((el) => ({ min: Number(el.dataset.min), max: Number(el.dataset.max) }));
+      }
+
+      function renderJobs(list) {
+        if (list.length === 0) {
+          grid.innerHTML = "";
+          emptyState.classList.remove("d-none");
+        } else {
+          emptyState.classList.add("d-none");
+          grid.innerHTML = list
+            .map(
+              (job) => `
+            <div class="col-md-6 col-xl-4">
+              <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="ikon-alasan d-inline-flex align-items-center justify-content-center" style="width:44px;height:44px;padding:0;">
+                      <i class="bi ${job.icon}"></i>
+                    </span>
+                  </div>
+                  <p class="text-secondary small mb-1">${job.company}</p>
+                  <h6 class="card-title fw-bold">${job.title}</h6>
+                  <p class="fw-bold text-primary">${job.salary}</p>
+                  <p class="small text-secondary mb-2">
+                    <i class="bi bi-geo-alt"></i> ${job.location}
+                    &nbsp;<i class="bi bi-clock"></i> ${job.shift}
+                    &nbsp;<i class="bi bi-briefcase"></i> ${job.type}
+                  </p>
+                  <p class="card-text small text-truncate">${job.desc}</p>
+                  <div class="d-flex gap-2 mt-auto">
+                    <button class="btn btn-outline-primary btn-sm flex-fill">Lihat Detail</button>
+                    <button class="btn btn-primary btn-sm flex-fill">Lamar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+            )
+            .join("");
+        }
+      }
+
+      function applyFilters() {
+        const kategori = getSelectedValues("kategori");
+        const lokasi = getSelectedValues("lokasi");
+        const jam = getSelectedValues("jam");
+        const pengalaman = getSelectedValues("pengalaman");
+        const gajiRanges = getSelectedRanges();
+
+        let result = jobs.filter((job) => {
+          const matchKategori = kategori.length === 0 || kategori.includes(job.kategori);
+          const matchLokasi = lokasi.length === 0 || lokasi.includes(job.location);
+          const matchJam = jam.length === 0 || jam.includes(job.shift);
+          const matchPengalaman = pengalaman.length === 0 || pengalaman.includes(job.experience);
+          const matchGaji =
+            gajiRanges.length === 0 ||
+            gajiRanges.some((r) => job.salaryValue >= r.min && job.salaryValue < r.max);
+
+          return matchKategori && matchLokasi && matchJam && matchPengalaman && matchGaji;
+        });
+
+        if (sortSelect.value === "gaji") {
+          result = result.slice().sort((a, b) => b.salaryValue - a.salaryValue);
+        }
+
+        renderJobs(result);
+      }
+
+      document.querySelectorAll(".filter-input").forEach((el) => {
+        el.addEventListener("change", applyFilters);
+      });
+      sortSelect.addEventListener("change", applyFilters);
+      document.getElementById("resetFilter").addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelectorAll(".filter-input").forEach((el) => (el.checked = false));
+        sortSelect.value = "terbaru";
+        applyFilters();
+      });
+
+      renderJobs(jobs);
+    </script>
+  </body>
+</html>
