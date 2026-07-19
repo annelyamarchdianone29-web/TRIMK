@@ -17,13 +17,6 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <style>
-    .navbar {
-      background-color: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--stroke);
-    }
-
     .ikon-alasan {
       border-radius: 50%;
       background-color: var(--accent-light);
@@ -36,11 +29,72 @@
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">PartTimeHub</a>
-        <ul class="navbar-nav flex-row gap-4 mx-auto d-none d-lg-flex">
-          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link fw-bold" href="#">Cari Lowongan</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Tentang</a></li>
-        </ul>
+        <div class="d-flex justify-content-between align-items-center">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="homepelamar.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="lamaranpelamar.html">Lamaran</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="lowonganpelamar.html"
+                >Lowongan</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profilpelamar.html">Profil</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <div class="dropdown">
+            <!-- <button
+              class="btn btn-outline-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+            Notifikasi
+        </button> -->
+            <i class="bi bi-bell me-1"></i>
+          </div>
+
+          <div class="dropdown">
+            <button
+              class="btn btn-primary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-circle me-1"></i>
+              Profil
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="profilpelamar.html">
+                  Profil Saya
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="profilpelamar.html">
+                  Edit Profil
+                </a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a class="dropdown-item text-danger" href="index.html">
+                  Keluar
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </nav>
 
@@ -54,7 +108,9 @@
 
         <div class="row justify-content-center mt-4">
           <div class="col-lg-7">
-            <div class="input-group input-group-lg border rounded-3 bg-white p-1">
+            <div
+              class="input-group input-group-lg border rounded-3 bg-white p-1"
+            >
               <span class="input-group-text bg-transparent border-0">
                 <i class="bi bi-search"></i>
               </span>
@@ -64,7 +120,12 @@
                 id="searchInput"
                 placeholder="Posisi, Perusahaan, atau Kata Kunci..."
               />
-              <button class="btn btn-dark px-4 fw-bold rounded-2" id="searchBtn">Cari</button>
+              <button
+                class="btn btn-dark px-4 fw-bold rounded-2"
+                id="searchBtn"
+              >
+                Cari
+              </button>
             </div>
           </div>
         </div>
@@ -73,10 +134,15 @@
 
     <!-- Results -->
     <section class="container py-5">
-      <div class="d-flex justify-content-end align-items-center border-bottom pb-3 mb-4">
+      <div
+        class="d-flex justify-content-end align-items-center border-bottom pb-3 mb-4"
+      >
         <div>
           <label class="text-secondary me-2">Urutkan:</label>
-          <select class="form-select form-select-sm d-inline-block w-auto" id="sortSelect">
+          <select
+            class="form-select form-select-sm d-inline-block w-auto"
+            id="sortSelect"
+          >
             <option value="terbaru">Terbaru</option>
             <option value="gaji">Gaji Tertinggi</option>
           </select>
@@ -103,23 +169,59 @@
                   Kategori
                 </button>
               </h2>
-              <div id="fKategori" class="accordion-collapse collapse show" data-bs-parent="#filterAccordion">
+              <div
+                id="fKategori"
+                class="accordion-collapse collapse show"
+                data-bs-parent="#filterAccordion"
+              >
                 <div class="accordion-body">
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="kategori" data-value="Food & Beverage" type="checkbox" id="cat1" />
-                    <label class="form-check-label" for="cat1">Food &amp; Beverage</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="kategori"
+                      data-value="Food & Beverage"
+                      type="checkbox"
+                      id="cat1"
+                    />
+                    <label class="form-check-label" for="cat1"
+                      >Food &amp; Beverage</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="kategori" data-value="Admin & Kasir" type="checkbox" id="cat2" />
-                    <label class="form-check-label" for="cat2">Admin &amp; Kasir</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="kategori"
+                      data-value="Admin & Kasir"
+                      type="checkbox"
+                      id="cat2"
+                    />
+                    <label class="form-check-label" for="cat2"
+                      >Admin &amp; Kasir</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="kategori" data-value="Pendidikan" type="checkbox" id="cat3" />
-                    <label class="form-check-label" for="cat3">Pendidikan</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="kategori"
+                      data-value="Pendidikan"
+                      type="checkbox"
+                      id="cat3"
+                    />
+                    <label class="form-check-label" for="cat3"
+                      >Pendidikan</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="kategori" data-value="Transportasi" type="checkbox" id="cat4" />
-                    <label class="form-check-label" for="cat4">Transportasi</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="kategori"
+                      data-value="Transportasi"
+                      type="checkbox"
+                      id="cat4"
+                    />
+                    <label class="form-check-label" for="cat4"
+                      >Transportasi</label
+                    >
                   </div>
                 </div>
               </div>
@@ -136,18 +238,40 @@
                   Lokasi
                 </button>
               </h2>
-              <div id="fLokasi" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+              <div
+                id="fLokasi"
+                class="accordion-collapse collapse"
+                data-bs-parent="#filterAccordion"
+              >
                 <div class="accordion-body">
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="lokasi" data-value="Jakarta" type="checkbox" id="loc1" />
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="lokasi"
+                      data-value="Jakarta"
+                      type="checkbox"
+                      id="loc1"
+                    />
                     <label class="form-check-label" for="loc1">Jakarta</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="lokasi" data-value="Salatiga" type="checkbox" id="loc2" />
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="lokasi"
+                      data-value="Salatiga"
+                      type="checkbox"
+                      id="loc2"
+                    />
                     <label class="form-check-label" for="loc2">Salatiga</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="lokasi" data-value="Remote" type="checkbox" id="loc3" />
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="lokasi"
+                      data-value="Remote"
+                      type="checkbox"
+                      id="loc3"
+                    />
                     <label class="form-check-label" for="loc3">Remote</label>
                   </div>
                 </div>
@@ -165,22 +289,56 @@
                   Jam Kerja
                 </button>
               </h2>
-              <div id="fJam" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+              <div
+                id="fJam"
+                class="accordion-collapse collapse"
+                data-bs-parent="#filterAccordion"
+              >
                 <div class="accordion-body">
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="jam" data-value="Shift Pagi" type="checkbox" id="jam1" />
-                    <label class="form-check-label" for="jam1">Shift Pagi</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="jam"
+                      data-value="Shift Pagi"
+                      type="checkbox"
+                      id="jam1"
+                    />
+                    <label class="form-check-label" for="jam1"
+                      >Shift Pagi</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="jam" data-value="Shift Siang" type="checkbox" id="jam3" />
-                    <label class="form-check-label" for="jam3">Shift Siang</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="jam"
+                      data-value="Shift Siang"
+                      type="checkbox"
+                      id="jam3"
+                    />
+                    <label class="form-check-label" for="jam3"
+                      >Shift Siang</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="jam" data-value="Shift Malam" type="checkbox" id="jam2" />
-                    <label class="form-check-label" for="jam2">Shift Malam</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="jam"
+                      data-value="Shift Malam"
+                      type="checkbox"
+                      id="jam2"
+                    />
+                    <label class="form-check-label" for="jam2"
+                      >Shift Malam</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="jam" data-value="Fleksibel" type="checkbox" id="jam4" />
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="jam"
+                      data-value="Fleksibel"
+                      type="checkbox"
+                      id="jam4"
+                    />
                     <label class="form-check-label" for="jam4">Fleksibel</label>
                   </div>
                 </div>
@@ -198,15 +356,35 @@
                   Pengalaman
                 </button>
               </h2>
-              <div id="fPengalaman" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+              <div
+                id="fPengalaman"
+                class="accordion-collapse collapse"
+                data-bs-parent="#filterAccordion"
+              >
                 <div class="accordion-body">
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="pengalaman" data-value="Tanpa Pengalaman" type="checkbox" id="exp1" />
-                    <label class="form-check-label" for="exp1">Tanpa Pengalaman</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="pengalaman"
+                      data-value="Tanpa Pengalaman"
+                      type="checkbox"
+                      id="exp1"
+                    />
+                    <label class="form-check-label" for="exp1"
+                      >Tanpa Pengalaman</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="pengalaman" data-value="Minimal 1 Tahun" type="checkbox" id="exp2" />
-                    <label class="form-check-label" for="exp2">Minimal 1 Tahun</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="pengalaman"
+                      data-value="Minimal 1 Tahun"
+                      type="checkbox"
+                      id="exp2"
+                    />
+                    <label class="form-check-label" for="exp2"
+                      >Minimal 1 Tahun</label
+                    >
                   </div>
                 </div>
               </div>
@@ -223,19 +401,50 @@
                   Rentang Gaji
                 </button>
               </h2>
-              <div id="fGaji" class="accordion-collapse collapse" data-bs-parent="#filterAccordion">
+              <div
+                id="fGaji"
+                class="accordion-collapse collapse"
+                data-bs-parent="#filterAccordion"
+              >
                 <div class="accordion-body">
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="gaji" data-min="0" data-max="1500000" type="checkbox" id="gaji1" />
-                    <label class="form-check-label" for="gaji1">&lt; Rp1.500.000</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="gaji"
+                      data-min="0"
+                      data-max="1500000"
+                      type="checkbox"
+                      id="gaji1"
+                    />
+                    <label class="form-check-label" for="gaji1"
+                      >&lt; Rp1.500.000</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="gaji" data-min="1500000" data-max="2500000" type="checkbox" id="gaji2" />
-                    <label class="form-check-label" for="gaji2">Rp1.500.000 - Rp2.500.000</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="gaji"
+                      data-min="1500000"
+                      data-max="2500000"
+                      type="checkbox"
+                      id="gaji2"
+                    />
+                    <label class="form-check-label" for="gaji2"
+                      >Rp1.500.000 - Rp2.500.000</label
+                    >
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input filter-input" data-group="gaji" data-min="2500000" data-max="999999999" type="checkbox" id="gaji3" />
-                    <label class="form-check-label" for="gaji3">&gt; Rp2.500.000</label>
+                    <input
+                      class="form-check-input filter-input"
+                      data-group="gaji"
+                      data-min="2500000"
+                      data-max="999999999"
+                      type="checkbox"
+                      id="gaji3"
+                    />
+                    <label class="form-check-label" for="gaji3"
+                      >&gt; Rp2.500.000</label
+                    >
                   </div>
                 </div>
               </div>
@@ -254,9 +463,13 @@
           <nav class="d-flex justify-content-center mt-5">
             <ul class="pagination">
               <li class="page-item disabled">
-                <a class="page-link" href="#"><i class="bi bi-chevron-left"></i></a>
+                <a class="page-link" href="#"
+                  ><i class="bi bi-chevron-left"></i
+                ></a>
               </li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -395,14 +608,19 @@
 
       function getSelectedValues(group) {
         return Array.from(
-          document.querySelectorAll(`.filter-input[data-group="${group}"]:checked`)
+          document.querySelectorAll(
+            `.filter-input[data-group="${group}"]:checked`,
+          ),
         ).map((el) => el.dataset.value);
       }
 
       function getSelectedRanges() {
         return Array.from(
-          document.querySelectorAll('.filter-input[data-group="gaji"]:checked')
-        ).map((el) => ({ min: Number(el.dataset.min), max: Number(el.dataset.max) }));
+          document.querySelectorAll('.filter-input[data-group="gaji"]:checked'),
+        ).map((el) => ({
+          min: Number(el.dataset.min),
+          max: Number(el.dataset.max),
+        }));
       }
 
       function renderJobs(list) {
@@ -438,7 +656,7 @@
                 </div>
               </div>
             </div>
-          `
+          `,
             )
             .join("");
         }
@@ -452,15 +670,26 @@
         const gajiRanges = getSelectedRanges();
 
         let result = jobs.filter((job) => {
-          const matchKategori = kategori.length === 0 || kategori.includes(job.kategori);
-          const matchLokasi = lokasi.length === 0 || lokasi.includes(job.location);
+          const matchKategori =
+            kategori.length === 0 || kategori.includes(job.kategori);
+          const matchLokasi =
+            lokasi.length === 0 || lokasi.includes(job.location);
           const matchJam = jam.length === 0 || jam.includes(job.shift);
-          const matchPengalaman = pengalaman.length === 0 || pengalaman.includes(job.experience);
+          const matchPengalaman =
+            pengalaman.length === 0 || pengalaman.includes(job.experience);
           const matchGaji =
             gajiRanges.length === 0 ||
-            gajiRanges.some((r) => job.salaryValue >= r.min && job.salaryValue < r.max);
+            gajiRanges.some(
+              (r) => job.salaryValue >= r.min && job.salaryValue < r.max,
+            );
 
-          return matchKategori && matchLokasi && matchJam && matchPengalaman && matchGaji;
+          return (
+            matchKategori &&
+            matchLokasi &&
+            matchJam &&
+            matchPengalaman &&
+            matchGaji
+          );
         });
 
         if (sortSelect.value === "gaji") {
@@ -476,7 +705,9 @@
       sortSelect.addEventListener("change", applyFilters);
       document.getElementById("resetFilter").addEventListener("click", (e) => {
         e.preventDefault();
-        document.querySelectorAll(".filter-input").forEach((el) => (el.checked = false));
+        document
+          .querySelectorAll(".filter-input")
+          .forEach((el) => (el.checked = false));
         sortSelect.value = "terbaru";
         applyFilters();
       });
