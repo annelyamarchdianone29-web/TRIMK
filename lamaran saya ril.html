@@ -1,486 +1,804 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lamaran Saya - PartTimeHub</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome untuk Ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pelamar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
     </style>
-</head>
-<body class="bg-gray-50 text-gray-800 antialiased pb-12">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand">PartTimeHub</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMenu"
+          aria-controls="navbarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="homepelamar.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="lamaranpelamar.html"
+                >Lamaran</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="lowonganpelamar.html">Lowongan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profilpelamar.html">Profil</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-bell"></i>
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-circle me-1"></i>
+                Profil
+              </button>
 
-    <!-- Header / Navbar -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <div class="text-lg font-bold tracking-tight text-gray-900">
-                PartTimeHub
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Profil Saya
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Edit Profil
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="index.html">
+                    Keluar
+                  </a>
+                </li>
+              </ul>
             </div>
-
-            <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
-                <a href="#" class="hover:text-gray-900 transition">Home</a>
-                <a href="#" class="text-gray-900 font-bold border-b-2 border-gray-900 pb-1">Lamaran</a>
-                <a href="#" class="hover:text-gray-900 transition">Lowongan</a>
-                <a href="#" class="hover:text-gray-900 transition">Profil</a>
-            </nav>
-
-            <!-- User Menu & Bell Icon -->
-            <div class="flex items-center space-x-4">
-                <!-- Notification Icon -->
-                <button class="text-gray-500 hover:text-gray-800 transition text-sm">
-                    <i class="far fa-bell"></i>
-                </button>
-                
-                <!-- Profile Dropdown Button -->
-                <button class="bg-[#111827] text-white text-xs font-semibold px-3.5 py-2 rounded-md flex items-center space-x-2 hover:bg-gray-800 transition">
-                    <i class="far fa-user-circle text-sm"></i>
-                    <span>Profil</span>
-                    <i class="fas fa-chevron-down text-[10px] ml-1"></i>
-                </button>
-            </div>
+          </div>
         </div>
-    </header>
+      </div>
+    </nav>
 
     <!-- Main Container -->
     <main class="max-w-7xl mx-auto px-6 py-10">
+      <!-- Header Title & Subtitle -->
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <h1
+          class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2 tracking-tight"
+        >
+          Lamaran Saya
+        </h1>
+        <p class="text-xs md:text-sm text-gray-500">
+          Pantau status lamaran kerja dan kelola logo perusahaan di daftar
+          lamaranmu.
+        </p>
+      </div>
 
-        <!-- Header Title & Subtitle -->
-        <div class="text-center max-w-2xl mx-auto mb-8">
-            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2 tracking-tight">
-                Lamaran Saya
-            </h1>
-            <p class="text-xs md:text-sm text-gray-500">
-                Pantau status lamaran kerja dan kelola logo perusahaan di daftar lamaranmu.
-            </p>
+      <!-- Search Bar -->
+      <div class="max-w-2xl mx-auto mb-10">
+        <div
+          class="flex items-center border border-gray-300 rounded-lg p-1.5 bg-white shadow-sm focus-within:border-gray-400 transition"
+        >
+          <div class="pl-3 pr-2 text-gray-400">
+            <i class="fas fa-search text-sm"></i>
+          </div>
+          <input
+            type="text"
+            placeholder="Posisi, Perusahaan, atau Kata Kunci..."
+            class="w-full py-1.5 px-1 text-xs md:text-sm text-gray-700 focus:outline-none placeholder-gray-400"
+          />
+          <button
+            class="bg-[#111827] text-white text-xs md:text-sm font-semibold px-6 py-2 rounded-md hover:bg-gray-800 transition shrink-0"
+          >
+            Cari
+          </button>
         </div>
+      </div>
 
-        <!-- Search Bar -->
-        <div class="max-w-2xl mx-auto mb-10">
-            <div class="flex items-center border border-gray-300 rounded-lg p-1.5 bg-white shadow-sm focus-within:border-gray-400 transition">
-                <div class="pl-3 pr-2 text-gray-400">
-                    <i class="fas fa-search text-sm"></i>
-                </div>
-                <input type="text" placeholder="Posisi, Perusahaan, atau Kata Kunci..." class="w-full py-1.5 px-1 text-xs md:text-sm text-gray-700 focus:outline-none placeholder-gray-400">
-                <button class="bg-[#111827] text-white text-xs md:text-sm font-semibold px-6 py-2 rounded-md hover:bg-gray-800 transition shrink-0">
-                    Cari
+      <!-- Top Navigation Tabs (Kategori Status) -->
+      <div
+        class="flex justify-center border-b border-gray-200 mb-8 space-x-12 text-sm font-medium"
+      >
+        <button
+          onclick="switchTab('daftar')"
+          id="tab-daftar"
+          class="tab-btn pb-3 text-black font-bold border-b-2 border-black transition"
+        >
+          Daftar Lamaran
+        </button>
+        <button
+          onclick="switchTab('status')"
+          id="tab-status"
+          class="tab-btn pb-3 text-gray-500 hover:text-black transition"
+        >
+          Status Lamaran
+        </button>
+        <button
+          onclick="switchTab('riwayat')"
+          id="tab-riwayat"
+          class="tab-btn pb-3 text-gray-500 hover:text-black transition"
+        >
+          Riwayat Lamaran
+        </button>
+      </div>
+
+      <!-- Metric Stat Cards -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="bg-white border border-gray-200 rounded p-4 text-center">
+          <div class="text-xl font-bold text-gray-900 mb-1">7</div>
+          <div class="text-xs text-gray-500">Total Lamaran</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded p-4 text-center">
+          <div class="text-xl font-bold text-gray-900 mb-1">2</div>
+          <div class="text-xs text-gray-500">Verifikasi Berkas</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded p-4 text-center">
+          <div class="text-xl font-bold text-gray-900 mb-1">2</div>
+          <div class="text-xs text-gray-500">Dalam Seleksi</div>
+        </div>
+        <div class="bg-white border border-gray-200 rounded p-4 text-center">
+          <div class="text-xl font-bold text-gray-900 mb-1">3</div>
+          <div class="text-xs text-gray-500">Riwayat Selesai</div>
+        </div>
+      </div>
+
+      <!-- Layout Grid: Sidebar Left + Content Right -->
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Sidebar Left -->
+        <aside class="space-y-6">
+          <!-- Profil Saya Card -->
+          <div class="bg-white border border-gray-200 rounded p-5 text-center">
+            <h3 class="text-xs font-bold text-gray-900 text-left mb-4">
+              Profil Saya
+            </h3>
+
+            <img
+              src="photo-1729821728958-4486e16d807d (1).avif"
+              alt="Foto Profil"
+              class="w-20 h-20 rounded-full object-cover border border-gray-300 mx-auto mb-3"
+            />
+
+            <h4 class="text-sm font-bold text-gray-900">Rizky Pratama</h4>
+            <p class="text-xs text-gray-500 mb-4">rizkypratama@email.com</p>
+
+            <button
+              class="w-full border border-gray-300 text-gray-800 text-xs font-medium py-1.5 rounded hover:bg-gray-50 transition"
+            >
+              Lihat Profil
+            </button>
+          </div>
+
+          <!-- Navigasi Card -->
+          <div class="bg-white border border-gray-200 rounded p-4">
+            <h3 class="text-xs font-bold text-gray-900 mb-3">Navigasi</h3>
+            <ul class="space-y-1 text-xs">
+              <li>
+                <button
+                  onclick="switchTab('daftar')"
+                  id="nav-daftar"
+                  class="nav-item-btn w-full text-left px-3 py-2 rounded bg-gray-100 font-medium text-gray-900 flex items-center gap-2"
+                >
+                  <span>•</span> Daftar Lamaran
                 </button>
-            </div>
-        </div>
+              </li>
+              <li>
+                <button
+                  onclick="switchTab('status')"
+                  id="nav-status"
+                  class="nav-item-btn w-full text-left px-3 py-2 rounded text-gray-600 hover:bg-gray-50 flex items-center gap-2"
+                >
+                  <span>•</span> Status Lamaran
+                </button>
+              </li>
+              <li>
+                <button
+                  onclick="switchTab('riwayat')"
+                  id="nav-riwayat"
+                  class="nav-item-btn w-full text-left px-3 py-2 rounded text-gray-600 hover:bg-gray-50 flex items-center gap-2"
+                >
+                  <span>•</span> Riwayat Lamaran
+                </button>
+              </li>
+            </ul>
+          </div>
+        </aside>
 
-        <!-- Top Navigation Tabs (Kategori Status) -->
-        <div class="flex justify-center border-b border-gray-200 mb-8 space-x-12 text-sm font-medium">
-            <button onclick="switchTab('daftar')" id="tab-daftar" class="tab-btn pb-3 text-black font-bold border-b-2 border-black transition">
-                Daftar Lamaran
-            </button>
-            <button onclick="switchTab('status')" id="tab-status" class="tab-btn pb-3 text-gray-500 hover:text-black transition">
-                Status Lamaran
-            </button>
-            <button onclick="switchTab('riwayat')" id="tab-riwayat" class="tab-btn pb-3 text-gray-500 hover:text-black transition">
-                Riwayat Lamaran
-            </button>
-        </div>
+        <!-- Main Content Area Right -->
+        <section class="lg:col-span-3">
+          <!-- SECTION 1: DAFTAR LAMARAN (Dengan Tempat Logo Perusahaan) -->
+          <div id="content-daftar" class="tab-content space-y-4">
+            <div
+              class="flex justify-between items-center bg-white border border-gray-200 rounded p-3 text-xs"
+            >
+              <h2 class="font-bold text-gray-900">Daftar Lamaran</h2>
+              <div class="flex items-center space-x-2 text-gray-500">
+                <span>Urutkan:</span>
+                <select
+                  class="border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 focus:outline-none"
+                >
+                  <option>Terbaru</option>
+                  <option>Terlama</option>
+                </select>
+              </div>
+            </div>
 
-        <!-- Metric Stat Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-white border border-gray-200 rounded p-4 text-center">
-                <div class="text-xl font-bold text-gray-900 mb-1">7</div>
-                <div class="text-xs text-gray-500">Total Lamaran</div>
-            </div>
-            <div class="bg-white border border-gray-200 rounded p-4 text-center">
-                <div class="text-xl font-bold text-gray-900 mb-1">2</div>
-                <div class="text-xs text-gray-500">Verifikasi Berkas</div>
-            </div>
-            <div class="bg-white border border-gray-200 rounded p-4 text-center">
-                <div class="text-xl font-bold text-gray-900 mb-1">2</div>
-                <div class="text-xs text-gray-500">Dalam Seleksi</div>
-            </div>
-            <div class="bg-white border border-gray-200 rounded p-4 text-center">
-                <div class="text-xl font-bold text-gray-900 mb-1">3</div>
-                <div class="text-xs text-gray-500">Riwayat Selesai</div>
-            </div>
-        </div>
-
-        <!-- Layout Grid: Sidebar Left + Content Right -->
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-
-            <!-- Sidebar Left -->
-            <aside class="space-y-6">
-                <!-- Profil Saya Card -->
-                <div class="bg-white border border-gray-200 rounded p-5 text-center">
-                    <h3 class="text-xs font-bold text-gray-900 text-left mb-4">Profil Saya</h3>
-                    
-                   <img src="photo-1729821728958-4486e16d807d (1).avif" alt="Foto Profil" class="w-20 h-20 rounded-full object-cover border border-gray-300 mx-auto mb-3">
-                    
-                    <h4 class="text-sm font-bold text-gray-900">Rizky Pratama</h4>
-                    <p class="text-xs text-gray-500 mb-4">rizkypratama@email.com</p>
-                    
-                    <button class="w-full border border-gray-300 text-gray-800 text-xs font-medium py-1.5 rounded hover:bg-gray-50 transition">
-                        Lihat Profil
-                    </button>
+            <!-- Item 1: Gojek -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4"
+            >
+              <div class="flex items-start gap-4">
+                <!-- Container Logo Perusahaan -->
+                <div class="relative group shrink-0">
+                  <div
+                    class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1"
+                  >
+                    <!-- Tempat memasukkan Foto Logo Perusahaan (Ganti src="URL_FOTO_LOGO") -->
+                    <img
+                      src="jaksakocak.png"
+                      alt="Logo Gojek"
+                      class="w-full h-full object-contain"
+                    />
+                  </div>
+                  <!-- Tombol Ganti Logo Perusahaan -->
+                  <label
+                    class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow"
+                    title="Unggah Logo Perusahaan"
+                  >
+                    <i class="fas fa-pen"></i>
+                    <input type="file" accept="image/*" class="hidden" />
+                  </label>
                 </div>
 
-                <!-- Navigasi Card -->
-                <div class="bg-white border border-gray-200 rounded p-4">
-                    <h3 class="text-xs font-bold text-gray-900 mb-3">Navigasi</h3>
-                    <ul class="space-y-1 text-xs">
-                        <li>
-                            <button onclick="switchTab('daftar')" id="nav-daftar" class="nav-item-btn w-full text-left px-3 py-2 rounded bg-gray-100 font-medium text-gray-900 flex items-center gap-2">
-                                <span>•</span> Daftar Lamaran
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchTab('status')" id="nav-status" class="nav-item-btn w-full text-left px-3 py-2 rounded text-gray-600 hover:bg-gray-50 flex items-center gap-2">
-                                <span>•</span> Status Lamaran
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="switchTab('riwayat')" id="nav-riwayat" class="nav-item-btn w-full text-left px-3 py-2 rounded text-gray-600 hover:bg-gray-50 flex items-center gap-2">
-                                <span>•</span> Riwayat Lamaran
-                            </button>
-                        </li>
-                    </ul>
+                <div class="space-y-1">
+                  <h3 class="font-bold text-sm text-gray-900">Gojek</h3>
+                  <p class="text-xs font-semibold text-gray-700">
+                    Mitra Driver GoRide
+                  </p>
+                  <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
+                    <p class="flex items-center gap-1.5">
+                      <i class="fas fa-map-marker-alt text-gray-400 w-3"></i>
+                      Jakarta, Indonesia
+                    </p>
+                    <p class="flex items-center gap-1.5">
+                      <i class="far fa-calendar-alt text-gray-400 w-3"></i> 18
+                      Juli 2026
+                    </p>
+                  </div>
                 </div>
-            </aside>
+              </div>
+              <div
+                class="flex flex-col justify-between items-end self-stretch w-full md:w-auto"
+              >
+                <span
+                  class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full"
+                  >Dipproses</span
+                >
+                <button
+                  class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0"
+                >
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
 
-            <!-- Main Content Area Right -->
-            <section class="lg:col-span-3">
-
-                <!-- SECTION 1: DAFTAR LAMARAN (Dengan Tempat Logo Perusahaan) -->
-                <div id="content-daftar" class="tab-content space-y-4">
-                    <div class="flex justify-between items-center bg-white border border-gray-200 rounded p-3 text-xs">
-                        <h2 class="font-bold text-gray-900">Daftar Lamaran</h2>
-                        <div class="flex items-center space-x-2 text-gray-500">
-                            <span>Urutkan:</span>
-                            <select class="border border-gray-300 rounded px-2 py-1 bg-white text-gray-700 focus:outline-none">
-                                <option>Terbaru</option>
-                                <option>Terlama</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Item 1: Gojek -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4">
-                        <div class="flex items-start gap-4">
-                            <!-- Container Logo Perusahaan -->
-                            <div class="relative group shrink-0">
-                                <div class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1">
-                                    <!-- Tempat memasukkan Foto Logo Perusahaan (Ganti src="URL_FOTO_LOGO") -->
-                                    <img src="jaksakocak.png" alt="Logo Gojek" class="w-full h-full object-contain">
-                                </div>
-                                <!-- Tombol Ganti Logo Perusahaan -->
-                                <label class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow" title="Unggah Logo Perusahaan">
-                                    <i class="fas fa-pen"></i>
-                                    <input type="file" accept="image/*" class="hidden">
-                                </label>
-                            </div>
-
-                            <div class="space-y-1">
-                                <h3 class="font-bold text-sm text-gray-900">Gojek</h3>
-                                <p class="text-xs font-semibold text-gray-700">Mitra Driver GoRide</p>
-                                <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
-                                    <p class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-gray-400 w-3"></i> Jakarta, Indonesia</p>
-                                    <p class="flex items-center gap-1.5"><i class="far fa-calendar-alt text-gray-400 w-3"></i> 18 Juli 2026</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-between items-end self-stretch w-full md:w-auto">
-                            <span class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full">Dipproses</span>
-                            <button class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0">
-                                Lihat Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Item 2: McDonald's -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4">
-                        <div class="flex items-start gap-4">
-                            <!-- Container Logo Perusahaan -->
-                            <div class="relative group shrink-0">
-                                <div class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1">
-                                    <img src="mcd.jpg" alt="Logo McDonald's" class="w-full h-full object-contain">
-                                </div>
-                                <label class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow" title="Unggah Logo Perusahaan">
-                                    <i class="fas fa-pen"></i>
-                                    <input type="file" accept="image/*" class="hidden">
-                                </label>
-                            </div>
-
-                            <div class="space-y-1">
-                                <h3 class="font-bold text-sm text-gray-900">McDonald's</h3>
-                                <p class="text-xs font-semibold text-gray-700">Crew Store</p>
-                                <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
-                                    <p class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-gray-400 w-3"></i> Jakarta, Indonesia</p>
-                                    <p class="flex items-center gap-1.5"><i class="far fa-calendar-alt text-gray-400 w-3"></i> 15 Juli 2026</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-between items-end self-stretch w-full md:w-auto">
-                            <span class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full">Dalam Seleksi</span>
-                            <button class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0">
-                                Lihat Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Item 3: Grab -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4">
-                        <div class="flex items-start gap-4">
-                            <!-- Container Logo Perusahaan -->
-                            <div class="relative group shrink-0">
-                                <div class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1">
-                                    <img src="potograb.png" alt="Logo Grab" class="w-full h-full object-contain">
-                                </div>
-                                <label class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow" title="Unggah Logo Perusahaan">
-                                    <i class="fas fa-pen"></i>
-                                    <input type="file" accept="image/*" class="hidden">
-                                </label>
-                            </div>
-
-                            <div class="space-y-1">
-                                <h3 class="font-bold text-sm text-gray-900">Grab</h3>
-                                <p class="text-xs font-semibold text-gray-700">Mitra Pengemudi GrabBike</p>
-                                <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
-                                    <p class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-gray-400 w-3"></i> Jakarta, Indonesia</p>
-                                    <p class="flex items-center gap-1.5"><i class="far fa-calendar-alt text-gray-400 w-3"></i> 10 Juli 2026</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-between items-end self-stretch w-full md:w-auto">
-                            <span class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full">Dipproses</span>
-                            <button class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0">
-                                Lihat Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Item 4: Kopi Kenangan -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4">
-                        <div class="flex items-start gap-4">
-                            <!-- Container Logo Perusahaan -->
-                            <div class="relative group shrink-0">
-                                <div class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1">
-                                    <img src="kk.png" alt="Logo Kopi Kenangan" class="w-full h-full object-contain">
-                                </div>
-                                <label class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow" title="Unggah Logo Perusahaan">
-                                    <i class="fas fa-pen"></i>
-                                    <input type="file" accept="image/*" class="hidden">
-                                </label>
-                            </div>
-
-                            <div class="space-y-1">
-                                <h3 class="font-bold text-sm text-gray-900">Kopi Kenangan</h3>
-                                <p class="text-xs font-semibold text-gray-700">Barista Part-Time</p>
-                                <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
-                                    <p class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-gray-400 w-3"></i> Jakarta, Indonesia</p>
-                                    <p class="flex items-center gap-1.5"><i class="far fa-calendar-alt text-gray-400 w-3"></i> 05 Juli 2026</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-between items-end self-stretch w-full md:w-auto">
-                            <span class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full">Dalam Seleksi</span>
-                            <button class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0">
-                                Lihat Detail
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Item 5: Tokopedia -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4">
-                        <div class="flex items-start gap-4">
-                            <!-- Container Logo Perusahaan -->
-                            <div class="relative group shrink-0">
-                                <div class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1">
-                                    <img src="tokped.jpg" alt="Logo Tokopedia" class="w-full h-full object-contain">
-                                </div>
-                                <label class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow" title="Unggah Logo Perusahaan">
-                                    <i class="fas fa-pen"></i>
-                                    <input type="file" accept="image/*" class="hidden">
-                                </label>
-                            </div>
-
-                            <div class="space-y-1">
-                                <h3 class="font-bold text-sm text-gray-900">Tokopedia</h3>
-                                <p class="text-xs font-semibold text-gray-700">Admin Gudang</p>
-                                <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
-                                    <p class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-gray-400 w-3"></i> Jakarta, Indonesia</p>
-                                    <p class="flex items-center gap-1.5"><i class="far fa-calendar-alt text-gray-400 w-3"></i> 01 Juni 2026</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col justify-between items-end self-stretch w-full md:w-auto">
-                            <span class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full">Ditolak</span>
-                            <button class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0">
-                                Lihat Detail
-                            </button>
-                        </div>
-                    </div>
+            <!-- Item 2: McDonald's -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4"
+            >
+              <div class="flex items-start gap-4">
+                <!-- Container Logo Perusahaan -->
+                <div class="relative group shrink-0">
+                  <div
+                    class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1"
+                  >
+                    <img
+                      src="mcd.jpg"
+                      alt="Logo McDonald's"
+                      class="w-full h-full object-contain"
+                    />
+                  </div>
+                  <label
+                    class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow"
+                    title="Unggah Logo Perusahaan"
+                  >
+                    <i class="fas fa-pen"></i>
+                    <input type="file" accept="image/*" class="hidden" />
+                  </label>
                 </div>
 
-                <!-- SECTION 2: STATUS LAMARAN -->
-                <div id="content-status" class="tab-content hidden space-y-4">
-                    <div class="flex justify-between items-center bg-white border border-gray-200 rounded p-3 text-xs">
-                        <h2 class="font-bold text-gray-900">Status & Progres Lamaran Aktif</h2>
-                        <span class="text-gray-500">4 Lamaran Aktif</span>
-                    </div>
+                <div class="space-y-1">
+                  <h3 class="font-bold text-sm text-gray-900">McDonald's</h3>
+                  <p class="text-xs font-semibold text-gray-700">Crew Store</p>
+                  <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
+                    <p class="flex items-center gap-1.5">
+                      <i class="fas fa-map-marker-alt text-gray-400 w-3"></i>
+                      Jakarta, Indonesia
+                    </p>
+                    <p class="flex items-center gap-1.5">
+                      <i class="far fa-calendar-alt text-gray-400 w-3"></i> 15
+                      Juli 2026
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-col justify-between items-end self-stretch w-full md:w-auto"
+              >
+                <span
+                  class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full"
+                  >Dalam Seleksi</span
+                >
+                <button
+                  class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0"
+                >
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
 
-                    <!-- Status 1: Gojek -->
-                    <div class="bg-white border border-gray-200 rounded p-4">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <h3 class="font-bold text-sm text-gray-900">Gojek — <span class="font-normal text-gray-600">Mitra Driver GoRide</span></h3>
-                                <p class="text-[11px] text-gray-400">ID Lamaran: #GJK-2026-992</p>
-                            </div>
-                            <span class="bg-gray-100 text-gray-800 text-[10px] font-semibold px-2.5 py-1 rounded-full">Tahap 1: Verifikasi Berkas</span>
-                        </div>
-                        <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
-                            <div class="bg-black h-2 rounded-full" style="width: 25%"></div>
-                        </div>
-                        <div class="flex justify-between text-[11px] text-gray-500 mb-3">
-                            <span class="font-semibold text-gray-900">1. Pendaftaran</span>
-                            <span class="text-gray-300">2. Verifikasi Dokumen</span>
-                            <span class="text-gray-300">3. Aktivasi Akun</span>
-                        </div>
-                    </div>
-
-                    <!-- Status 2: McDonald's -->
-                    <div class="bg-white border border-gray-200 rounded p-4">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <h3 class="font-bold text-sm text-gray-900">McDonald's — <span class="font-normal text-gray-600">Crew Store</span></h3>
-                                <p class="text-[11px] text-gray-400">ID Lamaran: #MCD-2026-102</p>
-                            </div>
-                            <span class="bg-blue-100 text-blue-700 text-[10px] font-semibold px-2.5 py-1 rounded-full">Tahap 2: Tes On-Site</span>
-                        </div>
-                        <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
-                            <div class="bg-black h-2 rounded-full" style="width: 50%"></div>
-                        </div>
-                        <div class="flex justify-between text-[11px] text-gray-500 mb-3">
-                            <span>1. Berkas Terkirim</span>
-                            <span class="font-semibold text-gray-900">2. Tes Fisik & Kasir</span>
-                            <span class="text-gray-300">3. Training</span>
-                        </div>
-                    </div>
-
-                    <!-- Status 3: Grab -->
-                    <div class="bg-white border border-gray-200 rounded p-4">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <h3 class="font-bold text-sm text-gray-900">Grab — <span class="font-normal text-gray-600">Mitra Pengemudi GrabBike</span></h3>
-                                <p class="text-[11px] text-gray-400">ID Lamaran: #GRB-2026-441</p>
-                            </div>
-                            <span class="bg-gray-100 text-gray-800 text-[10px] font-semibold px-2.5 py-1 rounded-full">Tahap 1: Verifikasi Berkas</span>
-                        </div>
-                        <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
-                            <div class="bg-black h-2 rounded-full" style="width: 25%"></div>
-                        </div>
-                        <div class="flex justify-between text-[11px] text-gray-500 mb-3">
-                            <span class="font-semibold text-gray-900">1. Berkas Diterima</span>
-                            <span class="text-gray-300">2. Cek Kelayakan</span>
-                            <span class="text-gray-300">3. Pengambilan Atribut</span>
-                        </div>
-                    </div>
-
-                    <!-- Status 4: Kopi Kenangan -->
-                    <div class="bg-white border border-gray-200 rounded p-4">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <h3 class="font-bold text-sm text-gray-900">Kopi Kenangan — <span class="font-normal text-gray-600">Barista Part-Time</span></h3>
-                                <p class="text-[11px] text-gray-400">ID Lamaran: #KK-2026-089</p>
-                            </div>
-                            <span class="bg-amber-100 text-amber-800 text-[10px] font-semibold px-2.5 py-1 rounded-full">Tahap 3: Undangan Interview</span>
-                        </div>
-                        <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
-                            <div class="bg-black h-2 rounded-full" style="width: 75%"></div>
-                        </div>
-                        <div class="flex justify-between text-[11px] text-gray-500 mb-3">
-                            <span>1. Berkas Terkirim</span>
-                            <span>2. Lolos Verifikasi</span>
-                            <span class="font-semibold text-gray-900">3. Interview (24 Jul)</span>
-                        </div>
-                    </div>
+            <!-- Item 3: Grab -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4"
+            >
+              <div class="flex items-start gap-4">
+                <!-- Container Logo Perusahaan -->
+                <div class="relative group shrink-0">
+                  <div
+                    class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1"
+                  >
+                    <img
+                      src="potograb.png"
+                      alt="Logo Grab"
+                      class="w-full h-full object-contain"
+                    />
+                  </div>
+                  <label
+                    class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow"
+                    title="Unggah Logo Perusahaan"
+                  >
+                    <i class="fas fa-pen"></i>
+                    <input type="file" accept="image/*" class="hidden" />
+                  </label>
                 </div>
 
-                <!-- SECTION 3: RIWAYAT LAMARAN -->
-                <div id="content-riwayat" class="tab-content hidden space-y-4">
-                    <div class="flex justify-between items-center bg-white border border-gray-200 rounded p-3 text-xs">
-                        <h2 class="font-bold text-gray-900">Riwayat Lamaran Selesai</h2>
-                        <span class="text-gray-500">Total 3 Arsip Lamaran</span>
-                    </div>
+                <div class="space-y-1">
+                  <h3 class="font-bold text-sm text-gray-900">Grab</h3>
+                  <p class="text-xs font-semibold text-gray-700">
+                    Mitra Pengemudi GrabBike
+                  </p>
+                  <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
+                    <p class="flex items-center gap-1.5">
+                      <i class="fas fa-map-marker-alt text-gray-400 w-3"></i>
+                      Jakarta, Indonesia
+                    </p>
+                    <p class="flex items-center gap-1.5">
+                      <i class="far fa-calendar-alt text-gray-400 w-3"></i> 10
+                      Juli 2026
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-col justify-between items-end self-stretch w-full md:w-auto"
+              >
+                <span
+                  class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full"
+                  >Dipproses</span
+                >
+                <button
+                  class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0"
+                >
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
 
-                    <!-- Riwayat 1 -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex justify-between items-center opacity-80">
-                        <div>
-                            <span class="text-[10px] bg-red-100 text-red-700 font-medium px-2 py-0.5 rounded">Ditolak</span>
-                            <h3 class="font-bold text-sm text-gray-900 mt-1">Tokopedia</h3>
-                            <p class="text-xs text-gray-600">Admin Gudang — Selesai pada 01 Juni 2026</p>
-                        </div>
-                        <button class="border border-gray-300 text-gray-600 text-xs font-medium px-3 py-1.5 rounded hover:bg-gray-50">Lihat Feedback</button>
-                    </div>
-
-                    <!-- Riwayat 2 -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex justify-between items-center opacity-80">
-                        <div>
-                            <span class="text-[10px] bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded">Diterima</span>
-                            <h3 class="font-bold text-sm text-gray-900 mt-1">McDonald's</h3>
-                            <p class="text-xs text-gray-600">Crew Store Part-Time — Selesai pada 12 Mei 2026</p>
-                        </div>
-                        <button class="border border-gray-300 text-gray-600 text-xs font-medium px-3 py-1.5 rounded hover:bg-gray-50">Lihat Kontrak</button>
-                    </div>
-
-                    <!-- Riwayat 3 -->
-                    <div class="bg-white border border-gray-200 rounded p-4 flex justify-between items-center opacity-80">
-                        <div>
-                            <span class="text-[10px] bg-gray-100 text-gray-600 font-medium px-2 py-0.5 rounded">Dibatalkan</span>
-                            <h3 class="font-bold text-sm text-gray-900 mt-1">Gojek</h3>
-                            <p class="text-xs text-gray-600">Mitra Driver GoRide — Selesai pada 20 April 2026</p>
-                        </div>
-                        <button class="border border-gray-300 text-gray-600 text-xs font-medium px-3 py-1.5 rounded hover:bg-gray-50">Lihat Detail</button>
-                    </div>
+            <!-- Item 4: Kopi Kenangan -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4"
+            >
+              <div class="flex items-start gap-4">
+                <!-- Container Logo Perusahaan -->
+                <div class="relative group shrink-0">
+                  <div
+                    class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1"
+                  >
+                    <img
+                      src="kk.png"
+                      alt="Logo Kopi Kenangan"
+                      class="w-full h-full object-contain"
+                    />
+                  </div>
+                  <label
+                    class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow"
+                    title="Unggah Logo Perusahaan"
+                  >
+                    <i class="fas fa-pen"></i>
+                    <input type="file" accept="image/*" class="hidden" />
+                  </label>
                 </div>
 
-            </section>
-        </div>
+                <div class="space-y-1">
+                  <h3 class="font-bold text-sm text-gray-900">Kopi Kenangan</h3>
+                  <p class="text-xs font-semibold text-gray-700">
+                    Barista Part-Time
+                  </p>
+                  <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
+                    <p class="flex items-center gap-1.5">
+                      <i class="fas fa-map-marker-alt text-gray-400 w-3"></i>
+                      Jakarta, Indonesia
+                    </p>
+                    <p class="flex items-center gap-1.5">
+                      <i class="far fa-calendar-alt text-gray-400 w-3"></i> 05
+                      Juli 2026
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-col justify-between items-end self-stretch w-full md:w-auto"
+              >
+                <span
+                  class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full"
+                  >Dalam Seleksi</span
+                >
+                <button
+                  class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0"
+                >
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
 
+            <!-- Item 5: Tokopedia -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex flex-col md:flex-row items-start justify-between gap-4"
+            >
+              <div class="flex items-start gap-4">
+                <!-- Container Logo Perusahaan -->
+                <div class="relative group shrink-0">
+                  <div
+                    class="w-16 h-16 border border-gray-300 bg-gray-50 rounded overflow-hidden flex items-center justify-center p-1"
+                  >
+                    <img
+                      src="tokped.jpg"
+                      alt="Logo Tokopedia"
+                      class="w-full h-full object-contain"
+                    />
+                  </div>
+                  <label
+                    class="absolute -bottom-1 -right-1 bg-gray-900 text-white p-1 rounded-full text-[9px] cursor-pointer hover:bg-gray-700 shadow"
+                    title="Unggah Logo Perusahaan"
+                  >
+                    <i class="fas fa-pen"></i>
+                    <input type="file" accept="image/*" class="hidden" />
+                  </label>
+                </div>
+
+                <div class="space-y-1">
+                  <h3 class="font-bold text-sm text-gray-900">Tokopedia</h3>
+                  <p class="text-xs font-semibold text-gray-700">
+                    Admin Gudang
+                  </p>
+                  <div class="text-[11px] text-gray-500 space-y-0.5 pt-1">
+                    <p class="flex items-center gap-1.5">
+                      <i class="fas fa-map-marker-alt text-gray-400 w-3"></i>
+                      Jakarta, Indonesia
+                    </p>
+                    <p class="flex items-center gap-1.5">
+                      <i class="far fa-calendar-alt text-gray-400 w-3"></i> 01
+                      Juni 2026
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="flex flex-col justify-between items-end self-stretch w-full md:w-auto"
+              >
+                <span
+                  class="bg-gray-200 text-gray-700 text-[10px] font-medium px-3 py-1 rounded-full"
+                  >Ditolak</span
+                >
+                <button
+                  class="border border-gray-300 text-gray-800 text-xs font-medium px-4 py-1.5 rounded hover:bg-gray-50 transition mt-4 md:mt-0"
+                >
+                  Lihat Detail
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: STATUS LAMARAN -->
+          <div id="content-status" class="tab-content hidden space-y-4">
+            <div
+              class="flex justify-between items-center bg-white border border-gray-200 rounded p-3 text-xs"
+            >
+              <h2 class="font-bold text-gray-900">
+                Status & Progres Lamaran Aktif
+              </h2>
+              <span class="text-gray-500">4 Lamaran Aktif</span>
+            </div>
+
+            <!-- Status 1: Gojek -->
+            <div class="bg-white border border-gray-200 rounded p-4">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="font-bold text-sm text-gray-900">
+                    Gojek —
+                    <span class="font-normal text-gray-600"
+                      >Mitra Driver GoRide</span
+                    >
+                  </h3>
+                  <p class="text-[11px] text-gray-400">
+                    ID Lamaran: #GJK-2026-992
+                  </p>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-800 text-[10px] font-semibold px-2.5 py-1 rounded-full"
+                  >Tahap 1: Verifikasi Berkas</span
+                >
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                <div class="bg-black h-2 rounded-full" style="width: 25%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-gray-500 mb-3">
+                <span class="font-semibold text-gray-900">1. Pendaftaran</span>
+                <span class="text-gray-300">2. Verifikasi Dokumen</span>
+                <span class="text-gray-300">3. Aktivasi Akun</span>
+              </div>
+            </div>
+
+            <!-- Status 2: McDonald's -->
+            <div class="bg-white border border-gray-200 rounded p-4">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="font-bold text-sm text-gray-900">
+                    McDonald's —
+                    <span class="font-normal text-gray-600">Crew Store</span>
+                  </h3>
+                  <p class="text-[11px] text-gray-400">
+                    ID Lamaran: #MCD-2026-102
+                  </p>
+                </div>
+                <span
+                  class="bg-blue-100 text-blue-700 text-[10px] font-semibold px-2.5 py-1 rounded-full"
+                  >Tahap 2: Tes On-Site</span
+                >
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                <div class="bg-black h-2 rounded-full" style="width: 50%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-gray-500 mb-3">
+                <span>1. Berkas Terkirim</span>
+                <span class="font-semibold text-gray-900"
+                  >2. Tes Fisik & Kasir</span
+                >
+                <span class="text-gray-300">3. Training</span>
+              </div>
+            </div>
+
+            <!-- Status 3: Grab -->
+            <div class="bg-white border border-gray-200 rounded p-4">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="font-bold text-sm text-gray-900">
+                    Grab —
+                    <span class="font-normal text-gray-600"
+                      >Mitra Pengemudi GrabBike</span
+                    >
+                  </h3>
+                  <p class="text-[11px] text-gray-400">
+                    ID Lamaran: #GRB-2026-441
+                  </p>
+                </div>
+                <span
+                  class="bg-gray-100 text-gray-800 text-[10px] font-semibold px-2.5 py-1 rounded-full"
+                  >Tahap 1: Verifikasi Berkas</span
+                >
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                <div class="bg-black h-2 rounded-full" style="width: 25%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-gray-500 mb-3">
+                <span class="font-semibold text-gray-900"
+                  >1. Berkas Diterima</span
+                >
+                <span class="text-gray-300">2. Cek Kelayakan</span>
+                <span class="text-gray-300">3. Pengambilan Atribut</span>
+              </div>
+            </div>
+
+            <!-- Status 4: Kopi Kenangan -->
+            <div class="bg-white border border-gray-200 rounded p-4">
+              <div class="flex justify-between items-start mb-3">
+                <div>
+                  <h3 class="font-bold text-sm text-gray-900">
+                    Kopi Kenangan —
+                    <span class="font-normal text-gray-600"
+                      >Barista Part-Time</span
+                    >
+                  </h3>
+                  <p class="text-[11px] text-gray-400">
+                    ID Lamaran: #KK-2026-089
+                  </p>
+                </div>
+                <span
+                  class="bg-amber-100 text-amber-800 text-[10px] font-semibold px-2.5 py-1 rounded-full"
+                  >Tahap 3: Undangan Interview</span
+                >
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2 mb-3">
+                <div class="bg-black h-2 rounded-full" style="width: 75%"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-gray-500 mb-3">
+                <span>1. Berkas Terkirim</span>
+                <span>2. Lolos Verifikasi</span>
+                <span class="font-semibold text-gray-900"
+                  >3. Interview (24 Jul)</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 3: RIWAYAT LAMARAN -->
+          <div id="content-riwayat" class="tab-content hidden space-y-4">
+            <div
+              class="flex justify-between items-center bg-white border border-gray-200 rounded p-3 text-xs"
+            >
+              <h2 class="font-bold text-gray-900">Riwayat Lamaran Selesai</h2>
+              <span class="text-gray-500">Total 3 Arsip Lamaran</span>
+            </div>
+
+            <!-- Riwayat 1 -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex justify-between items-center opacity-80"
+            >
+              <div>
+                <span
+                  class="text-[10px] bg-red-100 text-red-700 font-medium px-2 py-0.5 rounded"
+                  >Ditolak</span
+                >
+                <h3 class="font-bold text-sm text-gray-900 mt-1">Tokopedia</h3>
+                <p class="text-xs text-gray-600">
+                  Admin Gudang — Selesai pada 01 Juni 2026
+                </p>
+              </div>
+              <button
+                class="border border-gray-300 text-gray-600 text-xs font-medium px-3 py-1.5 rounded hover:bg-gray-50"
+              >
+                Lihat Feedback
+              </button>
+            </div>
+
+            <!-- Riwayat 2 -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex justify-between items-center opacity-80"
+            >
+              <div>
+                <span
+                  class="text-[10px] bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded"
+                  >Diterima</span
+                >
+                <h3 class="font-bold text-sm text-gray-900 mt-1">McDonald's</h3>
+                <p class="text-xs text-gray-600">
+                  Crew Store Part-Time — Selesai pada 12 Mei 2026
+                </p>
+              </div>
+              <button
+                class="border border-gray-300 text-gray-600 text-xs font-medium px-3 py-1.5 rounded hover:bg-gray-50"
+              >
+                Lihat Kontrak
+              </button>
+            </div>
+
+            <!-- Riwayat 3 -->
+            <div
+              class="bg-white border border-gray-200 rounded p-4 flex justify-between items-center opacity-80"
+            >
+              <div>
+                <span
+                  class="text-[10px] bg-gray-100 text-gray-600 font-medium px-2 py-0.5 rounded"
+                  >Dibatalkan</span
+                >
+                <h3 class="font-bold text-sm text-gray-900 mt-1">Gojek</h3>
+                <p class="text-xs text-gray-600">
+                  Mitra Driver GoRide — Selesai pada 20 April 2026
+                </p>
+              </div>
+              <button
+                class="border border-gray-300 text-gray-600 text-xs font-medium px-3 py-1.5 rounded hover:bg-gray-50"
+              >
+                Lihat Detail
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- JavaScript Interaktif Tab -->
     <script>
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.add('hidden');
-            });
+      function switchTab(tabName) {
+        document.querySelectorAll(".tab-content").forEach((content) => {
+          content.classList.add("hidden");
+        });
 
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('text-black', 'font-bold', 'border-b-2', 'border-black');
-                btn.classList.add('text-gray-500');
-            });
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove(
+            "text-black",
+            "font-bold",
+            "border-b-2",
+            "border-black",
+          );
+          btn.classList.add("text-gray-500");
+        });
 
-            document.querySelectorAll('.nav-item-btn').forEach(btn => {
-                btn.classList.remove('bg-gray-100', 'font-medium', 'text-gray-900');
-                btn.classList.add('text-gray-600');
-            });
+        document.querySelectorAll(".nav-item-btn").forEach((btn) => {
+          btn.classList.remove("bg-gray-100", "font-medium", "text-gray-900");
+          btn.classList.add("text-gray-600");
+        });
 
-            document.getElementById('content-' + tabName).classList.remove('hidden');
+        document
+          .getElementById("content-" + tabName)
+          .classList.remove("hidden");
 
-            const activeTab = document.getElementById('tab-' + tabName);
-            if(activeTab) {
-                activeTab.classList.remove('text-gray-500');
-                activeTab.classList.add('text-black', 'font-bold', 'border-b-2', 'border-black');
-            }
-
-            const activeNav = document.getElementById('nav-' + tabName);
-            if(activeNav) {
-                activeNav.classList.remove('text-gray-600');
-                activeNav.classList.add('bg-gray-100', 'font-medium', 'text-gray-900');
-            }
+        const activeTab = document.getElementById("tab-" + tabName);
+        if (activeTab) {
+          activeTab.classList.remove("text-gray-500");
+          activeTab.classList.add(
+            "text-black",
+            "font-bold",
+            "border-b-2",
+            "border-black",
+          );
         }
+
+        const activeNav = document.getElementById("nav-" + tabName);
+        if (activeNav) {
+          activeNav.classList.remove("text-gray-600");
+          activeNav.classList.add(
+            "bg-gray-100",
+            "font-medium",
+            "text-gray-900",
+          );
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
