@@ -253,11 +253,6 @@ li.page-item.active .page-link {
   color: var(--accent) !important;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
-}
-
 .footer {
   background: var(--primary);
   border-top: 1px solid var(--stroke);
@@ -565,9 +560,4 @@ li.page-item.active .page-link {
 
 .text-accent {
   color: var(--accent) !important;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
 }

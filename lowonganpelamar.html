@@ -31,6 +31,11 @@
       object-fit: cover;
       display: block;
     }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
+    }
   </style>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
@@ -663,7 +668,7 @@
                   </p>
                   <p class="card-text small text-truncate">${job.desc}</p>
                   <div class="d-flex gap-2 mt-auto">
-                    <a href="${job.detailUrl || '#'}" class="btn btn-outline-primary btn-sm flex-fill">Lihat Detail</a>
+                    <a href="${job.detailUrl || "#"}" class="btn btn-outline-primary btn-sm flex-fill">Lihat Detail</a>
                     <button class="btn btn-primary btn-sm flex-fill">Lamar</button>
                   </div>
                 </div>
