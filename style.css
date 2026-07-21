@@ -71,6 +71,10 @@ body {
   border: 1px solid var(--stroke);
 }
 
+.text-primary {
+  color: var(--primary) !important;
+}
+
 /* Button */
 
 .btn {
@@ -199,6 +203,7 @@ a:hover {
   width: 70%;
 }
 
+<<<<<<< HEAD
 /* Page: kopikenangan.html (Detail Lowongan) */
 
 .btn-back {
@@ -481,4 +486,9 @@ a:hover {
 .cta-note {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
+=======
+li.page-item.active .page-link {
+  background: var(--primary);
+  border-color: var(--primary);
+>>>>>>> 4b3c7461b853a84ce70b5e383836472ff062f668
 }
