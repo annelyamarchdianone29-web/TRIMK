@@ -268,11 +268,6 @@ li.page-item.active .page-link {
   color: var(--primary);
 }
 
-.btn-back h5,
-.btn-back i {
-  color: inherit;
-}
-
 /* Placeholder Gambar */
 .img-placeholder {
   position: relative;
