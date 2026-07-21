@@ -17,12 +17,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <style>
-    .ikon-alasan {
-      border-radius: 50%;
-      background-color: var(--accent-light);
-      max-width: fit-content;
-      max-height: fit-content;
-      padding: 15px;
+    .job-img-cap {
+      width: 100%;
+      height: 160px;
+      background-color: #868e96;
+      border-top-left-radius: var(--bs-card-border-radius, 0.375rem);
+      border-top-right-radius: var(--bs-card-border-radius, 0.375rem);
+      overflow: hidden;
+    }
+    .job-img-cap-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
   </style>
   <body>
@@ -502,7 +509,7 @@
           kategori: "Food & Beverage",
           type: "Part-Time",
           desc: "Menyajikan minuman berkualitas dan memberikan pelayanan terbaik kepada pelanggan di gerai.",
-          icon: "bi-cup-hot",
+          image: "kk.png",
           detailUrl: "kopikenangan.html",
         },
         {
@@ -516,7 +523,7 @@
           kategori: "Transportasi",
           type: "Part-Time",
           desc: "Mengantar penumpang dan pesanan dengan aplikasi Gojek sesuai jam kerja yang kamu pilih sendiri.",
-          icon: "bi-scooter",
+          image: "jaksakocak.png",
         },
         {
           company: "Grab",
@@ -529,7 +536,7 @@
           kategori: "Transportasi",
           type: "Part-Time",
           desc: "Melayani layanan transportasi dan pengantaran barang dengan jadwal kerja fleksibel.",
-          icon: "bi-bicycle",
+          image: "grab.png",
         },
         {
           company: "Tokopedia",
@@ -542,7 +549,7 @@
           kategori: "Admin & Kasir",
           type: "Part-Time",
           desc: "Mengelola stok barang, input data, dan membantu proses pengemasan pesanan pelanggan.",
-          icon: "bi-box-seam",
+          image: "tokped.jpg",
         },
         {
           company: "Indomaret",
@@ -555,7 +562,7 @@
           kategori: "Admin & Kasir",
           type: "Part-Time",
           desc: "Melayani transaksi pembayaran pelanggan dan menjaga kerapian area kasir dan rak toko.",
-          icon: "bi-cash-coin",
+          image: "indomaret.jpg",
         },
         {
           company: "Ruangguru",
@@ -568,7 +575,7 @@
           kategori: "Pendidikan",
           type: "Part-Time",
           desc: "Mengajar siswa secara online melalui platform sesuai jadwal dan mata pelajaran yang dikuasai.",
-          icon: "bi-book",
+          image: "rg.jpg",
         },
         {
           company: "McDonald's",
@@ -581,7 +588,7 @@
           kategori: "Food & Beverage",
           type: "Part-Time",
           desc: "Melayani pelanggan di kasir maupun dapur serta menjaga kebersihan dan kecepatan pelayanan.",
-          icon: "bi-shop",
+          image: "mcd.jpg",
         },
         {
           company: "Alfamart",
@@ -594,7 +601,7 @@
           kategori: "Admin & Kasir",
           type: "Part-Time",
           desc: "Menangani transaksi penjualan, penataan produk, dan pelayanan pelanggan di toko.",
-          icon: "bi-cash-coin",
+          image: "alfamart.png",
         },
         {
           company: "Zenius",
@@ -607,7 +614,7 @@
           kategori: "Pendidikan",
           type: "Part-Time",
           desc: "Memberikan bimbingan belajar privat secara online untuk siswa SD hingga SMA.",
-          icon: "bi-mortarboard",
+          image: "zenius.jpg",
         },
       ];
 
@@ -643,12 +650,10 @@
               (job) => `
             <div class="col-md-6 col-xl-4">
               <div class="card h-100">
+                <div class="job-img-cap">
+                  <img src="${job.image}" alt="${job.company}" class="job-img-cap-img">
+                </div>
                 <div class="card-body d-flex flex-column">
-                  <div class="d-flex justify-content-between align-items-start mb-2">
-                    <span class="ikon-alasan d-inline-flex align-items-center justify-content-center" style="width:44px;height:44px;padding:0;">
-                      <i class="bi ${job.icon}"></i>
-                    </span>
-                  </div>
                   <p class="text-secondary small mb-1">${job.company}</p>
                   <h5 class="card-title fw-bold">${job.title}</h5>
                   <p class="fw-semibold text-primary">${job.salary}</p>
