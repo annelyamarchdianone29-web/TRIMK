@@ -208,7 +208,6 @@ a:hover {
   width: 70%;
 }
 
-<<<<<<< HEAD
 @media (max-width: 991px) {
   .navbar-collapse {
     background: white;
@@ -234,9 +233,36 @@ a:hover {
   box-shadow: none;
 }
 
-=======
-<<<<<<< HEAD
-/* Page: kopikenangan.html (Detail Lowongan) */
+li.page-item.active .page-link {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.text-accent {
+  color: var(--accent) !important;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.footer {
+  background: var(--primary);
+  border-top: 1px solid var(--stroke);
+  color: var(--background);
+}
 
 .btn-back {
   color: var(--primary-light);
@@ -257,7 +283,8 @@ a:hover {
   height: 100%;
   min-height: 100px;
   background-color: var(--surface-secondary);
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       45deg,
       transparent 100%,
       var(--stroke) 49%,
@@ -518,12 +545,11 @@ a:hover {
 .cta-note {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.6);
-=======
->>>>>>> dd6205e5d9a73ad184d78d72782c541465778346
+}
+
 li.page-item.active .page-link {
   background: var(--primary);
   border-color: var(--primary);
->>>>>>> 4b3c7461b853a84ce70b5e383836472ff062f668
 }
 
 .btn-accent {
@@ -537,15 +563,11 @@ li.page-item.active .page-link {
   border-color: var(--accent-hover);
 }
 
-.text-accent { color: var(--accent) !important; }
+.text-accent {
+  color: var(--accent) !important;
+}
 
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
-}
-
-.footer {
-  background: var(--primary);
-  border-top: 1px solid var(--stroke);
-  color: var(--background);
 }
