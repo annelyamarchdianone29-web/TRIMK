@@ -170,6 +170,11 @@ a:hover {
   border-bottom: 1px solid var(--stroke);
 }
 
+.navbar-brand {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .navbar .nav-link {
   color: var(--primary-light);
   font-weight: 500;
@@ -202,7 +207,38 @@ a:hover {
   width: 70%;
 }
 
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  .navbar-nav {
+    gap: 10px;
+  }
+
+  .navbar .right-menu {
+    margin-top: 15px;
+  }
+}
+
+.navbar-toggler {
+  border-color: var(--stroke);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
 li.page-item.active .page-link {
   background: var(--primary);
   border-color: var(--primary);
+}
+
+.footer {
+  background: var(--primary);
+  border-top: 1px solid var(--stroke);
+  color: var(--background);
 }

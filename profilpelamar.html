@@ -16,13 +16,92 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <style></style>
+  <style>
+    .profile-image-section {
+      width: 360px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .text-profile {
+      width: 52%;
+    }
+
+    .profil {
+      margin-top: 80px;
+    }
+
+    .informasi-profil {
+      margin-top: 24px;
+    }
+
+    .informasi {
+      width: 38%;
+      padding-right: 40px;
+      border-right: 1px solid var(--stroke);
+    }
+
+    .tentang {
+      width: 62%;
+      padding-left: 40px;
+    }
+
+    .label {
+      width: 110px;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .nilai {
+      margin-bottom: 0;
+    }
+
+    .profil-statistik {
+      margin-top: 24px;
+    }
+
+    .icon-stat {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .icon-stat i {
+      font-size: 28px;
+      color: var(--accent);
+    }
+
+    .profil-statistik .card {
+      min-height: 180px;
+    }
+
+    .profil-detail {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+  </style>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">PartTimeHub</a>
-        <div class="d-flex justify-content-between align-items-center">
-          <ul class="navbar-nav">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMenu"
+          aria-controls="navbarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <a class="nav-link" href="homepelamar.html">Home</a>
             </li>
@@ -41,54 +120,263 @@
               >
             </li>
           </ul>
-        </div>
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-bell"></i>
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-circle me-1"></i>
+                Profil
+              </button>
 
-        <div class="d-flex align-items-center gap-2">
-          <div class="dropdown">
-            <!-- <button
-              class="btn btn-outline-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-            Notifikasi
-        </button> -->
-            <i class="bi bi-bell me-1"></i>
-          </div>
-
-          <div class="dropdown">
-            <button
-              class="btn btn-primary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="bi bi-person-circle me-1"></i>
-              Profil
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Profil Saya
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Edit Profil
-                </a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item text-danger" href="index.html">
-                  Keluar
-                </a>
-              </li>
-            </ul>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Profil Saya
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Edit Profil
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="index.html">
+                    Keluar
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </nav>
+
+    <section class="profil">
+      <div class="container">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-end mb-4">
+              <button class="btn btn-outline-primary">
+                <i class="bi bi-pencil-square me-2"></i>Edit
+              </button>
+            </div>
+
+            <div
+              class="d-flex justify-content-between align-items-center gap-5"
+            >
+              <div class="text-profile">
+                <h3>Profil Saya</h3>
+                <p>
+                  Lengkapi profil agar perusahaan lebih mudah menemukan anda dan
+                  peluang kerja yang sesuai
+                </p>
+              </div>
+              <div class="profile-image-section">
+                <img
+                  src="https://images.unsplash.com/photo-1729821728958-4486e16d807d?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="informasi-profil">
+      <div class="container">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between my-4">
+              <div class="informasi">
+                <h4 class="mb-4">Informasi Pribadi</h4>
+                <div class="d-flex mb-3">
+                  <p class="label">Nama</p>
+                  <p class="nilai">: Rizky Pratama</p>
+                </div>
+                <div class="d-flex mb-3">
+                  <p class="label">Email</p>
+                  <p class="nilai">: rizkyp@gmail.com</p>
+                </div>
+                <div class="d-flex mb-3">
+                  <p class="label">No. HP</p>
+                  <p class="nilai">: 0812 3456 7890</p>
+                </div>
+                <div class="d-flex mb-3">
+                  <p class="label">Domisili</p>
+                  <p class="nilai">: Jakarta Selatan</p>
+                </div>
+                <div class="d-flex">
+                  <p class="label">Pendidikan</p>
+                  <p class="nilai">: S1 Sistem Informasi</p>
+                </div>
+              </div>
+              <div class="tentang">
+                <h4 class="mb-4">Tentang Saya</h4>
+                <p>
+                  Mahasiswa yang aktif mencari pekerjaan part-time.
+                  Berpengalaman sebagai Barista selama tiga tahun di coffee shop
+                  ternama. Menguasai latte art, customer service, Point of Sale,
+                  serta mampu bekerja dalam tim.
+                </p>
+                <ul class="mb-0">
+                  <li>Komunikatif</li>
+                  <li>Cepat Belajar</li>
+                  <li>Bertanggung Jawab</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="profil-statistik">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-md-4">
+            <div class="card stat-card h-100">
+              <div class="card-body d-flex align-items-start gap-3">
+                <div class="icon-stat">
+                  <i class="bi bi-file-earmark-text"></i>
+                </div>
+                <div class="d-flex flex-column flex-fill h-100">
+                  <h4 class="mb-2">CV</h4>
+                  <p class="mb-3">
+                    Upload CV terbaru agar perusahaan dapat melihat pengalaman
+                    dan kemampuan Anda.
+                  </p>
+                  <div class="mt-auto d-flex justify-content-end">
+                    <button class="btn btn-outline-primary btn-sm">
+                      Lihat CV
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card stat-card h-100">
+              <div class="card-body d-flex align-items-start gap-3">
+                <div class="icon-stat">
+                  <i class="bi bi-briefcase"></i>
+                </div>
+                <div class="d-flex flex-column flex-fill h-100">
+                  <h4 class="mb-2">Lamaran</h4>
+                  <h2 class="text-primary mb-2">12</h2>
+                  <p class="mb-0">Lamaran telah dikirim.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card stat-card h-100">
+              <div class="card-body d-flex align-items-start gap-3">
+                <div class="icon-stat">
+                  <i class="bi bi-bookmark"></i>
+                </div>
+                <div class="d-flex flex-column flex-fill h-100">
+                  <h4 class="mb-2">Bookmark</h4>
+                  <h2 class="text-primary mb-2">5</h2>
+                  <p class="mb-0">Lowongan tersimpan.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="profil-detail">
+      <div class="container">
+        <div class="d-flex gap-4">
+          <div class="card flex-fill">
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div class="icon-stat">
+                    <i class="bi bi-person-workspace"></i>
+                  </div>
+                  <h4 class="mb-0">Pengalaman</h4>
+                </div>
+                <button class="btn btn-outline-primary btn-sm">
+                  Lihat Semua
+                </button>
+              </div>
+              <ul class="mb-0">
+                <li class="mb-3">
+                  <strong>Senior Barista - Kopi Kenangan</strong><br />
+                  Juli 2025 – Sekarang
+                </li>
+                <li class="mb-3">
+                  <strong>Barista - Janji Jiwa</strong><br />
+                  Januari 2024 – Juni 2025
+                </li>
+                <li class="mb-3">
+                  <strong>Barista Part-Time - Fore Coffee</strong><br />
+                  Juni 2023 – Desember 2023
+                </li>
+                <li>
+                  <strong>Kasir - Coffee Shop Lokal</strong><br />
+                  Januari 2023 – Mei 2023
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card flex-fill">
+            <div class="card-body p-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div class="icon-stat">
+                    <i class="bi bi-stars"></i>
+                  </div>
+                  <h4 class="mb-0">Keahlian</h4>
+                </div>
+                <button class="btn btn-outline-primary btn-sm">
+                  Lihat Semua
+                </button>
+              </div>
+              <div class="d-flex flex-column gap-3">
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-check-circle-fill text-primary"></i>
+                  <span>Espresso Brewing</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-check-circle-fill text-primary"></i>
+                  <span>Latte Art</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-check-circle-fill text-primary"></i>
+                  <span>Customer Service</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-check-circle-fill text-primary"></i>
+                  <span>Point of Sale (POS)</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-check-circle-fill text-primary"></i>
+                  <span>Coffee Brewing</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-check-circle-fill text-primary"></i>
+                  <span>Teamwork</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="footer py-5">
       <div class="container">

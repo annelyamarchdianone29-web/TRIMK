@@ -16,18 +16,86 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <style></style>
+  <style>
+    .profile-image-section {
+      width: 360px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .text-profile {
+      width: 52%;
+    }
+
+    .profil {
+      margin-top: 80px;
+    }
+
+    .informasi-profil {
+      margin-top: 24px;
+    }
+
+    .tentang {
+      width: 62%;
+      padding-left: 40px;
+    }
+
+    .label {
+      width: 110px;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .nilai {
+      margin-bottom: 0;
+    }
+
+    .profil-statistik {
+      margin-top: 24px;
+    }
+
+    .icon-stat {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .icon-stat i {
+      font-size: 28px;
+      color: var(--accent);
+    }
+
+    .profil-statistik .card {
+      min-height: 180px;
+    }
+  </style>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">PartTimeHub</a>
-        <div class="d-flex justify-content-between align-items-center">
-          <ul class="navbar-nav">
+        <a class="navbar-brand">PartTimeHub</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMenu"
+          aria-controls="navbarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <a class="nav-link" href="homepemilikusaha.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pelamarpemilikusaha.html">Lamaran</a>
+              <a class="nav-link" href="pelamarpemilikusaha.html">Pelamar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="lowonganpemilikusaha.html">Lowongan</a>
@@ -41,54 +109,198 @@
               >
             </li>
           </ul>
-        </div>
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-bell"></i>
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-circle me-1"></i>
+                Profil
+              </button>
 
-        <div class="d-flex align-items-center gap-2">
-          <div class="dropdown">
-            <!-- <button
-              class="btn btn-outline-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-            Notifikasi
-        </button> -->
-            <i class="bi bi-bell me-1"></i>
-          </div>
-
-          <div class="dropdown">
-            <button
-              class="btn btn-primary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="bi bi-person-circle me-1"></i>
-              Profil
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Profil Saya
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Edit Profil
-                </a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item text-danger" href="index.html">
-                  Keluar
-                </a>
-              </li>
-            </ul>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Profil Saya
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Edit Profil
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="index.html">
+                    Keluar
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </nav>
+
+    <section class="profil">
+      <div class="container">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-end mb-4">
+              <button class="btn btn-outline-primary">
+                <i class="bi bi-pencil-square me-2"></i>Edit
+              </button>
+            </div>
+
+            <div
+              class="d-flex justify-content-between align-items-center gap-5"
+            >
+              <div class="text-profile">
+                <h3>Profil Perusahaan</h3>
+                <p>
+                  Tampilkan informasi perusahaan secara lengkap agar calon
+                  pelamar lebih mengenal bisnis Anda.
+                </p>
+              </div>
+              <div class="profile-image-section">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM5AdHwfoJr_pyqP8T-v3k7cio73HzoY_Y-MqfETKuLA&s"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="profil-statistik">
+      <div class="container">
+        <div class="row g-4 mb-4">
+          <div class="col-md-4">
+            <div class="card stat-card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-stat">
+                    <i class="bi bi-file-earmark-text"></i>
+                  </div>
+                  <div class="flex-fill">
+                    <h6 class="fw-semibold mb-1">Lowongan Aktif</h6>
+                    <h2 class="stat-number mb-1">8</h2>
+                    <p class="text-muted mb-3">Lowongan sedang dibuka.</p>
+                    <div class="mt-auto d-flex justify-content-end">
+                      <button class="btn btn-outline-primary btn-sm">
+                        Kelola Lowongan
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card stat-card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-stat">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="flex-fill">
+                    <h6 class="fw-semibold mb-1">Pelamar</h6>
+                    <h2 class="stat-number mb-1">125</h2>
+                    <p class="text-muted mb-0">Pelamar telah mendaftar.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card stat-card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex align-items-start gap-3">
+                  <div class="icon-stat">
+                    <i class="bi bi-building"></i>
+                  </div>
+                  <div class="flex-fill">
+                    <h6 class="fw-semibold mb-1">Karyawan</h6>
+                    <h2 class="stat-number mb-1">18</h2>
+                    <p class="text-muted mb-0">Karyawan aktif.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="informasi-profil">
+      <div class="container">
+        <div class="card">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between my-4">
+              <div class="informasi">
+                <h4 class="mb-4">Informasi Perusahaan</h4>
+                <div class="d-flex mb-3">
+                  <p class="label">Nama Perusahaan</p>
+                  <p class="nilai">: Kopi Kenangan</p>
+                </div>
+                <div class="d-flex mb-3">
+                  <p class="label">Email</p>
+                  <p class="nilai">: recruitment@kopikenangan.id</p>
+                </div>
+                <div class="d-flex mb-3">
+                  <p class="label">No. HP</p>
+                  <p class="nilai">: 0812 3456 7890</p>
+                </div>
+                <div class="d-flex mb-3">
+                  <p class="label">Domisili</p>
+                  <p class="nilai">: Salatiga, Jawa Tengah</p>
+                </div>
+                <div class="d-flex mb-3">
+                  <p class="label">Kategori</p>
+                  <p class="nilai">: Coffee Shop & Beverage</p>
+                </div>
+
+                <div class="d-flex mb-3">
+                  <div class="label">Tahun Berdiri</div>
+                  <div class="nilai">: 2017</div>
+                </div>
+                <div class="d-flex mb-3">
+                  <div class="label">Karyawan</div>
+                  <div class="nilai">: 18 Orang</div>
+                </div>
+                <div class="d-flex mb-3">
+                  <div class="label">Website</div>
+                  <div class="nilai">: www.kopikenangan.com</div>
+                </div>
+              </div>
+
+              <div class="tentang">
+                <h4 class="mb-4">Tentang Perusahaan</h4>
+                <p>
+                  Kopi Kenangan merupakan jaringan coffee shop yang menyediakan
+                  minuman kopi dan non-kopi dengan kualitas terbaik. Kami
+                  berkomitmen memberikan pengalaman terbaik bagi pelanggan dan
+                  membuka kesempatan kerja bagi talenta terbaik.
+                </p>
+                <ul class="mb-0">
+                  <li>Lingkungan Kerja Nyaman</li>
+                  <li>Jadwal Fleksibel</li>
+                  <li>Peluang Karier</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="footer py-5">
       <div class="container">
