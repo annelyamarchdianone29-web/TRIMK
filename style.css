@@ -70,6 +70,10 @@ body {
   border: 1px solid var(--stroke);
 }
 
+.text-primary {
+  color: var(--primary) !important;
+}
+
 /* Button */
 
 .btn {
@@ -196,4 +200,9 @@ a:hover {
 
 .navbar .nav-link.active::after {
   width: 70%;
+}
+
+li.page-item.active .page-link {
+  background: var(--primary);
+  border-color: var(--primary);
 }
