@@ -376,18 +376,169 @@
         </div>
 
         <div class="col-lg-6">
-          <div class="card doc-info-card">
-            <div class="pdf-icon"><i class="bi bi-file-earmark-pdf-fill"></i></div>
-            <h6 class="fw-bold mb-2">Ketentuan Pengiriman</h6>
-            <p class="mb-3">
-              Gabungkan seluruh dokumen ke dalam <a href="#">SATU file PDF</a>.
-              Pastikan resolusi dokumen jelas namun ukuran file tidak
-              melebihi batas maksimal.
-            </p>
-            <span class="badge badge-max-size">Max File Size: 10MB</span>
+          
+          <div class="card p-4 rounded-3 border-0" style="box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+            
+            <div class="mb-4">
+              <i class="bi bi-file-earmark-arrow-up fs-1 d-inline-block mb-2" style="color: #4a5568;"></i>
+              <h5 class="fw-bold mb-2">Ketentuan Pengiriman</h5>
+              <p class="text-black-75 mb-0" style="font-size: 0.95rem;">
+                Gabungkan seluruh dokumen ke dalam SATU file PDF. Pastikan resolusi dokumen 
+                jelas namun ukuran file tidak melebihi batas maksimal (maks. 10MB).
+              </p>
+            </div>
+
+            <h5 class="fw-bold mb-3">Unggah Berkas Lamaran</h5>
+
+            <label id="dropzone" for="fileInput" class="w-100 rounded-3 text-center mb-3" style="border: 1px dashed #9cbfe8; background-color: #f2f7fd; padding: 2.5rem 1rem; cursor: pointer;">
+              <i class="bi bi-cloud-arrow-up" style="font-size: 3rem; color: #2ec4b6;"></i>
+              <div class="mt-2 text-dark" style="font-size: 0.95rem;">
+                Seret &amp; letakkan file di sini<br>
+                atau klik untuk memilih file (PDF, maks. 10MB)
+              </div>
+              <input type="file" id="fileInput" accept=".pdf" hidden />
+            </label>
+
+            <ul id="fileList" class="upload-file-list mb-0 list-unstyled"></ul>
+            <div id="uploadAlert" class="upload-alert mt-3" style="display: none"></div>
+
+            <button type="button" id="submitLamaranBtn" class="btn text-white w-100 py-2 mt-2" style="background-color: #2ec4b6; border-color: #2ec4b6; border-radius: 6px;" disabled>
+              <i class="bi bi-send-fill me-1"></i> Kirim Lamaran
+            </button>
+            
           </div>
+
         </div>
       </div>
+
+      <script>
+        (function () {
+          const dropzone = document.getElementById("dropzone");
+          const fileInput = document.getElementById("fileInput");
+          const fileList = document.getElementById("fileList");
+          const submitBtn = document.getElementById("submitLamaranBtn");
+          const alertBox = document.getElementById("uploadAlert");
+
+          let selectedFiles = [];
+          const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+
+          function formatSize(bytes) {
+            if (bytes < 1024) return bytes + " B";
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+            return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+          }
+
+          function showAlert(message, type) {
+            alertBox.textContent = message;
+            alertBox.className = "upload-alert " + type;
+            alertBox.style.display = "block";
+          }
+
+          function hideAlert() {
+            alertBox.style.display = "none";
+          }
+
+          function renderFileList() {
+            fileList.innerHTML = "";
+            selectedFiles.forEach((file, index) => {
+              const li = document.createElement("li");
+              li.innerHTML =
+                '<span class="file-name"><i class="bi bi-file-earmark-pdf text-danger"></i><span>' +
+                file.name +
+                "</span></span>" +
+                '<span class="d-flex align-items-center gap-2">' +
+                '<small class="text-black-50">' +
+                formatSize(file.size) +
+                "</small>" +
+                '<button type="button" class="file-remove" data-index="' +
+                index +
+                '"><i class="bi bi-x-circle"></i></button>' +
+                "</span>";
+              fileList.appendChild(li);
+            });
+
+            fileList.querySelectorAll(".file-remove").forEach((btn) => {
+              btn.addEventListener("click", (e) => {
+                e.preventDefault();
+                const idx = parseInt(btn.getAttribute("data-index"), 10);
+                selectedFiles.splice(idx, 1);
+                renderFileList();
+                updateSubmitState();
+              });
+            });
+          }
+
+          function updateSubmitState() {
+            submitBtn.disabled = selectedFiles.length === 0;
+            if (selectedFiles.length === 0) {
+              submitBtn.innerHTML = '<i class="bi bi-send-fill me-1"></i> Kirim Lamaran';
+            }
+          }
+
+          function handleFiles(files) {
+            hideAlert();
+            const incoming = Array.from(files);
+
+            for (const file of incoming) {
+              if (file.type !== "application/pdf") {
+                showAlert("Hanya file PDF yang diperbolehkan!", "error");
+                continue;
+              }
+              if (file.size > MAX_SIZE) {
+                showAlert("File melebihi batas 10MB!", "error");
+                continue;
+              }
+              selectedFiles = [file];
+            }
+
+            renderFileList();
+            updateSubmitState();
+          }
+
+          fileInput.addEventListener("change", (e) => {
+            if (e.target.files && e.target.files.length > 0) {
+              handleFiles(e.target.files);
+            }
+          });
+
+          ["dragenter", "dragover"].forEach((evt) => {
+            dropzone.addEventListener(evt, (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              dropzone.style.backgroundColor = "#e2eefb";
+            });
+          });
+
+          ["dragleave", "drop"].forEach((evt) => {
+            dropzone.addEventListener(evt, (e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              dropzone.style.backgroundColor = "#f2f7fd";
+            });
+          });
+
+          dropzone.addEventListener("drop", (e) => {
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+              handleFiles(e.dataTransfer.files);
+            }
+          });
+
+          submitBtn.addEventListener("click", () => {
+            if (selectedFiles.length === 0) return;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML =
+              '<span class="spinner-border spinner-border-sm me-1"></span> Mengirim...';
+
+            setTimeout(() => {
+              showAlert(
+                "Lamaran berhasil dikirim.",
+                "success"
+              );
+              submitBtn.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i> Terkirim';
+            }, 1200);
+          });
+        })();
+      </script>
 
       <div class="cta-section text-center p-5">
         <h2 class="fw-bold mb-3">Siap Melamar?</h2>
