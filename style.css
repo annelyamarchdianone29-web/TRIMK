@@ -60,7 +60,7 @@
 body {
   background: var(--background);
   color: var(--black);
-  padding-top: 84px; /* offset navbar fixed-top */
+  padding-top: 24px; /* offset navbar fixed-top */
 }
 
 /* Card */
@@ -266,6 +266,11 @@ li.page-item.active .page-link {
 
 .btn-back:hover {
   color: var(--primary);
+}
+
+.btn-back h5,
+.btn-back i {
+  color: inherit;
 }
 
 /* Placeholder Gambar */
