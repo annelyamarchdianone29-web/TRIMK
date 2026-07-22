@@ -1,511 +1,601 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PartTimeHub - Cari Pekerja</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-<style>
-  body { background:#f8f9fa; font-family: 'Segoe UI', sans-serif; }
-  .navbar-brand { font-weight: 700; }
-  .badge-featured { background:#000; color:#fff; font-size:.7rem; padding:.4rem .6rem; }
-  .avatar-placeholder {
-    width:90px; height:90px; border-radius:50%;
-    background: repeating-conic-gradient(#e9ecef 0% 25%, #f1f3f5 0% 50%) 50% / 20px 20px;
-    object-fit: cover; object-position: center;
-    flex-shrink:0;
-  }
-  .avatar-sm { width:60px; height:60px; border-radius:8px; background:#e9ecef; object-fit:cover; object-position:center; flex-shrink:0; }
-  .avatar-sm.rounded-circle { border-radius:50% !important; }
-  .avatar-lg { width:90px; height:90px; border-radius:50%; background:#e9ecef; object-fit:cover; object-position:center; flex-shrink:0; }
-  .stat-card { border-radius:10px; }
-  .pill-btn { border-radius:30px; }
-  .card-candidate { border-radius:10px; }
-  .tag-badge { background:#f1f3f5; border:1px solid #dee2e6; border-radius:20px; padding:.25rem .75rem; font-size:.8rem; color:#495057; }
-  .btn-dark-custom { background:#000; border-color:#000; }
-  .matching-score { font-weight:700; }
-  .tips-card { border-radius:10px; }
-  .status-badge { font-size:.7rem; padding:.35rem .6rem; border-radius:20px; font-weight:600; }
-  .status-Baru { background:#e9ecef; color:#495057; }
-  .status-Diproses { background:#fff3cd; color:#856404; }
-  .status-Wawancara { background:#cfe2ff; color:#084298; }
-  .status-Diterima { background:#d1e7dd; color:#0f5132; }
-  .status-Ditolak { background:#f8d7da; color:#842029; }
-  .nav-tabs .nav-link.active { font-weight:600; border-bottom:3px solid #000; }
-  #emptyState { display:none; }
-  .cta-section { background:#000; }
-  .site-footer { background:#000; border-top:1px solid #212529; }
-  .footer-link { color:#adb5bd; text-decoration:none; font-size:.9rem; }
-  .footer-link:hover { color:#fff; }
-</style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pelamar - PartTimeHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Elemen khusus halaman ini, mengikuti token warna & radius dari style.css */
+      .avatar-sm {
+        width: 60px;
+        height: 60px;
+        border-radius: 8px;
+        background: var(--surface-secondary);
+        object-fit: cover;
+        object-position: center;
+        flex-shrink: 0;
+      }
+      .avatar-sm.rounded-circle {
+        border-radius: 50% !important;
+      }
+      .avatar-lg {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: var(--surface-secondary);
+        object-fit: cover;
+        object-position: center;
+        flex-shrink: 0;
+      }
+      .avatar-placeholder {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: repeating-conic-gradient(var(--surface-secondary) 0% 25%, var(--stroke) 0% 50%) 50% / 20px 20px;
+        object-fit: cover;
+        object-position: center;
+        flex-shrink: 0;
+      }
+      .pill-btn {
+        border-radius: 30px;
+      }
+      .matching-score {
+        font-weight: 700;
+        color: var(--primary);
+      }
+      .card-candidate {
+        border-radius: var(--radius-md);
+      }
+      .tag-badge {
+        background: var(--surface-secondary);
+        border: 1px solid var(--stroke);
+        border-radius: 20px;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8rem;
+        color: var(--black-75);
+      }
+      .status-badge {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.6rem;
+        border-radius: 20px;
+        font-weight: 600;
+      }
+      .status-Baru { background: var(--surface-secondary); color: var(--black-75); }
+      .status-Diproses { background: #fff3cd; color: #856404; }
+      .status-Wawancara { background: var(--accent-light); color: var(--primary); }
+      .status-Diterima { background: #d1e7dd; color: #0f5132; }
+      .status-Ditolak { background: #f8d7da; color: #842029; }
+      .nav-tabs .nav-link.active {
+        font-weight: 600;
+        color: var(--primary);
+        border-bottom: 3px solid var(--primary);
+      }
+      .toast-brand {
+        background: var(--primary);
+        color: #fff;
+      }
+      #emptyState {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
 
-  <nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">PartTimeHub</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav mx-auto gap-lg-4">
-        <li class="nav-item"><a class="nav-link" href="homepemilikusaha.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link fw-bold text-decoration-underline" href="pelamarpemilikusaha.html">Lamaran</a></li>
-        <li class="nav-item"><a class="nav-link" href="lowonganpemilikusaha.html">Lowongan</a></li>
-        <li class="nav-item"><a class="nav-link" href="profilpemilikusaha.html">Profil</a></li>
-      </ul>
-         <i class="bi bi-bell me-1"></i>
-          </div>
-
-          <div class="dropdown">
-            <button
-              class="btn btn-primary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="bi bi-person-circle me-1"></i>
-              Profil
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Profil Saya
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Edit Profil
-                </a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item text-danger" href="index.html">
-                  Keluar
-                </a>
-              </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="homepemilikusaha.html">PartTimeHub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="homepemilikusaha.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="pelamarpemilikusaha.html">Pelamar</a></li>
+            <li class="nav-item"><a class="nav-link" href="lowonganpemilikusaha.html">Lowongan</a></li>
+            <li class="nav-item"><a class="nav-link" href="profilpemilikusaha.html">Profil</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-bell"></i>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle me-1"></i> Profil
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="profilpemilikusaha.html">Profil Saya</a></li>
+                <li><a class="dropdown-item" href="profilpemilikusaha.html">Edit Profil</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item text-danger" href="index.html">Keluar</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </nav>
-<div class="container text-center py-5">
-  <h1 class="fw-bold display-5">Cari Pekerja</h1>
-  <p class="text-muted">Temukan kandidat part-time yang sesuai dengan kebutuhan usahamu secara cepat dan efisien.</p>
 
-  <div class="row justify-content-center mt-4">
-    <div class="col-lg-8">
-      <div class="input-group input-group-lg shadow-sm">
-        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
-        <input type="text" id="searchInput" class="form-control border-start-0"
-               placeholder="Cari kandidat berdasarkan nama, posisi, keahlian, atau lokasi" oninput="renderCandidates()">
-        <button class="btn btn-dark px-4" type="button" onclick="renderCandidates()">Cari Kandidat</button>
-      </div>
-    </div>
-  </div>
+    <!-- MAIN CONTENT -->
+    <main>
 
-  <div class="mt-4 d-flex flex-wrap justify-content-center gap-2">
-    <span class="text-muted me-2 align-self-center">Pencarian Populer:</span>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Barista')">Barista</button>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Kasir')">Kasir</button>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Kitchen Crew')">Kitchen Crew</button>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Admin')">Admin</button>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Customer Service')">Customer Service</button>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Sales')">Sales</button>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Warehouse')">Warehouse</button>
-    <button class="btn btn-outline-secondary btn-sm pill-btn" onclick="quickSearch('Tutor')">Tutor</button>
-  </div>
-</div>
+      <!-- HERO / SEARCH -->
+      <section
+        class="py-5"
+        style="background: linear-gradient(90deg, #b9efdb 0%, #edf8f5 65%, #b7c4d5 100%);"
+      >
+        <div class="container text-center">
+          <h1 class="display-5 fw-bold text-dark mb-3">Cari Pekerja</h1>
+          <p class="lead text-dark mb-4">
+            Temukan kandidat part-time yang sesuai dengan kebutuhan usahamu secara cepat dan efisien.
+          </p>
 
-<div class="container mb-4">
-  <div class="row g-3 text-center">
-    <div class="col-6 col-md-3"><div class="stat-card border bg-white py-4"><h3 class="fw-bold mb-0">248</h3><small class="text-muted text-uppercase">Total Kandidat</small></div></div>
-    <div class="col-6 col-md-3"><div class="stat-card border bg-white py-4"><h3 class="fw-bold mb-0">42</h3><small class="text-muted text-uppercase">Kandidat Baru</small></div></div>
-    <div class="col-6 col-md-3"><div class="stat-card border bg-white py-4"><h3 class="fw-bold mb-0">18</h3><small class="text-muted text-uppercase">Tersedia Segera</small></div></div>
-    <div class="col-6 col-md-3"><div class="stat-card border bg-white py-4"><h3 class="fw-bold mb-0">85%</h3><small class="text-muted text-uppercase">Berpengalaman</small></div></div>
-  </div>
-</div>
-
-<div class="container mb-4">
-  <div class="bg-white border rounded-3 p-3 d-flex flex-wrap align-items-center gap-2">
-    <button class="btn btn-outline-secondary btn-sm dropdown-toggle">Posisi</button>
-    <button class="btn btn-outline-secondary btn-sm dropdown-toggle">Lokasi</button>
-    <button class="btn btn-outline-secondary btn-sm dropdown-toggle">Pendidikan</button>
-    <button class="btn btn-outline-secondary btn-sm dropdown-toggle">Expected Gaji</button>
-    <select id="filterStatus" class="form-select form-select-sm" style="max-width:180px;" onchange="renderCandidates()">
-      <option value="">Semua Status</option>
-      <option value="Baru">Baru</option>
-      <option value="Diproses">Diproses</option>
-      <option value="Wawancara">Wawancara</option>
-      <option value="Diterima">Diterima</option>
-      <option value="Ditolak">Ditolak</option>
-    </select>
-    <div class="ms-auto d-flex gap-2">
-      <button class="btn btn-link text-decoration-none text-dark" onclick="resetFilter()">Reset</button>
-      <button class="btn btn-dark btn-sm px-4" onclick="renderCandidates()">Terapkan</button>
-    </div>
-  </div>
-  <div id="resultInfo" class="text-muted small mt-2"></div>
-</div>
-
-<div class="container mb-4" id="featuredContainer"></div>
-
-<div class="container mb-5">
-  <h4 class="fw-bold mb-3">Rekomendasi Kandidat</h4>
-  <div class="row g-4">
-
-    <div class="col-lg-3">
-      <div class="card p-3 mb-3">
-        <div class="d-flex align-items-center gap-2 mb-1">
-          <img src="https://i.pravatar.cc/120?img=47" class="avatar-sm rounded-circle" alt="Siti Aminah">
-          <div><h6 class="mb-0 fw-bold">Siti Aminah</h6><small class="text-muted">Kasir</small></div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-2">
-          <small class="text-muted">Matching Score</small><span class="matching-score">92%</span>
-        </div>
-      </div>
-      <div class="card p-3 mb-3">
-        <div class="d-flex align-items-center gap-2 mb-1">
-          <img src="https://i.pravatar.cc/120?img=18" class="avatar-sm rounded-circle" alt="Budi Santoso">
-          <div><h6 class="mb-0 fw-bold">Budi Santoso</h6><small class="text-muted">Admin Gudang</small></div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-2">
-          <small class="text-muted">Matching Score</small><span class="matching-score">88%</span>
-        </div>
-      </div>
-      <div class="card p-3 mb-4">
-        <div class="d-flex align-items-center gap-2 mb-1">
-          <img src="https://i.pravatar.cc/120?img=44" class="avatar-sm rounded-circle" alt="Dewi Lestari">
-          <div><h6 class="mb-0 fw-bold">Dewi Lestari</h6><small class="text-muted">Kitchen Crew</small></div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mt-2">
-          <small class="text-muted">Matching Score</small><span class="matching-score">85%</span>
-        </div>
-      </div>
-
-      <h6 class="fw-bold mb-3">Tips Rekrutmen</h6>
-      <div class="card tips-card p-3 mb-3">
-        <h6 class="fw-bold">Cek Ketersediaan</h6>
-        <small class="text-muted">Selalu konfirmasi jadwal ketersediaan kandidat sebelum sesi interview tatap muka.</small>
-      </div>
-      <div class="card tips-card p-3 mb-3">
-        <h6 class="fw-bold">Deskripsi Jelas</h6>
-        <small class="text-muted">Lowongan dengan detail benefit yang transparan mendapatkan 40% pelamar lebih banyak.</small>
-      </div>
-      <div class="card tips-card p-3 mb-3">
-        <h6 class="fw-bold">Trial Shift</h6>
-        <small class="text-muted">Lakukan trial shift 1-2 jam untuk melihat kecocokan kandidat dengan ritme kerja tim.</small>
-      </div>
-    </div>
-
-    <div class="col-lg-9">
-      <div class="row g-3" id="candidateGrid"></div>
-      <div id="emptyState" class="text-center text-muted py-5">Tidak ada kandidat yang cocok dengan pencarian/filter.</div>
-
-      <nav class="mt-4">
-        <ul class="pagination justify-content-center">
-          <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-          <li class="page-item active"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
-          <li class="page-item"><a class="page-link" href="#">12</a></li>
-          <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-<section class="cta-section text-center py-5">
-  <div class="container">
-    <h3 class="fw-bold text-white mb-2">Belum menemukan kandidat yang sesuai?</h3>
-    <p class="text-white-50 mb-4">
-      Posting lowongan pekerjanmu sekarang dan biarkan kandidat terbaik yang menghubungimu secara langsung.
-    </p>
-    <div class="d-flex justify-content-center gap-3 flex-wrap">
-      <button class="btn btn-light px-4 fw-semibold">Posting Lowongan</button>
-      <button class="btn btn-outline-light px-4 fw-semibold">Pelajari Cara Kerja</button>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer py-4">
-  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
-    <div>
-      <h6 class="fw-bold text-white mb-0">TalentHire</h6>
-      <small class="text-white-50">&copy; 2024 TalentHire Platform. All rights reserved.</small>
-    </div>
-    <div class="d-flex flex-wrap gap-4">
-      <a href="#" class="footer-link">Kebijakan Privasi</a>
-      <a href="#" class="footer-link">Syarat &amp; Ketentuan</a>
-      <a href="#" class="footer-link">Hubungi Kami</a>
-      <a href="#" class="footer-link">FAQ</a>
-    </div>
-  </div>
-</footer>
-
-<div class="modal fade" id="profilModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold">Profil Pelamar</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div class="d-flex gap-3 mb-3">
-          <img id="pfFoto" class="avatar-lg" src="" alt="">
-          <div>
-            <h5 class="fw-bold mb-0" id="pfNama"></h5>
-            <small class="text-muted" id="pfPosisi"></small><br>
-            <span class="status-badge" id="pfStatusBadge"></span>
-          </div>
-        </div>
-
-        <ul class="nav nav-tabs" id="profilTab">
-          <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabData">6.1 Data Pribadi</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabCV">6.2 CV</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabPengalaman">6.3 Pengalaman & Kemampuan</button></li>
-          <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabJadwal">6.4 Jadwal Ketersediaan</button></li>
-        </ul>
-
-        <div class="tab-content border border-top-0 p-3 mb-4">
-          <div class="tab-pane fade show active" id="tabData">
-            <p class="mb-1"><strong>Usia:</strong> <span id="dpUsia"></span></p>
-            <p class="mb-1"><strong>Lokasi:</strong> <span id="dpLokasi"></span></p>
-            <p class="mb-1"><strong>Pendidikan:</strong> <span id="dpPendidikan"></span></p>
-            <p class="mb-0"><strong>Expected Gaji:</strong> <span id="dpGaji"></span></p>
-          </div>
-          <div class="tab-pane fade" id="tabCV">
-            <div class="border rounded p-4 text-center text-muted">
-              <i class="bi bi-file-earmark-pdf fs-1 d-block mb-2"></i>
-              <span id="cvNama"></span>
-              <div class="mt-2"><button class="btn btn-outline-dark btn-sm"><i class="bi bi-download"></i> Unduh CV</button></div>
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="input-group input-group-lg shadow-sm">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="form-control border-start-0"
+                  placeholder="Cari kandidat berdasarkan nama, posisi, keahlian, atau lokasi"
+                  oninput="renderCandidates()"
+                />
+                <button class="btn btn-primary px-4" type="button" onclick="renderCandidates()">Cari Kandidat</button>
+              </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="tabPengalaman">
-            <p id="pengalamanText" class="fst-italic text-muted"></p>
-            <div id="skillTags" class="d-flex flex-wrap gap-2"></div>
-          </div>
-          <div class="tab-pane fade" id="tabJadwal">
-            <p class="mb-0"><i class="bi bi-clock"></i> Ketersediaan: <span id="jadwalText" class="fw-semibold"></span></p>
+
+          <div class="mt-4 d-flex flex-wrap justify-content-center gap-2">
+            <span class="text-dark me-2 align-self-center">Pencarian Populer:</span>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Barista')">Barista</button>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Kasir')">Kasir</button>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Kitchen Crew')">Kitchen Crew</button>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Admin')">Admin</button>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Customer Service')">Customer Service</button>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Sales')">Sales</button>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Warehouse')">Warehouse</button>
+            <button class="btn btn-outline-primary btn-sm pill-btn" onclick="quickSearch('Tutor')">Tutor</button>
           </div>
         </div>
+      </section>
 
-        <h6 class="fw-bold">Ubah Status Pelamar</h6>
-        <select id="statusSelect" class="form-select">
-          <option value="Baru">Belum diproses</option>
-          <option value="Diproses">Diproses</option>
-          <option value="Wawancara">Wawancara</option>
-          <option value="Diterima">Diterima</option>
-          <option value="Ditolak">Ditolak</option>
-        </select>
+      <!-- STATS -->
+      <section class="py-4 bg-white shadow-sm">
+        <div class="container">
+          <div class="row text-center g-4">
+            <div class="col-6 col-md-3">
+              <h3 class="fw-bold text-primary mb-0">248</h3>
+              <p class="text-muted mb-0">Total Kandidat</p>
+            </div>
+            <div class="col-6 col-md-3">
+              <h3 class="fw-bold text-primary mb-0">42</h3>
+              <p class="text-muted mb-0">Kandidat Baru</p>
+            </div>
+            <div class="col-6 col-md-3">
+              <h3 class="fw-bold text-primary mb-0">18</h3>
+              <p class="text-muted mb-0">Tersedia Segera</p>
+            </div>
+            <div class="col-6 col-md-3">
+              <h3 class="fw-bold text-primary mb-0">85%</h3>
+              <p class="text-muted mb-0">Berpengalaman</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILTER -->
+      <section class="py-5">
+        <div class="container">
+          <div class="card p-3 d-flex flex-wrap flex-row align-items-center gap-2">
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle">Posisi</button>
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle">Lokasi</button>
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle">Pendidikan</button>
+            <button class="btn btn-outline-primary btn-sm dropdown-toggle">Expected Gaji</button>
+            <select id="filterStatus" class="form-select form-select-sm" style="max-width: 180px;" onchange="renderCandidates()">
+              <option value="">Semua Status</option>
+              <option value="Baru">Baru</option>
+              <option value="Diproses">Diproses</option>
+              <option value="Wawancara">Wawancara</option>
+              <option value="Diterima">Diterima</option>
+              <option value="Ditolak">Ditolak</option>
+            </select>
+            <div class="ms-auto d-flex gap-2">
+              <button class="btn btn-back btn-link text-decoration-none" onclick="resetFilter()">Reset</button>
+              <button class="btn btn-primary btn-sm px-4" onclick="renderCandidates()">Terapkan</button>
+            </div>
+          </div>
+          <div id="resultInfo" class="text-muted small mt-2"></div>
+
+          <div class="mt-4" id="featuredContainer"></div>
+
+          <div class="mt-5">
+            <div class="row g-4">
+
+              <!-- SIDEBAR -->
+              <div class="col-lg-3">
+                <h6 class="fw-bold mb-3">Rekomendasi Kandidat</h6>
+
+                <div class="card p-3 mb-3">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <img src="https://i.pravatar.cc/120?img=47" class="avatar-sm rounded-circle" alt="Siti Aminah">
+                    <div><h6 class="mb-0 fw-bold">Siti Aminah</h6><small class="text-muted">Kasir</small></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mt-2">
+                    <small class="text-muted">Matching Score</small><span class="matching-score">92%</span>
+                  </div>
+                </div>
+                <div class="card p-3 mb-3">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <img src="https://i.pravatar.cc/120?img=18" class="avatar-sm rounded-circle" alt="Budi Santoso">
+                    <div><h6 class="mb-0 fw-bold">Budi Santoso</h6><small class="text-muted">Admin Gudang</small></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mt-2">
+                    <small class="text-muted">Matching Score</small><span class="matching-score">88%</span>
+                  </div>
+                </div>
+                <div class="card p-3 mb-4">
+                  <div class="d-flex align-items-center gap-2 mb-1">
+                    <img src="https://i.pravatar.cc/120?img=44" class="avatar-sm rounded-circle" alt="Dewi Lestari">
+                    <div><h6 class="mb-0 fw-bold">Dewi Lestari</h6><small class="text-muted">Kitchen Crew</small></div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center mt-2">
+                    <small class="text-muted">Matching Score</small><span class="matching-score">85%</span>
+                  </div>
+                </div>
+
+                <h6 class="fw-bold mb-3">Tips Rekrutmen</h6>
+                <div class="card p-3 mb-3">
+                  <h6 class="fw-bold">Cek Ketersediaan</h6>
+                  <small class="text-muted">Selalu konfirmasi jadwal ketersediaan kandidat sebelum sesi interview tatap muka.</small>
+                </div>
+                <div class="card p-3 mb-3">
+                  <h6 class="fw-bold">Deskripsi Jelas</h6>
+                  <small class="text-muted">Lowongan dengan detail benefit yang transparan mendapatkan 40% pelamar lebih banyak.</small>
+                </div>
+                <div class="card p-3 mb-3">
+                  <h6 class="fw-bold">Trial Shift</h6>
+                  <small class="text-muted">Lakukan trial shift 1-2 jam untuk melihat kecocokan kandidat dengan ritme kerja tim.</small>
+                </div>
+              </div>
+
+              <!-- LIST KANDIDAT -->
+              <div class="col-lg-9">
+                <div class="row g-3" id="candidateGrid"></div>
+                <div id="emptyState" class="text-center text-muted py-5">Tidak ada kandidat yang cocok dengan pencarian/filter.</div>
+
+                <nav class="mt-4">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+                    <li class="page-item"><a class="page-link" href="#">12</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                  </ul>
+                </nav>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="py-5">
+        <div class="container">
+          <div class="cta-section text-center py-5 px-4">
+            <h2 class="fw-bold mb-2">Belum menemukan kandidat yang sesuai?</h2>
+            <p class="mb-4">
+              Posting lowongan pekerjanmu sekarang dan biarkan kandidat terbaik yang menghubungimu secara langsung.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+              <a href="lowonganpemilikusaha.html" class="btn btn-light px-4 fw-semibold">Posting Lowongan</a>
+              <a href="#" class="btn btn-outline-light px-4 fw-semibold">Pelajari Cara Kerja</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <section class="footer py-5">
+      <div class="container">
+        <div class="row gy-4 justify-content-between">
+          <div class="col-auto">
+            <h4 class="fw-bold mb-3">PartTimeHub</h4>
+            <p class="text-secondary mb-0">Platform rekrutmen part-time nomor satu di Indonesia.</p>
+          </div>
+          <div class="col-auto">
+            <h6 class="fw-bold mb-3">Tentang</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Tentang Kami</a></li>
+              <li><a href="#" class="text-decoration-none text-secondary">Kebijakan Privasi</a></li>
+            </ul>
+          </div>
+          <div class="col-auto">
+            <h6 class="fw-bold mb-3">Bantuan</h6>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Hubungi Kami</a></li>
+              <li><a href="#" class="text-decoration-none text-secondary">Syarat & Ketentuan</a></li>
+            </ul>
+          </div>
+          <div class="col-auto">
+            <h6 class="fw-bold mb-3">Ikuti Kami</h6>
+            <div class="d-flex gap-2">
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-globe2"></i></a>
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-share"></i></a>
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-twitter-x"></i></a>
+            </div>
+          </div>
+        </div>
+        <hr class="my-5" />
+        <p class="text-center text-secondary small mb-0">© 2026 PartTimeHub. All rights reserved.</p>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
-        <button class="btn btn-dark-custom text-white" onclick="simpanPerubahan()">5. Simpan Perubahan</button>
+    </section>
+
+    <!-- MODAL PROFIL PELAMAR -->
+    <div class="modal fade" id="profilModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold">Profil Pelamar</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex gap-3 mb-3">
+              <img id="pfFoto" class="avatar-lg" src="" alt="">
+              <div>
+                <h5 class="fw-bold mb-0" id="pfNama"></h5>
+                <small class="text-muted" id="pfPosisi"></small><br>
+                <span class="status-badge" id="pfStatusBadge"></span>
+              </div>
+            </div>
+
+            <ul class="nav nav-tabs" id="profilTab">
+              <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tabData">Data Pribadi</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabCV">CV</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabPengalaman">Pengalaman & Kemampuan</button></li>
+              <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tabJadwal">Jadwal Ketersediaan</button></li>
+            </ul>
+
+            <div class="tab-content border border-top-0 p-3 mb-4">
+              <div class="tab-pane fade show active" id="tabData">
+                <p class="mb-1"><strong>Usia:</strong> <span id="dpUsia"></span></p>
+                <p class="mb-1"><strong>Lokasi:</strong> <span id="dpLokasi"></span></p>
+                <p class="mb-1"><strong>Pendidikan:</strong> <span id="dpPendidikan"></span></p>
+                <p class="mb-0"><strong>Expected Gaji:</strong> <span id="dpGaji"></span></p>
+              </div>
+              <div class="tab-pane fade" id="tabCV">
+                <div class="border rounded p-4 text-center text-muted">
+                  <i class="bi bi-file-earmark-pdf fs-1 d-block mb-2"></i>
+                  <span id="cvNama"></span>
+                  <div class="mt-2"><button class="btn btn-outline-primary btn-sm"><i class="bi bi-download"></i> Unduh CV</button></div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="tabPengalaman">
+                <p id="pengalamanText" class="fst-italic text-muted"></p>
+                <div id="skillTags" class="d-flex flex-wrap gap-2"></div>
+              </div>
+              <div class="tab-pane fade" id="tabJadwal">
+                <p class="mb-0"><i class="bi bi-clock"></i> Ketersediaan: <span id="jadwalText" class="fw-semibold"></span></p>
+              </div>
+            </div>
+
+            <h6 class="fw-bold">Ubah Status Pelamar</h6>
+            <select id="statusSelect" class="form-select">
+              <option value="Baru">Belum diproses</option>
+              <option value="Diproses">Diproses</option>
+              <option value="Wawancara">Wawancara</option>
+              <option value="Diterima">Diterima</option>
+              <option value="Ditolak">Ditolak</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline-primary" data-bs-dismiss="modal">Batal</button>
+            <button class="btn btn-primary" onclick="simpanPerubahan()">Simpan Perubahan</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="saveToast" class="toast align-items-center text-bg-dark border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body"><i class="bi bi-check-circle me-2"></i><span id="toastMsg">Perubahan disimpan.</span></div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-
-let pelamarData = [
-  { id:0, featured:true, nama:"Rizky Pratama", usia:27, posisi:"Barista", lokasi:"Jakarta Selatan", pendidikan:"SMK Perhotelan", gaji:"Rp 3.8jt/bln", ketersediaan:"Full Time",
-    foto:"https://i.pravatar.cc/300?img=12",
-    pengalaman:"Berpengalaman sebagai Barista selama tiga tahun di coffee shop ternama. Memiliki keahlian khusus dalam latte art dan manajemen stok bahan baku.",
-    skills:["Latte Art","Customer Service","Point of Sale","Food Safety"], status:"Diproses" },
-  { id:1, nama:"Andi Saputra", usia:22, posisi:"Barista", lokasi:"Jakarta Barat", pendidikan:"SMA/SMK", gaji:"Rp 3.5jt/bln", ketersediaan:"Full Time",
-    foto:"https://i.pravatar.cc/300?img=13",
-    pengalaman:"Pekerja keras dan jujur. Memiliki sertifikat pelatihan Barista Dasar dari Lembaga Kopi Indonesia.",
-    skills:["Manual Brew","Grinder Maintenance"], status:"Baru" },
-  { id:2, nama:"Maya Sari", usia:20, posisi:"Kasir / Admin", lokasi:"Tangerang Selatan", pendidikan:"D3 Ekonomi", gaji:"Rp 4.0jt/bln", ketersediaan:"Shift Pagi",
-    foto:"https://i.pravatar.cc/300?img=45",
-    pengalaman:"Teliti dalam penghitungan kas harian dan ramah terhadap pelanggan. Terbiasa menggunakan berbagai sistem POS.",
-    skills:["Microsoft Excel","Moka POS"], status:"Baru" },
-  { id:3, nama:"Rudi Hermawan", usia:25, posisi:"Kitchen Crew / Commis", lokasi:"Bekasi", pendidikan:"SMK Perhotelan", gaji:"Rp 4.2jt/bln", ketersediaan:"Weekend Only",
-    foto:"https://i.pravatar.cc/300?img=14",
-    pengalaman:"Memiliki dasar kuliner yang kuat. Terbiasa bekerja di bawah tekanan dapur saat peak hours.",
-    skills:["Knife Skills","Grilling"], status:"Wawancara" },
-  { id:4, nama:"Lina Marlina", usia:21, posisi:"Sales Promotion Girl", lokasi:"Jakarta Utara", pendidikan:"SMA", gaji:"Rp 3.8jt/bln", ketersediaan:"Daily",
-    foto:"https://i.pravatar.cc/300?img=48",
-    pengalaman:"Pribadi yang ekstrovert dan senang berinteraksi dengan orang baru. Memiliki target penjualan yang baik.",
-    skills:["Communication","Product Knowledge"], status:"Diterima" },
-  { id:5, nama:"Fajar Ramadhan", usia:24, posisi:"Warehouse / Logistic", lokasi:"Depok", pendidikan:"SMK", gaji:"Rp 4.5jt/bln", ketersediaan:"Shift Malam",
-    foto:"https://i.pravatar.cc/300?img=15",
-    pengalaman:"Terbiasa mengelola keluar masuk barang dalam skala besar dengan akurasi data yang tinggi.",
-    skills:["Stock Take","Inventory Mgmt"], status:"Ditolak" },
-  { id:6, nama:"Intan Permata", usia:22, posisi:"Customer Service", lokasi:"Jakarta Timur", pendidikan:"S1 Komunikasi", gaji:"Rp 4.5jt/bln", ketersediaan:"Full Time",
-    foto:"https://i.pravatar.cc/300?img=49",
-    pengalaman:"Antusias memulai karir di bidang layanan pelanggan. Memiliki kemampuan bahasa Inggris yang sangat baik.",
-    skills:["English (B2)","Problem Solving"], status:"Baru" },
-  { id:7, nama:"Bayu Aji", usia:23, posisi:"Tutor Matematika", lokasi:"Tangerang", pendidikan:"S1 FMIPA", gaji:"Rp 150rb/sesi", ketersediaan:"After Hours",
-    foto:"https://i.pravatar.cc/300?img=16",
-    pengalaman:"Berpengalaman mengajar siswa tingkat SMA. Mampu menyederhanakan materi yang sulit menjadi mudah.",
-    skills:["Calculus","Public Speaking"], status:"Baru" },
-  { id:8, nama:"Eka Wijaya", usia:26, posisi:"Driver / Kurir", lokasi:"Jakarta Selatan", pendidikan:"SMA", gaji:"Rp 4.8jt/bln", ketersediaan:"Flexible",
-    foto:"https://i.pravatar.cc/300?img=17",
-    pengalaman:"Paham rute jalan utama Jabodetabek. Memiliki catatan berkendara yang aman dan selalu tepat waktu.",
-    skills:["SIM A & C","Navigasi Digital"], status:"Diproses" }
-];
-
-let activeId = null;
-
-function quickSearch(term) {
-  document.getElementById('searchInput').value = term;
-  renderCandidates();
-}
-function resetFilter() {
-  document.getElementById('searchInput').value = '';
-  document.getElementById('filterStatus').value = '';
-  renderCandidates();
-}
-
-function statusBadge(status) {
-  return `<span class="status-badge status-${status}">${status}</span>`;
-}
-
-function candidateCardHTML(p) {
-  return `
-  <div class="col-md-6" id="card-${p.id}">
-    <div class="card card-candidate p-3 h-100">
-      <div class="d-flex gap-2 mb-2">
-        <img src="${p.foto}" alt="${p.nama}" class="avatar-sm rounded">
-        <div class="flex-grow-1">
-          <div class="d-flex justify-content-between">
-            <h6 class="fw-bold mb-0">${p.nama}, ${p.usia} Tahun</h6>
-            ${statusBadge(p.status)}
-          </div>
-          <small class="text-muted d-block">${p.posisi}</small>
-          <small class="text-muted"><i class="bi bi-geo-alt"></i> ${p.lokasi}</small>
-        </div>
-      </div>
-      <div class="row small text-muted mb-2">
-        <div class="col-6">Pendidikan: ${p.pendidikan}</div>
-        <div class="col-6">Expected Gaji: ${p.gaji}</div>
-        <div class="col-6">Ketersediaan: ${p.ketersediaan}</div>
-      </div>
-      <div class="d-flex flex-wrap gap-2 mb-2">
-        ${p.skills.map(s => `<span class="tag-badge">${s}</span>`).join('')}
-      </div>
-      <p class="text-muted fst-italic small">"${p.pengalaman}"</p>
-      <div class="d-flex gap-2 mt-auto">
-        <button class="btn btn-dark-custom text-white flex-fill" onclick="bukaProfil(${p.id})">Lihat Profil</button>
-        <button class="btn btn-outline-dark flex-fill">Hubungi</button>
-      </div>
-    </div>
-  </div>`;
-}
-
-function featuredCardHTML(p) {
-  return `
-  <div class="card card-candidate position-relative p-3">
-    <span class="badge-featured position-absolute top-0 end-0 rounded-bottom">KANDIDAT UNGGULAN</span>
-    <div class="d-flex gap-3 flex-wrap">
-      <img src="${p.foto}" alt="${p.nama}" class="avatar-placeholder">
-      <div class="flex-grow-1">
-        <div class="d-flex justify-content-between flex-wrap">
-          <div>
-            <h5 class="fw-bold mb-0">${p.nama}</h5>
-            <small class="text-muted">${p.posisi} • ${statusBadge(p.status)}</small>
-          </div>
-          <div class="text-end">
-            <small class="text-muted d-block">LOKASI</small>
-            <span class="fw-semibold">${p.lokasi}</span>
-          </div>
-        </div>
-        <p class="text-muted mt-2 mb-2 fst-italic">"${p.pengalaman}"</p>
-        <div class="d-flex flex-wrap gap-2 mb-3">
-          ${p.skills.map(s => `<span class="tag-badge">${s}</span>`).join('')}
-        </div>
-        <div class="d-flex gap-2">
-          <button class="btn btn-dark-custom text-white px-4" onclick="bukaProfil(${p.id})">Lihat Profil</button>
-          <button class="btn btn-outline-dark px-4">Hubungi</button>
-          <button class="btn btn-outline-secondary"><i class="bi bi-bookmark"></i></button>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="saveToast" class="toast align-items-center toast-brand border-0" role="alert">
+        <div class="d-flex">
+          <div class="toast-body"><i class="bi bi-check-circle me-2"></i><span id="toastMsg">Perubahan disimpan.</span></div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
       </div>
     </div>
-  </div>`;
-}
 
-function renderCandidates() {
-  const keyword = document.getElementById('searchInput').value.toLowerCase();
-  const filterStatus = document.getElementById('filterStatus').value;
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
 
-  const matches = p => {
-    const bySearch = !keyword || p.nama.toLowerCase().includes(keyword) || p.posisi.toLowerCase().includes(keyword) ||
-                      p.lokasi.toLowerCase().includes(keyword) || p.skills.join(' ').toLowerCase().includes(keyword);
-    const byStatus = !filterStatus || p.status === filterStatus;
-    return bySearch && byStatus;
-  };
+      let pelamarData = [
+        { id:0, featured:true, nama:"Rizky Pratama", usia:27, posisi:"Barista", lokasi:"Jakarta Selatan", pendidikan:"SMK Perhotelan", gaji:"Rp 3.8jt/bln", ketersediaan:"Full Time",
+          foto:"https://i.pravatar.cc/300?img=12",
+          pengalaman:"Berpengalaman sebagai Barista selama tiga tahun di coffee shop ternama. Memiliki keahlian khusus dalam latte art dan manajemen stok bahan baku.",
+          skills:["Latte Art","Customer Service","Point of Sale","Food Safety"], status:"Diproses" },
+        { id:1, nama:"Andi Saputra", usia:22, posisi:"Barista", lokasi:"Jakarta Barat", pendidikan:"SMA/SMK", gaji:"Rp 3.5jt/bln", ketersediaan:"Full Time",
+          foto:"https://i.pravatar.cc/300?img=13",
+          pengalaman:"Pekerja keras dan jujur. Memiliki sertifikat pelatihan Barista Dasar dari Lembaga Kopi Indonesia.",
+          skills:["Manual Brew","Grinder Maintenance"], status:"Baru" },
+        { id:2, nama:"Maya Sari", usia:20, posisi:"Kasir / Admin", lokasi:"Tangerang Selatan", pendidikan:"D3 Ekonomi", gaji:"Rp 4.0jt/bln", ketersediaan:"Shift Pagi",
+          foto:"https://i.pravatar.cc/300?img=45",
+          pengalaman:"Teliti dalam penghitungan kas harian dan ramah terhadap pelanggan. Terbiasa menggunakan berbagai sistem POS.",
+          skills:["Microsoft Excel","Moka POS"], status:"Baru" },
+        { id:3, nama:"Rudi Hermawan", usia:25, posisi:"Kitchen Crew / Commis", lokasi:"Bekasi", pendidikan:"SMK Perhotelan", gaji:"Rp 4.2jt/bln", ketersediaan:"Weekend Only",
+          foto:"https://i.pravatar.cc/300?img=14",
+          pengalaman:"Memiliki dasar kuliner yang kuat. Terbiasa bekerja di bawah tekanan dapur saat peak hours.",
+          skills:["Knife Skills","Grilling"], status:"Wawancara" },
+        { id:4, nama:"Lina Marlina", usia:21, posisi:"Sales Promotion Girl", lokasi:"Jakarta Utara", pendidikan:"SMA", gaji:"Rp 3.8jt/bln", ketersediaan:"Daily",
+          foto:"https://i.pravatar.cc/300?img=48",
+          pengalaman:"Pribadi yang ekstrovert dan senang berinteraksi dengan orang baru. Memiliki target penjualan yang baik.",
+          skills:["Communication","Product Knowledge"], status:"Diterima" },
+        { id:5, nama:"Fajar Ramadhan", usia:24, posisi:"Warehouse / Logistic", lokasi:"Depok", pendidikan:"SMK", gaji:"Rp 4.5jt/bln", ketersediaan:"Shift Malam",
+          foto:"https://i.pravatar.cc/300?img=15",
+          pengalaman:"Terbiasa mengelola keluar masuk barang dalam skala besar dengan akurasi data yang tinggi.",
+          skills:["Stock Take","Inventory Mgmt"], status:"Ditolak" },
+        { id:6, nama:"Intan Permata", usia:22, posisi:"Customer Service", lokasi:"Jakarta Timur", pendidikan:"S1 Komunikasi", gaji:"Rp 4.5jt/bln", ketersediaan:"Full Time",
+          foto:"https://i.pravatar.cc/300?img=49",
+          pengalaman:"Antusias memulai karir di bidang layanan pelanggan. Memiliki kemampuan bahasa Inggris yang sangat baik.",
+          skills:["English (B2)","Problem Solving"], status:"Baru" },
+        { id:7, nama:"Bayu Aji", usia:23, posisi:"Tutor Matematika", lokasi:"Tangerang", pendidikan:"S1 FMIPA", gaji:"Rp 150rb/sesi", ketersediaan:"After Hours",
+          foto:"https://i.pravatar.cc/300?img=16",
+          pengalaman:"Berpengalaman mengajar siswa tingkat SMA. Mampu menyederhanakan materi yang sulit menjadi mudah.",
+          skills:["Calculus","Public Speaking"], status:"Baru" },
+        { id:8, nama:"Eka Wijaya", usia:26, posisi:"Driver / Kurir", lokasi:"Jakarta Selatan", pendidikan:"SMA", gaji:"Rp 4.8jt/bln", ketersediaan:"Flexible",
+          foto:"https://i.pravatar.cc/300?img=17",
+          pengalaman:"Paham rute jalan utama Jabodetabek. Memiliki catatan berkendara yang aman dan selalu tepat waktu.",
+          skills:["SIM A & C","Navigasi Digital"], status:"Diproses" }
+      ];
 
-  const featured = pelamarData.find(p => p.featured);
-  const featuredContainer = document.getElementById('featuredContainer');
-  featuredContainer.innerHTML = (featured && matches(featured)) ? featuredCardHTML(featured) : '';
+      let activeId = null;
 
-  const rest = pelamarData.filter(p => !p.featured && matches(p));
-  const grid = document.getElementById('candidateGrid');
-  grid.innerHTML = rest.map(candidateCardHTML).join('');
+      function quickSearch(term) {
+        document.getElementById('searchInput').value = term;
+        renderCandidates();
+      }
+      function resetFilter() {
+        document.getElementById('searchInput').value = '';
+        document.getElementById('filterStatus').value = '';
+        renderCandidates();
+      }
 
-  document.getElementById('emptyState').style.display = (rest.length === 0 && !featuredContainer.innerHTML) ? 'block' : 'none';
-  document.getElementById('resultInfo').textContent =
-    `Menampilkan ${rest.length + (featuredContainer.innerHTML ? 1 : 0)} dari ${pelamarData.length} kandidat`;
-}
+      function statusBadge(status) {
+        return `<span class="status-badge status-${status}">${status}</span>`;
+      }
 
-function bukaProfil(id) {
-  const p = pelamarData.find(x => x.id === id);
-  if (!p) return;
-  activeId = id;
+      function candidateCardHTML(p) {
+        return `
+        <div class="col-md-6" id="card-${p.id}">
+          <div class="card card-candidate p-3 h-100">
+            <div class="d-flex gap-2 mb-2">
+              <img src="${p.foto}" alt="${p.nama}" class="avatar-sm rounded">
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between">
+                  <h6 class="fw-bold mb-0">${p.nama}, ${p.usia} Tahun</h6>
+                  ${statusBadge(p.status)}
+                </div>
+                <small class="text-muted d-block">${p.posisi}</small>
+                <small class="text-muted"><i class="bi bi-geo-alt"></i> ${p.lokasi}</small>
+              </div>
+            </div>
+            <div class="row small text-muted mb-2">
+              <div class="col-6">Pendidikan: ${p.pendidikan}</div>
+              <div class="col-6">Expected Gaji: ${p.gaji}</div>
+              <div class="col-6">Ketersediaan: ${p.ketersediaan}</div>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mb-2">
+              ${p.skills.map(s => `<span class="tag-badge">${s}</span>`).join('')}
+            </div>
+            <p class="text-muted fst-italic small">"${p.pengalaman}"</p>
+            <div class="d-flex gap-2 mt-auto">
+              <button class="btn btn-primary flex-fill" onclick="bukaProfil(${p.id})">Lihat Profil</button>
+              <button class="btn btn-outline-primary flex-fill">Hubungi</button>
+            </div>
+          </div>
+        </div>`;
+      }
 
-  document.getElementById('pfFoto').src = p.foto;
-  document.getElementById('pfFoto').alt = p.nama;
-  document.getElementById('pfNama').textContent = `${p.nama}, ${p.usia} Tahun`;
-  document.getElementById('pfPosisi').textContent = p.posisi;
-  document.getElementById('pfStatusBadge').outerHTML = statusBadge(p.status).replace('span','span id="pfStatusBadge"');
+      function featuredCardHTML(p) {
+        return `
+        <div class="card card-candidate job-card-featured position-relative p-3">
+          <span class="badge-featured position-absolute top-0 end-0 rounded-bottom">KANDIDAT UNGGULAN</span>
+          <div class="d-flex gap-3 flex-wrap">
+            <img src="${p.foto}" alt="${p.nama}" class="avatar-placeholder">
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between flex-wrap">
+                <div>
+                  <h5 class="fw-bold mb-0">${p.nama}</h5>
+                  <small class="text-muted">${p.posisi} • ${statusBadge(p.status)}</small>
+                </div>
+                <div class="text-end">
+                  <small class="text-muted d-block">LOKASI</small>
+                  <span class="fw-semibold">${p.lokasi}</span>
+                </div>
+              </div>
+              <p class="text-muted mt-2 mb-2 fst-italic">"${p.pengalaman}"</p>
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                ${p.skills.map(s => `<span class="tag-badge">${s}</span>`).join('')}
+              </div>
+              <div class="d-flex gap-2">
+                <button class="btn btn-primary px-4" onclick="bukaProfil(${p.id})">Lihat Profil</button>
+                <button class="btn btn-outline-primary px-4">Hubungi</button>
+                <button class="btn btn-outline-secondary"><i class="bi bi-bookmark"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>`;
+      }
 
-  document.getElementById('dpUsia').textContent = p.usia + ' Tahun';
-  document.getElementById('dpLokasi').textContent = p.lokasi;
-  document.getElementById('dpPendidikan').textContent = p.pendidikan;
-  document.getElementById('dpGaji').textContent = p.gaji;
+      function renderCandidates() {
+        const keyword = document.getElementById('searchInput').value.toLowerCase();
+        const filterStatus = document.getElementById('filterStatus').value;
 
-  document.getElementById('cvNama').textContent = `CV_${p.nama.replace(/ /g,'_')}.pdf`;
+        const matches = p => {
+          const bySearch = !keyword || p.nama.toLowerCase().includes(keyword) || p.posisi.toLowerCase().includes(keyword) ||
+                            p.lokasi.toLowerCase().includes(keyword) || p.skills.join(' ').toLowerCase().includes(keyword);
+          const byStatus = !filterStatus || p.status === filterStatus;
+          return bySearch && byStatus;
+        };
 
-  document.getElementById('pengalamanText').textContent = '"' + p.pengalaman + '"';
-  document.getElementById('skillTags').innerHTML = p.skills.map(s => `<span class="tag-badge">${s}</span>`).join('');
+        const featured = pelamarData.find(p => p.featured);
+        const featuredContainer = document.getElementById('featuredContainer');
+        featuredContainer.innerHTML = (featured && matches(featured)) ? featuredCardHTML(featured) : '';
 
-  document.getElementById('jadwalText').textContent = p.ketersediaan;
+        const rest = pelamarData.filter(p => !p.featured && matches(p));
+        const grid = document.getElementById('candidateGrid');
+        grid.innerHTML = rest.map(candidateCardHTML).join('');
 
-  document.getElementById('statusSelect').value = p.status;
+        document.getElementById('emptyState').style.display = (rest.length === 0 && !featuredContainer.innerHTML) ? 'block' : 'none';
+        document.getElementById('resultInfo').textContent =
+          `Menampilkan ${rest.length + (featuredContainer.innerHTML ? 1 : 0)} dari ${pelamarData.length} kandidat`;
+      }
 
-  new bootstrap.Modal(document.getElementById('profilModal')).show();
-}
+      function bukaProfil(id) {
+        const p = pelamarData.find(x => x.id === id);
+        if (!p) return;
+        activeId = id;
 
-function simpanPerubahan() {
-  const p = pelamarData.find(x => x.id === activeId);
-  if (!p) return;
-  p.status = document.getElementById('statusSelect').value;
+        document.getElementById('pfFoto').src = p.foto;
+        document.getElementById('pfFoto').alt = p.nama;
+        document.getElementById('pfNama').textContent = `${p.nama}, ${p.usia} Tahun`;
+        document.getElementById('pfPosisi').textContent = p.posisi;
+        document.getElementById('pfStatusBadge').outerHTML = statusBadge(p.status).replace('span','span id="pfStatusBadge"');
 
-  bootstrap.Modal.getInstance(document.getElementById('profilModal')).hide();
-  renderCandidates();
+        document.getElementById('dpUsia').textContent = p.usia + ' Tahun';
+        document.getElementById('dpLokasi').textContent = p.lokasi;
+        document.getElementById('dpPendidikan').textContent = p.pendidikan;
+        document.getElementById('dpGaji').textContent = p.gaji;
 
-  document.getElementById('toastMsg').textContent = `Status ${p.nama} berhasil diubah menjadi "${p.status}".`;
-  new bootstrap.Toast(document.getElementById('saveToast')).show();
-}
+        document.getElementById('cvNama').textContent = `CV_${p.nama.replace(/ /g,'_')}.pdf`;
 
-renderCandidates();
-</script>
-</body>
+        document.getElementById('pengalamanText').textContent = '"' + p.pengalaman + '"';
+        document.getElementById('skillTags').innerHTML = p.skills.map(s => `<span class="tag-badge">${s}</span>`).join('');
+
+        document.getElementById('jadwalText').textContent = p.ketersediaan;
+
+        document.getElementById('statusSelect').value = p.status;
+
+        new bootstrap.Modal(document.getElementById('profilModal')).show();
+      }
+
+      function simpanPerubahan() {
+        const p = pelamarData.find(x => x.id === activeId);
+        if (!p) return;
+        p.status = document.getElementById('statusSelect').value;
+
+        bootstrap.Modal.getInstance(document.getElementById('profilModal')).hide();
+        renderCandidates();
+
+        document.getElementById('toastMsg').textContent = `Status ${p.nama} berhasil diubah menjadi "${p.status}".`;
+        new bootstrap.Toast(document.getElementById('saveToast')).show();
+      }
+
+      renderCandidates();
+    </script>
+  </body>
 </html>
