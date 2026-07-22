@@ -540,16 +540,43 @@
         })();
       </script>
 
-      <div class="cta-section text-center p-5">
-        <h2 class="fw-bold mb-3">Siap Melamar?</h2>
-        <p class="mb-4">
-          Bergabunglah dengan tim kami dan bangun masa depan yang lebih baik
-          bersama Kopi Kenangan. Pastikan berkas Anda sudah lengkap.
-        </p>
-        <button class="btn btn-light btn-lg px-4">Lamar Sekarang</button>
-        </p>
+<div class="cta-section text-center p-5">
+  <h2 class="fw-bold mb-3">Siap Melamar?</h2>
+  <p class="mb-4">
+    Bergabunglah dengan tim kami dan bangun masa depan yang lebih baik
+    bersama Kopi Kenangan. Pastikan berkas Anda sudah lengkap.
+  </p>
+  <button class="btn btn-light btn-lg px-4" data-bs-toggle="modal" data-bs-target="#confirmLamarModal">
+    Lamar Sekarang
+  </button>
+</div>
+
+<div class="modal fade" id="confirmLamarModal" tabindex="-1" aria-labelledby="confirmLamarLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmLamarLabel">Konfirmasi Lamaran</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Apakah Anda yakin ingin melamar posisi ini di Kopi Kenangan? Pastikan berkas Anda sudah lengkap sebelum melanjutkan.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <button type="button" class="btn btn-primary" id="confirmLamarBtn">Yakin, Lamar Sekarang</button>
       </div>
     </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('confirmLamarBtn').addEventListener('click', function () {
+    window.location.href = '#'; // ini yg buat redirect ke halaman form lamaran
+    const modalEl = document.getElementById('confirmLamarModal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+  });
+</script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
