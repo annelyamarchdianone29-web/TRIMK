@@ -3,1076 +3,674 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pemilik Usaha</title>
+    <title>Kelola Lowongan - PartTimeHub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+      :root {
+        --black: #1b1b1b;
+        --black-75: rgba(27, 27, 27, 0.75);
+        --black-50: rgba(27, 27, 27, 0.5);
 
-      :root{
-        --gray-50:#f9fafb;
-        --gray-100:#f3f4f6;
-        --gray-200:#e5e7eb;
-        --gray-300:#d1d5db;
-        --gray-400:#9ca3af;
-        --gray-500:#6b7280;
-        --gray-600:#4b5563;
-        --gray-700:#374151;
-        --gray-800:#1f2937;
-        --gray-900:#111827;
-        --blue-100:#dbeafe;
-        --blue-700:#1d4ed8;
-        --amber-100:#fef3c7;
-        --amber-800:#92400e;
-        --red-100:#fee2e2;
-        --red-700:#b91c1c;
-        --emerald-100:#d1fae5;
-        --emerald-800:#065f46;
-      }
+        --primary: #0d1b2a;
+        --primary-hover: #182638;
+        --primary-light: #415a77;
 
-      *{box-sizing:border-box;}
-      body{
-        margin:0;
-        font-family:"Inter", sans-serif;
-        background:var(--gray-50);
-        color:var(--gray-800);
-        -webkit-font-smoothing:antialiased;
-        padding-bottom:48px;
-      }
-      a{text-decoration:none;color:inherit;}
-      button{font-family:inherit;}
-      img{max-width:100%;display:block;}
+        --accent: #2ec4b6;
+        --accent-hover: #26b3a7;
+        --accent-light: #a8e6cf;
 
-      .wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+        --background: #f8fafc;
+        --surface: #ffffff;
+        --surface-secondary: #f1f5f9;
 
-      /* ---------- Header ---------- */
-      .site-header{
-        background:#fff;border-bottom:1px solid var(--gray-200);
-        position:sticky;top:0;z-index:50;
-      }
-      .site-header .wrap{
-        height:64px;display:flex;align-items:center;justify-content:space-between;
-      }
-      .brand{font-size:18px;font-weight:700;letter-spacing:-.2px;color:var(--gray-900);}
+        --gradient-hero: linear-gradient(90deg, #b9efdb 0%, #edf8f5 65%, #b7c4d5 100%);
+        --stroke: #e5e7eb;
 
-      .main-nav{display:flex;align-items:center;gap:32px;font-size:14px;font-weight:500;color:var(--gray-600);}
-      .main-nav a{transition:color .15s;}
-      .main-nav a:hover{color:var(--gray-900);}
-      .main-nav a.active{
-        color:var(--gray-900);font-weight:700;
-        border-bottom:2px solid var(--gray-900);padding-bottom:4px;
-      }
-      .menu-toggle{
-        display:none;background:none;border:1px solid var(--gray-300);border-radius:6px;
-        color:#000;padding:6px 8px;cursor:pointer;
-      }
-      @media (max-width:768px){
-        .main-nav{
-          display:none;position:absolute;top:64px;left:0;right:0;
-          background:#fff;border-bottom:1px solid var(--gray-200);
-          flex-direction:column;align-items:flex-start;gap:0;padding:8px 24px 16px;
-          box-shadow:0 4px 6px rgba(0,0,0,.03);
-        }
-        .main-nav.open{display:flex;}
-        .main-nav a{width:100%;padding:10px 0;border-bottom:1px solid var(--gray-100);}
-        .main-nav a.active{border-bottom:1px solid var(--gray-100);}
-        .menu-toggle{display:inline-flex;align-items:center;justify-content:center;}
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --transition: all 0.3s ease;
       }
 
-      .header-actions{display:flex;align-items:center;gap:16px;}
-      .icon-btn{
-        background:none;border:none;color:#000;font-size:14px;cursor:pointer;
+      body {
+        background: var(--background);
+        color: var(--black);
+        font-family: system-ui, -apple-system, sans-serif;
       }
-      .icon-btn:hover{color:#000;}
-      .profile-btn{display:flex;align-items:center;gap:8px;}
 
-      /* ---------- Main / Title ---------- */
-      main{max-width:1280px;margin:0 auto;padding:40px 24px;}
+      a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: var(--transition);
+      }
 
-      .page-title{max-width:640px;margin:0 auto 32px;text-align:center;}
-      .page-title h1{
-        font-size:32px;font-weight:800;color:var(--gray-900);
-        margin:0 0 8px;letter-spacing:-.3px;
+      /* =========================================================
+         STANDARD NAVBAR (Proporsi Pas Sesuai Gambar Kanan)
+         ========================================================= */
+      .custom-navbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        min-height: 60px;
       }
-      .page-title p{font-size:13px;color:var(--gray-500);margin:0;}
-      @media (min-width:768px){ .page-title h1{font-size:36px;} .page-title p{font-size:14px;} }
 
-      /* ---------- Search bar ---------- */
-      .search-wrap{max-width:640px;margin:0 auto 40px;}
-      .search-box{
-        display:flex;align-items:center;background:#fff;
-        border:1px solid var(--gray-300);border-radius:10px;padding:6px;
-        box-shadow:0 1px 2px rgba(0,0,0,.03);transition:border-color .15s;
+      .custom-navbar .navbar-brand {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--primary);
+        letter-spacing: -0.3px;
       }
-      .search-box:focus-within{border-color:var(--gray-400);}
-      .search-icon{padding:0 8px 0 12px;color:#000;font-size:14px;}
-      .search-input{
-        flex:1;border:none;outline:none;background:none;
-        font-size:13px;color:var(--gray-700);padding:6px 4px;
-      }
-      .search-input::placeholder{color:var(--gray-400);}
-      .search-btn{flex-shrink:0;padding:8px 24px;}
-      @media (min-width:768px){ .search-input, .search-btn{font-size:14px;} }
 
-      /* ---------- Tabs ---------- */
-      .tabs{
-        display:flex;flex-wrap:wrap;justify-content:center;gap:32px;
-        border-bottom:1px solid var(--gray-200);margin-bottom:32px;font-size:14px;font-weight:500;
+      .custom-navbar .nav-link {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #64748b;
+        padding: 0.4rem 0.85rem !important;
+        position: relative;
+        transition: color 0.2s ease;
       }
-      .tab-btn{
-        background:none;border:none;cursor:pointer;padding-bottom:12px;
-        color:var(--gray-500);border-bottom:2px solid transparent;transition:.15s;
-      }
-      .tab-btn:hover{color:#000;}
-      .tab-btn.active{color:#000;font-weight:700;border-bottom-color:#000;}
 
-      /* ---------- Stat cards ---------- */
-      .stats-grid{
-        display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px;
+      .custom-navbar .nav-link:hover {
+        color: var(--primary);
       }
-      @media (min-width:768px){ .stats-grid{grid-template-columns:repeat(4,1fr);} }
-      .stat-card{
-        background:#fff;border:1px solid var(--gray-200);border-radius:6px;
-        padding:16px;text-align:center;
-      }
-      .stat-number{font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:4px;}
-      .stat-label{font-size:12px;color:var(--gray-500);}
 
-      /* ---------- Layout grid ---------- */
-      .layout-grid{display:grid;grid-template-columns:1fr;gap:24px;}
-      @media (min-width:1024px){ .layout-grid{grid-template-columns:280px 1fr;} }
+      .custom-navbar .nav-link.active {
+        color: var(--primary);
+        font-weight: 700;
+      }
 
-      .sidebar{display:flex;flex-direction:column;gap:24px;}
+      /* Garis Bawah Menu Aktif */
+      .custom-navbar .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0.85rem;
+        right: 0.85rem;
+        height: 2px;
+        background-color: var(--primary);
+        border-radius: 1px;
+      }
 
-      .profile-card{
-        background:#fff;border:1px solid var(--gray-200);border-radius:6px;
-        padding:20px;text-align:center;
+      /* Tombol Profil Kanan */
+      .btn-nav-profile {
+        background-color: var(--primary);
+        color: #ffffff;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.45rem 0.95rem;
+        border-radius: 8px;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: background-color 0.2s ease;
       }
-      .profile-card h3{
-        font-size:12px;font-weight:700;color:var(--gray-900);
-        text-align:left;margin:0 0 16px;
-      }
-      .profile-avatar{
-        width:80px;height:80px;border-radius:50%;object-fit:cover;
-        border:1px solid var(--gray-300);margin:0 auto 12px;
-        background:var(--gray-100);overflow:hidden;
-        display:flex;align-items:center;justify-content:center;
-        color:var(--gray-400);font-size:11px;font-weight:600;
-      }
-      .profile-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
-      .profile-avatar-wrap{position:relative;width:80px;margin:0 auto 12px;}
-      .profile-avatar-wrap .profile-avatar{margin:0;}
-      .profile-name{font-size:14px;font-weight:700;color:var(--gray-900);margin:0;}
-      .profile-email{font-size:12px;color:var(--gray-500);margin:0 0 16px;}
-      .btn-outline-block{
-        width:100%;background:#fff;border:1px solid var(--gray-300);color:var(--gray-800);
-        font-size:12px;font-weight:500;padding:6px 0;border-radius:6px;cursor:pointer;transition:.15s;
-      }
-      .btn-outline-block:hover{background:var(--gray-50);}
 
-      .nav-card{background:#fff;border:1px solid var(--gray-200);border-radius:6px;padding:16px;}
-      .nav-card h3{font-size:13px;font-weight:700;color:var(--gray-900);margin:0 0 12px;}
-      .nav-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:12px;}
-      .nav-item{
-        width:100%;text-align:left;background:none;border:none;cursor:pointer;
-        padding:8px 12px;border-radius:6px;color:var(--gray-600);
-        display:flex;align-items:center;gap:8px;transition:.15s;
+      .btn-nav-profile:hover,
+      .btn-nav-profile:focus {
+        background-color: var(--primary-hover);
+        color: #ffffff;
       }
-      .nav-item:hover{background:var(--gray-50);}
-      .nav-item.active{background:var(--gray-100);font-weight:500;color:var(--gray-900);}
-      .nav-sublist{
-        list-style:none;margin:2px 0 4px;padding:0 0 0 20px;
-        display:flex;flex-direction:column;gap:2px;
-      }
-      .nav-subitem{
-        width:100%;text-align:left;background:none;border:none;cursor:pointer;
-        padding:6px 12px;border-radius:6px;color:var(--gray-600);font-size:12px;
-        display:flex;align-items:center;gap:8px;transition:.15s;
-      }
-      .nav-subitem:hover{background:var(--gray-50);}
-      .nav-subitem.active{background:var(--gray-100);font-weight:500;color:var(--gray-900);}
-      .nav-bullet{color:var(--gray-400);font-size:10px;}
 
-      /* ---------- Content sections ---------- */
-      .tab-content{display:flex;flex-direction:column;gap:16px;}
-      .tab-content.hidden{display:none;}
-
-      .content-header{
-        display:flex;justify-content:space-between;align-items:center;
-        background:#fff;border:1px solid var(--gray-200);border-radius:6px;
-        padding:12px;font-size:12px;
+      /* Icon Lonceng Notifikasi */
+      .nav-bell-icon {
+        font-size: 1.15rem;
+        color: #64748b;
+        cursor: pointer;
+        transition: color 0.2s ease;
       }
-      .content-header h2{font-size:13px;font-weight:700;color:var(--gray-900);margin:0;}
-      .sort-control{display:flex;align-items:center;gap:8px;color:var(--gray-500);}
-      .sort-control select{
-        border:1px solid var(--gray-300);border-radius:6px;padding:4px 8px;
-        background:#fff;color:var(--gray-700);font-size:12px;
+
+      .nav-bell-icon:hover {
+        color: var(--primary);
       }
-      .header-note{color:var(--gray-500);}
 
-      /* ---------- Inline icons ---------- */
-      .icon{width:1em;height:1em;display:inline-block;vertical-align:-0.125em;flex-shrink:0;}
-      .icon-btn .icon{width:16px;height:16px;}
-      .profile-btn .icon-user{width:14px;height:14px;}
-      .profile-btn .icon-chevron{width:10px;height:10px;margin-left:2px;}
-      .search-icon .icon{width:14px;height:14px;}
-      .logo-edit .icon{width:9px;height:9px;}
-      .app-meta .icon{width:11px;height:11px;color:#000;}
-
-      /* ---------- Daftar Lowongan items ---------- */
-      .app-item{
-        background:#fff;border:1px solid var(--gray-200);border-radius:6px;padding:16px;
-        display:flex;flex-direction:column;gap:16px;justify-content:space-between;
+      /* Card Styling */
+      .card {
+        background: var(--surface);
+        border-radius: var(--radius-md);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        border: 1px solid var(--stroke);
+        transition: var(--transition);
       }
-      @media (min-width:768px){ .app-item{flex-direction:row;align-items:flex-start;} }
 
-      .app-left{display:flex;align-items:flex-start;gap:16px;}
-
-      .logo-wrap{position:relative;flex-shrink:0;}
-      .logo-box{
-        width:64px;height:64px;border:1px solid var(--gray-300);background:var(--gray-50);
-        border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:4px;
-        color:var(--gray-400);font-size:11px;font-weight:600;text-align:center;
+      .text-primary {
+        color: var(--primary) !important;
       }
-      .logo-box img{width:100%;height:100%;object-fit:contain;}
-      .logo-edit{
-        position:absolute;bottom:-4px;right:-4px;background:var(--gray-900);color:#fff;
-        padding:4px;border-radius:6px;font-size:9px;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.2);
-      }
-      .logo-edit:hover{background:var(--gray-700);}
-      .logo-edit input{display:none;}
 
-      .app-info{display:flex;flex-direction:column;gap:4px;}
-      .app-company{font-size:14px;font-weight:700;color:var(--gray-900);margin:0;}
-      .app-position{font-size:12px;font-weight:600;color:var(--gray-700);margin:0;}
-      .app-meta{font-size:11px;color:var(--gray-500);display:flex;flex-direction:column;gap:2px;padding-top:4px;}
-      .app-meta p{display:flex;align-items:center;gap:6px;margin:0;}
-      .app-meta i{color:#000;width:12px;}
-
-      .app-right{
-        display:flex;flex-direction:column;justify-content:space-between;
-        align-items:flex-end;align-self:stretch;width:100%;gap:8px;
+      /* Buttons */
+      .btn {
+        border-radius: var(--radius-sm);
+        font-weight: 500;
+        transition: var(--transition);
       }
-      @media (min-width:768px){ .app-right{width:auto;} }
-      .status-pill{
-        background:var(--gray-200);color:var(--gray-700);font-size:10px;font-weight:500;
-        padding:4px 12px;border-radius:6px;
+      .btn-primary {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
       }
-      .status-pill.aktif{background:var(--gray-100);color:#000;}
-      .status-pill.nonaktif{background:var(--gray-100);color:#000;}
-
-      .detail-btn{margin-top:16px;}
-      @media (min-width:768px){ .detail-btn{margin-top:0;} }
-
-      .btn-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;}
-
-      /* ---------- Tombol utama & bahaya ---------- */
-      .btn-primary{
-        border:none;background:var(--gray-900);color:#fff;
-        font-size:12px;font-weight:600;padding:8px 18px;border-radius:6px;cursor:pointer;transition:.15s;
+      .btn-primary:hover, .btn-primary:focus {
+        background-color: var(--primary-hover) !important;
+        border-color: var(--primary-hover) !important;
       }
-      .btn-primary:hover{background:var(--gray-800);}
-      .btn-danger{
-        border:1px solid var(--red-100);background:#fff;color:var(--red-700);
-        font-size:12px;font-weight:600;padding:6px 16px;border-radius:6px;cursor:pointer;transition:.15s;
-        display:inline-flex;align-items:center;gap:6px;
-      }
-      .btn-danger .icon{width:14px;height:14px;}
-      .btn-danger:hover{background:var(--red-100);}
 
-      /* ---------- Form (Tambah / Edit Lowongan) ---------- */
-      .form-card{background:#fff;border:1px solid var(--gray-200);border-radius:6px;padding:20px;}
-      .form-row{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:16px;}
-      @media (min-width:768px){ .form-row.two{grid-template-columns:1fr 1fr;} }
-      .form-group{display:flex;flex-direction:column;gap:6px;}
-      .form-group label{font-size:12px;font-weight:600;color:var(--gray-700);}
-      .form-group input,
-      .form-group select,
-      .form-group textarea{
-        border:1px solid var(--gray-300);border-radius:6px;padding:8px 10px;
-        font-size:13px;color:var(--gray-800);font-family:inherit;background:#fff;
+      /* Style Tombol Profil Usaha Outline Gelap */
+      .btn-outline-dark-custom {
+        border: 1px solid var(--primary);
+        color: var(--primary);
+        background-color: transparent;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: var(--transition);
       }
-      .form-group input:focus,
-      .form-group select:focus,
-      .form-group textarea:focus{outline:none;border-color:var(--gray-500);}
-      .form-group textarea{resize:vertical;min-height:90px;}
-      .form-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px;}
+      .btn-outline-dark-custom:hover {
+        background-color: var(--primary);
+        color: #ffffff;
+      }
 
-      /* ---------- Hapus Lowongan ---------- */
-      .delete-item{
-        background:#fff;border:1px solid var(--gray-200);border-radius:6px;padding:16px;
-        display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+      /* Navigation Tabs */
+      .nav-tabs .nav-link {
+        color: var(--black-50);
+        font-weight: 500;
+        border: none;
       }
-      .delete-title{font-size:13px;font-weight:700;color:var(--gray-900);margin:0 0 4px;}
-      .delete-desc{font-size:12px;color:var(--gray-600);margin:0;}
+      .nav-tabs .nav-link.active {
+        color: var(--primary);
+        font-weight: 700;
+        border-bottom: 3px solid var(--primary);
+        background: none;
+      }
 
-      /* ---------- Riwayat / list sederhana ---------- */
-      .history-item{
-        background:#fff;border:1px solid var(--gray-200);border-radius:6px;padding:16px;
-        display:flex;justify-content:space-between;align-items:center;opacity:.85;
+      /* Badges */
+      .status-badge {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 20px;
+        font-weight: 600;
+        white-space: nowrap;
       }
-      .history-badge{
-        font-size:10px;font-weight:500;padding:2px 8px;border-radius:4px;display:inline-block;
-      }
-      .badge-red{background:var(--gray-100);color:#000;}
-      .badge-emerald{background:var(--gray-100);color:#000;}
-      .badge-gray{background:var(--gray-100);color:#000;}
-      .history-title{font-size:13px;font-weight:700;color:var(--gray-900);margin:4px 0 0;}
-      .history-desc{font-size:12px;color:var(--gray-600);margin:2px 0 0;}
+      .status-aktif { background: #d1e7dd; color: #0f5132; }
+      .status-ditutup { background: #f8d7da; color: #842029; }
 
-      /* ---------- Penyesuaian responsif tambahan ---------- */
-      @media (max-width:480px){
-        .page-title h1{font-size:26px;}
-        .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
-        .tabs{gap:16px;font-size:13px;}
-        .delete-item{flex-direction:column;align-items:stretch;}
-        .delete-item .btn-danger{width:100%;}
-        .history-item{flex-direction:column;align-items:flex-start;gap:10px;}
-        .history-item .history-btn{width:100%;}
-        .form-actions{flex-direction:column-reverse;}
-        .form-actions button{width:100%;}
+      /* Profile Avatar & Logo */
+      .avatar-lg {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--surface-secondary);
+        border: 1px solid var(--stroke);
+        overflow: hidden;
+      }
+      .logo-box {
+        width: 56px;
+        height: 56px;
+        flex-shrink: 0;
+        border: 1px solid var(--stroke);
+        background: var(--surface-secondary);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: var(--primary);
+        overflow: hidden;
+      }
+
+      .side-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        padding: 0.6rem 0.75rem;
+        border-radius: var(--radius-sm);
+        color: var(--black-75);
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+      .side-nav-link:hover, .side-nav-link.active {
+        background: var(--surface-secondary);
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .tab-content.hidden {
+        display: none !important;
       }
     </style>
   </head>
   <body>
-    <!-- Header / Navbar -->
-    <header class="site-header">
-      <div class="wrap">
-        <div class="brand">PartTimeHub</div>
 
-        <nav class="main-nav" id="mainNav">
-          <a href="#">Home</a>
-          <a href="#" class="active">Pemilik Usaha</a>
-          <a href="#">Lowongan</a>
-          <a href="#">Profil</a>
-        </nav>
-
-        <div class="header-actions">
-          <button class="menu-toggle" aria-label="Buka Menu" onclick="toggleMobileMenu()">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" y1="7" x2="20" y2="7"/>
-              <line x1="4" y1="12" x2="20" y2="12"/>
-              <line x1="4" y1="17" x2="20" y2="17"/>
-            </svg>
-          </button>
-          <button class="icon-btn" aria-label="Notifikasi">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-            </svg>
-          </button>
-          <button class="btn-primary profile-btn">
-            <svg class="icon icon-user" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 3a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm0 15.2a7.9 7.9 0 0 1-6.32-3.14c.03-2.1 4.21-3.26 6.32-3.26s6.29 1.16 6.32 3.26A7.9 7.9 0 0 1 12 20.2z"/>
-            </svg>
-            <span>Profil</span>
-            <svg class="icon icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="6 9 12 15 18 9"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Container -->
-    <main>
-      <div class="page-title">
-        <h1>Lowongan Pemilik Usaha</h1>
-        <p>Kelola dashboard usaha dan lowongan pekerjaan yang kamu buka di sini.</p>
-      </div>
-
-      <!-- Search Bar -->
-      <div class="search-wrap">
-        <div class="search-box">
-          <div class="search-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="7"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </div>
-          <input type="text" class="search-input" placeholder="Cari lowongan berdasarkan judul atau kategori..." />
-          <button class="btn-primary search-btn">Cari</button>
-        </div>
-      </div>
-
-      <!-- Top Navigation Tabs -->
-      <div class="tabs">
-        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active">Dashboard</button>
-        <button onclick="switchTab('daftar')" id="tab-daftar" class="tab-btn">Lowongan Pemilik Usaha</button>
-        <button onclick="switchTab('tambah')" id="tab-tambah" class="tab-btn">Tambah Lowongan</button>
-        <button onclick="switchTab('edit')" id="tab-edit" class="tab-btn">Edit Lowongan</button>
-        <button onclick="switchTab('hapus')" id="tab-hapus" class="tab-btn">Hapus Lowongan</button>
-      </div>
-
-      <!-- Metric Stat Cards -->
-      <div class="stats-grid">
-        <div class="stat-card"><div class="stat-number" id="statTotal">0</div><div class="stat-label">Total Lowongan</div></div>
-        <div class="stat-card"><div class="stat-number" id="statAktif">0</div><div class="stat-label">Lowongan Aktif</div></div>
-        <div class="stat-card"><div class="stat-number" id="statPelamar">0</div><div class="stat-label">Total Pelamar</div></div>
-        <div class="stat-card"><div class="stat-number" id="statDitutup">0</div><div class="stat-label">Lowongan Ditutup</div></div>
-      </div>
-
-      <!-- Layout Grid -->
-      <div class="layout-grid">
-        <!-- Sidebar Left -->
-        <aside class="sidebar">
-          <div class="profile-card">
-            <h3>Profil Usaha</h3>
-            <div class="profile-avatar-wrap">
-              <div class="profile-avatar" id="profileAvatarBox"></div>
-              <label class="logo-edit" title="Ubah foto profil usaha">
-                ✎
-                <input type="file" accept="image/*" onchange="handleProfileAvatarChange(event)" />
-              </label>
+    <!-- NAVBAR PROPORSI PAS -->
+    <nav class="navbar navbar-expand-lg sticky-top custom-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="homepemilikusaha.html">PartTimeHub</a>
+        <button class="navbar-toggler py-1 border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center gap-2">
+            <li class="nav-item"><a class="nav-link" href="homepemilikusaha.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="pelamarpemilikusaha.html">Pelamar</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="lowonganpemilikusaha.html">Lowongan</a></li>
+            <li class="nav-item"><a class="nav-link" href="profilpemilikusaha.html">Profil</a></li>
+          </ul>
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-bell nav-bell-icon" title="Notifikasi"></i>
+            <div class="dropdown">
+              <button class="btn btn-nav-profile dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i>
+                <span>Profil</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2" style="font-size: 0.85rem;">
+                <li><a class="dropdown-item py-2" href="profilpemilikusaha.html">Profil Saya</a></li>
+                <li><a class="dropdown-item py-2" href="profilpemilikusaha.html">Edit Profil</a></li>
+                <li><hr class="dropdown-divider my-1" /></li>
+                <li><a class="dropdown-item py-2 text-danger fw-semibold" href="index.html">Keluar</a></li>
+              </ul>
             </div>
-            <p class="profile-name" id="profileNameDisplay">Kopi Kenangan</p>
-            <p class="profile-email">kopikenangan@usaha.com</p>
-            <button class="btn-outline-block">Lihat Profil</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION LOWONGAN -->
+    <section class="py-5" style="background: var(--gradient-hero);">
+      <div class="container text-center">
+        <h1 class="display-6 fw-bold text-dark mb-2">Manajemen Lowongan Pekerjaan</h1>
+        <p class="text-dark-50 mb-4">
+          Kelola, tambah, dan pantau lamaran kerja untuk usaha Anda dalam satu tempat.
+        </p>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <div class="input-group input-group-lg shadow-sm">
+              <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+              <input type="text" id="searchInput" class="form-control border-start-0" placeholder="Cari posisi atau lokasi lowongan..." onkeyup="renderDaftar()" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METRICS STATS STRIP -->
+    <section class="py-3 bg-white border-bottom shadow-sm">
+      <div class="container">
+        <div class="row text-center g-3">
+          <div class="col-6 col-md-3">
+            <h4 class="fw-bold text-primary mb-0" id="statTotal">0</h4>
+            <small class="text-muted">Total Lowongan</small>
+          </div>
+          <div class="col-6 col-md-3">
+            <h4 class="fw-bold text-success mb-0" id="statAktif">0</h4>
+            <small class="text-muted">Lowongan Aktif</small>
+          </div>
+          <div class="col-6 col-md-3">
+            <h4 class="fw-bold text-primary mb-0" id="statPelamar">0</h4>
+            <small class="text-muted">Total Pelamar</small>
+          </div>
+          <div class="col-6 col-md-3">
+            <h4 class="fw-bold text-secondary mb-0" id="statDitutup">0</h4>
+            <small class="text-muted">Lowongan Ditutup</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN CONTENT AREA -->
+    <section class="py-4">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-3">
+            <div class="card text-center p-4 mb-3">
+              <div class="avatar-lg d-flex align-items-center justify-content-center fw-bold fs-3 text-secondary mx-auto mb-3">
+                <img src="kk.png" alt="Logo Usaha" class="img-fluid">
+              </div>
+              <h6 class="fw-bold mb-0">Kopi Kenangan</h6>
+              <small class="text-muted d-block mb-3">kopikenangan@usaha.com</small>
+              <a href="profilpemilikusaha.html" class="btn btn-outline-dark-custom btn-sm w-100 py-2">Profil Usaha</a>
+            </div>
+
+            <div class="card p-3">
+              <h6 class="fw-bold mb-2 px-1">Menu Lowongan</h6>
+              <div class="d-flex flex-column gap-1">
+                <button onclick="switchTab('daftar')" id="nav-daftar" class="side-nav-link active">
+                  <i class="bi bi-card-list"></i> Lowongan Saya
+                </button>
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="side-nav-link">
+                  <i class="bi bi-speedometer2"></i> Ringkasan & Aktivitas
+                </button>
+                <button onclick="switchTab('tambah')" id="nav-tambah" class="side-nav-link">
+                  <i class="bi bi-plus-circle"></i> Tambah Lowongan
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div class="nav-card">
-            <h3>Pemilik Usaha</h3>
-            <ul class="nav-list">
-              <li><button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-item active">Dashboard</button></li>
-              <li>
-                <button class="nav-item">Lowongan</button>
-                <ul class="nav-sublist">
-                  <li><button onclick="switchTab('daftar')" id="nav-daftar" class="nav-subitem">Lowongan Pemilik Usaha</button></li>
-                  <li><button onclick="switchTab('tambah')" id="nav-tambah" class="nav-subitem">Tambah Lowongan</button></li>
-                  <li><button onclick="switchTab('edit')" id="nav-edit" class="nav-subitem">Edit Lowongan</button></li>
-                  <li><button onclick="switchTab('hapus')" id="nav-hapus" class="nav-subitem">Hapus Lowongan</button></li>
-                </ul>
+          <!-- KONTEN UTAMA -->
+          <div class="col-lg-9">
+
+            <!-- TAB TAMPILAN HEADER -->
+            <ul class="nav nav-tabs mb-4 gap-3 border-0">
+              <li class="nav-item">
+                <button onclick="switchTab('daftar')" id="tab-daftar" class="nav-link active">
+                  <i class="bi bi-card-list me-1"></i> Lowongan Saya
+                </button>
+              </li>
+              <li class="nav-item">
+                <button onclick="switchTab('dashboard')" id="tab-dashboard" class="nav-link">
+                  <i class="bi bi-speedometer2 me-1"></i> Ringkasan
+                </button>
+              </li>
+              <li class="nav-item">
+                <button onclick="switchTab('tambah')" id="tab-tambah" class="nav-link">
+                  <i class="bi bi-plus-circle me-1"></i> Tambah Lowongan
+                </button>
               </li>
             </ul>
-          </div>
-        </aside>
 
-        <!-- Main Content Area Right -->
-        <section>
-          <!-- SECTION 0: DASHBOARD -->
-          <div id="content-dashboard" class="tab-content">
-            <div class="content-header">
-              <h2>Ringkasan Dashboard</h2>
-              <span class="header-note" id="dashboardUpdated">Update terakhir: 22 Juli 2026</span>
+            <!-- SECTION 1: DAFTAR LOWONGAN SAYA -->
+            <div id="content-daftar" class="tab-content">
+              <div id="daftarLowonganContainer"></div>
             </div>
 
-            <div id="dashboardHistoryContainer"></div>
-          </div>
+            <!-- SECTION 2: DASHBOARD / RINGKASAN -->
+            <div id="content-dashboard" class="tab-content hidden">
+              <div class="card p-4">
+                <h5 class="fw-bold mb-3">Ringkasan Aktivitas Lowongan</h5>
+                <div id="dashboardHistoryContainer"></div>
+              </div>
+            </div>
 
-          <!-- SECTION 1: DAFTAR LOWONGAN -->
-          <div id="content-daftar" class="tab-content hidden">
-            <div class="content-header">
-              <h2>Lowongan Pemilik Usaha</h2>
-              <div class="sort-control">
-                <span>Urutkan:</span>
-                <select id="sortDaftar" onchange="renderDaftar()">
-                  <option value="terbaru">Terbaru</option>
-                  <option value="terlama">Terlama</option>
+            <!-- SECTION 3: TAMBAH LOWONGAN -->
+            <div id="content-tambah" class="tab-content hidden">
+              <div class="card p-4">
+                <h5 class="fw-bold mb-3">Buat Lowongan Pekerjaan Baru</h5>
+                <form onsubmit="event.preventDefault(); tambahLowongan();">
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small">Judul Posisi</label>
+                      <input type="text" class="form-control" id="tambahJudul" placeholder="Contoh: Barista Part-Time" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small">Kategori</label>
+                      <select class="form-select" id="tambahKategori">
+                        <option>Food & Beverage</option>
+                        <option>Retail</option>
+                        <option>Logistik</option>
+                        <option>Customer Service</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small">Lokasi Pekerjaan</label>
+                      <input type="text" class="form-control" id="tambahLokasi" placeholder="Contoh: Semarang, Indonesia" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label fw-semibold small">Gaji / Honor</label>
+                      <input type="text" class="form-control" id="tambahGaji" placeholder="Contoh: Rp 2.500.000 / bulan" required />
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="form-label fw-semibold small">Deskripsi & Syarat Pekerjaan</label>
+                    <textarea class="form-control" id="tambahDeskripsi" rows="4" placeholder="Tuliskan kualifikasi, jam kerja, dan tugas utama..."></textarea>
+                  </div>
+
+                  <div class="d-flex justify-content-end gap-2">
+                    <button class="btn btn-outline-secondary px-4" onclick="switchTab('daftar')" type="button">Batal</button>
+                    <button class="btn btn-primary px-4" type="submit">Terbitkan Lowongan</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL POPUP EDIT LOWONGAN -->
+    <div class="modal fade" id="modalEdit" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold">Edit Lowongan</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formEdit">
+              <input type="hidden" id="editId" />
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Judul Posisi</label>
+                <input type="text" class="form-control" id="editJudul" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Kategori</label>
+                <select class="form-select" id="editKategori">
+                  <option>Food & Beverage</option>
+                  <option>Retail</option>
+                  <option>Logistik</option>
+                  <option>Customer Service</option>
                 </select>
               </div>
-            </div>
-
-            <div id="daftarLowonganContainer"></div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Lokasi</label>
+                <input type="text" class="form-control" id="editLokasi" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Gaji</label>
+                <input type="text" class="form-control" id="editGaji" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label small fw-bold">Status Lowongan</label>
+                <select class="form-select" id="editStatus">
+                  <option value="Aktif">Aktif</option>
+                  <option value="Ditutup">Ditutup</option>
+                </select>
+              </div>
+            </form>
           </div>
-
-          <!-- SECTION 2: TAMBAH LOWONGAN -->
-          <div id="content-tambah" class="tab-content hidden">
-            <div class="content-header">
-              <h2>Tambah Lowongan Baru</h2>
-              <span class="header-note">Lengkapi data lowongan di bawah ini</span>
-            </div>
-
-            <div class="form-card">
-              <div class="form-row two">
-                <div class="form-group">
-                  <label>Nama Perusahaan</label>
-                  <input type="text" id="tambahPerusahaan" placeholder="Contoh: Kopi Kenangan" />
-                </div>
-                <div class="form-group">
-                  <label>Logo Perusahaan (opsional)</label>
-                  <input type="file" id="tambahLogoInput" accept="image/*" onchange="previewTambahLogo(event)" />
-                </div>
-              </div>
-              <div class="form-row two" id="tambahLogoPreviewRow" style="display:none;">
-                <div class="form-group">
-                  <label>Preview Logo</label>
-                  <div class="logo-box" id="tambahLogoPreview" style="width:64px;height:64px;"></div>
-                </div>
-              </div>
-
-              <div class="form-row two">
-                <div class="form-group">
-                  <label>Judul Lowongan</label>
-                  <input type="text" id="tambahJudul" placeholder="Contoh: Barista Part-Time" />
-                </div>
-                <div class="form-group">
-                  <label>Kategori</label>
-                  <select id="tambahKategori">
-                    <option>Food &amp; Beverage</option>
-                    <option>Retail</option>
-                    <option>Logistik</option>
-                    <option>Transportasi</option>
-                    <option>Customer Service</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row two">
-                <div class="form-group">
-                  <label>Lokasi</label>
-                  <input type="text" id="tambahLokasi" placeholder="Contoh: Ungaran, Indonesia" />
-                </div>
-                <div class="form-group">
-                  <label>Tipe Pekerjaan</label>
-                  <select id="tambahTipe">
-                    <option>Part-Time</option>
-                    <option>Full-Time</option>
-                    <option>Magang</option>
-                    <option>Kontrak</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row two">
-                <div class="form-group">
-                  <label>Gaji (Rp)</label>
-                  <input type="text" id="tambahGaji" placeholder="Contoh: 2.500.000 / bulan" />
-                </div>
-                <div class="form-group">
-                  <label>Batas Akhir Lamaran</label>
-                  <input type="date" id="tambahDeadline" />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Deskripsi Pekerjaan</label>
-                  <textarea id="tambahDeskripsi" placeholder="Tuliskan deskripsi, tanggung jawab, dan kualifikasi pelamar..."></textarea>
-                </div>
-              </div>
-
-              <div class="form-actions">
-                <button class="btn-outline-block" style="width:auto;padding:8px 18px;" onclick="resetTambahForm()" type="button">Batal</button>
-                <button class="btn-primary" onclick="tambahLowongan()" type="button">Tambah Lowongan</button>
-              </div>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-primary" onclick="simpanEdit()">Simpan Perubahan</button>
           </div>
-
-          <!-- SECTION 3: EDIT LOWONGAN -->
-          <div id="content-edit" class="tab-content hidden">
-            <div class="content-header">
-              <h2>Edit Lowongan</h2>
-              <span class="header-note">Pilih lowongan yang ingin diperbarui</span>
-            </div>
-
-            <div class="form-card">
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Pilih Lowongan</label>
-                  <select id="editSelect" onchange="loadEditForm()"></select>
-                </div>
-              </div>
-
-              <div class="form-row two">
-                <div class="form-group">
-                  <label>Logo Perusahaan</label>
-                  <div class="logo-wrap" style="width:64px;">
-                    <div class="logo-box" id="editLogoPreview" style="width:64px;height:64px;"></div>
-                    <label class="logo-edit" title="Ubah logo perusahaan">
-                      ✎
-                      <input type="file" accept="image/*" onchange="handleEditLogoChange(event)" />
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-row two">
-                <div class="form-group">
-                  <label>Judul Lowongan</label>
-                  <input type="text" id="editJudul" />
-                </div>
-                <div class="form-group">
-                  <label>Kategori</label>
-                  <select id="editKategori">
-                    <option>Food &amp; Beverage</option>
-                    <option>Retail</option>
-                    <option>Logistik</option>
-                    <option>Transportasi</option>
-                    <option>Customer Service</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row two">
-                <div class="form-group">
-                  <label>Lokasi</label>
-                  <input type="text" id="editLokasi" />
-                </div>
-                <div class="form-group">
-                  <label>Status Lowongan</label>
-                  <select id="editStatus">
-                    <option>Aktif</option>
-                    <option>Ditutup</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Deskripsi Pekerjaan</label>
-                  <textarea id="editDeskripsi"></textarea>
-                </div>
-              </div>
-
-              <div class="form-actions">
-                <button class="btn-outline-block" style="width:auto;padding:8px 18px;" onclick="loadEditForm()" type="button">Batal</button>
-                <button class="btn-primary" onclick="simpanEdit()" type="button">Simpan Perubahan</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- SECTION 4: HAPUS LOWONGAN -->
-          <div id="content-hapus" class="tab-content hidden">
-            <div class="content-header">
-              <h2>Hapus Lowongan</h2>
-              <span class="header-note">Tindakan ini tidak dapat dibatalkan</span>
-            </div>
-
-            <div id="hapusLowonganContainer"></div>
-          </div>
-        </section>
+        </div>
       </div>
-    </main>
+    </div>
 
-    <!-- JavaScript Interaktif Tab & Kelola Lowongan -->
+    <!-- FOOTER -->
+    <footer class="py-4 bg-white border-top mt-5">
+      <div class="container text-center text-muted small">
+        <p class="mb-0">© 2026 PartTimeHub. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JAVASCRIPT -->
     <script>
-      /* ================== NAVIGASI TAB ================== */
-      function toggleMobileMenu() {
-        document.getElementById("mainNav").classList.toggle("open");
-      }
+      let lowonganData = [
+        { id: 1, position: "Barista Part-Time", category: "Food & Beverage", location: "Semarang, Indonesia", salary: "2.500.000 / bulan", status: "Aktif", applicants: 32 },
+        { id: 2, position: "Crew Store", category: "Retail", location: "Ungaran, Indonesia", salary: "2.200.000 / bulan", status: "Aktif", applicants: 18 },
+        { id: 3, position: "Admin Gudang", category: "Logistik", location: "Semarang, Indonesia", salary: "3.500.000 / bulan", status: "Ditutup", applicants: 54 }
+      ];
+
+      let editModalInstance = null;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        editModalInstance = new bootstrap.Modal(document.getElementById('modalEdit'));
+        renderAll();
+      });
 
       function switchTab(tabName) {
-        document.querySelectorAll(".tab-content").forEach((content) => {
-          content.classList.add("hidden");
-        });
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.nav-tabs .nav-link').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.side-nav-link').forEach(el => el.classList.remove('active'));
 
-        document.querySelectorAll(".tab-btn").forEach((btn) => {
-          btn.classList.remove("active");
-        });
-
-        document.querySelectorAll(".nav-item, .nav-subitem").forEach((btn) => {
-          btn.classList.remove("active");
-        });
-
-        document.getElementById("content-" + tabName).classList.remove("hidden");
-
-        const activeTab = document.getElementById("tab-" + tabName);
-        if (activeTab) activeTab.classList.add("active");
-
-        const activeNav = document.getElementById("nav-" + tabName);
-        if (activeNav) activeNav.classList.add("active");
+        document.getElementById('content-' + tabName).classList.remove('hidden');
+        
+        const activeTab = document.getElementById('tab-' + tabName);
+        if (activeTab) activeTab.classList.add('active');
+        
+        const activeNav = document.getElementById('nav-' + tabName);
+        if (activeNav) activeNav.classList.add('active');
       }
 
-      /* ================== DATA LOWONGAN ================== */
-      // Data disimpan di memori (state) selama halaman terbuka.
-      // Semua fitur tambah/edit/hapus mengubah array ini lalu me-render ulang tampilan.
-      let nextId = 6;
-      let lowonganData = [
-        { id: 1, company: "Tokopedia", position: "Admin Gudang", category: "Logistik", location: "Jakarta, Indonesia", type: "Full-Time", salary: "3.500.000 / bulan", deadline: "", description: "Mengelola stok gudang, mencatat barang masuk dan keluar, serta menjaga kerapian area penyimpanan.", status: "Ditutup", applicants: 54, dateOpened: "01 Juni 2026", logo: "tokped.jpg" },
-        { id: 2, company: "McDonald's", position: "Crew Store", category: "Food & Beverage", location: "Semarang, Indonesia", type: "Part-Time", salary: "2.200.000 / bulan", deadline: "", description: "Melayani pelanggan, menyiapkan pesanan, dan menjaga kebersihan area restoran.", status: "Aktif", applicants: 28, dateOpened: "15 Juli 2026", logo: "mcd.jpg" },
-        { id: 3, company: "Gojek", position: "Mitra Driver GoRide", category: "Transportasi", location: "Semarang, Indonesia", type: "Kontrak", salary: "Sesuai skema mitra", deadline: "", description: "Mengantar penumpang menggunakan aplikasi Gojek dengan area operasional fleksibel.", status: "Aktif", applicants: 21, dateOpened: "18 Juli 2026", logo: "jaksakocak.png" },
-        { id: 4, company: "Grab", position: "Mitra Pengemudi GrabBike", category: "Transportasi", location: "Semarang, Indonesia", type: "Kontrak", salary: "Sesuai skema mitra", deadline: "", description: "Mengantar penumpang dan pesanan menggunakan aplikasi Grab dengan jam kerja fleksibel.", status: "Aktif", applicants: 15, dateOpened: "10 Juli 2026", logo: "potograb.png" },
-        { id: 5, company: "Kopi Kenangan", position: "Barista Part-Time", category: "Food & Beverage", location: "Ungaran, Indonesia", type: "Part-Time", salary: "2.500.000 / bulan", deadline: "", description: "Bertanggung jawab menyeduh kopi, melayani pelanggan, dan menjaga kebersihan area kerja.", status: "Aktif", applicants: 32, dateOpened: "01 Juli 2026", logo: "kk.png" },
-      ];
-
-      function escapeHtml(str) {
-        const div = document.createElement("div");
-        div.textContent = str == null ? "" : String(str);
-        return div.innerHTML;
-      }
-
-      function getInitials(name) {
-        return name
-          .split(/\s+/)
-          .map((w) => w[0])
-          .join("")
-          .slice(0, 2)
-          .toUpperCase();
-      }
-
-      // Menghasilkan warna latar yang konsisten (selalu sama) untuk nama perusahaan yang sama,
-      // sehingga tiap perusahaan punya "logo" default berwarna berbeda sebelum upload logo asli.
-      const LOGO_COLORS = [
-        { bg: "#dbeafe", fg: "#1d4ed8" }, // biru
-        { bg: "#fef3c7", fg: "#92400e" }, // amber
-        { bg: "#d1fae5", fg: "#065f46" }, // emerald
-        { bg: "#fee2e2", fg: "#b91c1c" }, // merah
-        { bg: "#ede9fe", fg: "#5b21b6" }, // ungu
-        { bg: "#fce7f3", fg: "#9d174d" }, // pink
-        { bg: "#e0f2fe", fg: "#0369a1" }, // sky
-        { bg: "#ffedd5", fg: "#9a3412" }, // orange
-      ];
-
-      function getCompanyColor(name) {
-        let hash = 0;
-        for (let i = 0; i < name.length; i++) {
-          hash = name.charCodeAt(i) + ((hash << 5) - hash);
-        }
-        const index = Math.abs(hash) % LOGO_COLORS.length;
-        return LOGO_COLORS[index];
-      }
-
-      function renderLogoBox(l) {
-        if (l.logo) {
-          const color = getCompanyColor(l.company || "?");
-          const fallback = `display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:${color.bg};color:${color.fg};font-weight:700;border-radius:4px;`;
-          return `<img src="${l.logo}" alt="Logo ${escapeHtml(l.company)}" onerror="this.outerHTML='<span style=\\'${fallback}\\'>${escapeHtml(getInitials(l.company))}</span>'" />`;
-        }
-        const color = getCompanyColor(l.company || "?");
-        return `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:${color.bg};color:${color.fg};font-weight:700;border-radius:4px;">${escapeHtml(getInitials(l.company))}</span>`;
-      }
-
-      /* ================== RENDER SEMUA TAMPILAN ================== */
       function renderAll() {
         renderStats();
-        renderDashboard();
         renderDaftar();
-        renderEditOptions();
-        renderHapus();
-        renderProfileAvatar();
+        renderDashboard();
       }
 
       function renderStats() {
-        const total = lowonganData.length;
-        const aktif = lowonganData.filter((l) => l.status === "Aktif").length;
-        const ditutup = lowonganData.filter((l) => l.status === "Ditutup").length;
-        const pelamar = lowonganData.reduce((sum, l) => sum + (Number(l.applicants) || 0), 0);
-        document.getElementById("statTotal").textContent = total;
-        document.getElementById("statAktif").textContent = aktif;
-        document.getElementById("statDitutup").textContent = ditutup;
-        document.getElementById("statPelamar").textContent = pelamar;
-      }
-
-      function renderDashboard() {
-        const container = document.getElementById("dashboardHistoryContainer");
-        if (!lowonganData.length) {
-          container.innerHTML = '<p class="header-note">Belum ada lowongan.</p>';
-          return;
-        }
-        container.innerHTML = lowonganData
-          .map((l) => {
-            const badgeClass = l.status === "Aktif" ? "badge-emerald" : "badge-gray";
-            return `
-            <div class="history-item">
-              <div>
-                <span class="history-badge ${badgeClass}">${escapeHtml(l.status)}</span>
-                <h3 class="history-title">${escapeHtml(l.company)} — ${escapeHtml(l.position)}</h3>
-                <p class="history-desc">${escapeHtml(l.applicants)} pelamar masuk — dibuka ${escapeHtml(l.dateOpened)}</p>
-              </div>
-              <button class="btn-primary history-btn" onclick="lihatDetail(${l.id})">Lihat Detail</button>
-            </div>`;
-          })
-          .join("");
+        document.getElementById("statTotal").textContent = lowonganData.length;
+        document.getElementById("statAktif").textContent = lowonganData.filter(l => l.status === "Aktif").length;
+        document.getElementById("statDitutup").textContent = lowonganData.filter(l => l.status === "Ditutup").length;
+        document.getElementById("statPelamar").textContent = lowonganData.reduce((sum, l) => sum + l.applicants, 0);
       }
 
       function renderDaftar() {
         const container = document.getElementById("daftarLowonganContainer");
-        const sortSelect = document.getElementById("sortDaftar");
-        const order = sortSelect ? sortSelect.value : "terbaru";
+        const query = document.getElementById("searchInput") ? document.getElementById("searchInput").value.toLowerCase() : "";
 
-        let data = [...lowonganData];
-        data.sort((a, b) => (order === "terbaru" ? b.id - a.id : a.id - b.id));
+        const filtered = lowonganData.filter(l => 
+          l.position.toLowerCase().includes(query) || 
+          l.location.toLowerCase().includes(query)
+        );
 
-        if (!data.length) {
-          container.innerHTML = '<p class="header-note">Belum ada lowongan yang dibuka.</p>';
+        if (filtered.length === 0) {
+          container.innerHTML = `<div class="card p-4 text-center text-muted">Belum ada lowongan pekerjaan ditemukan.</div>`;
           return;
         }
 
-        container.innerHTML = data
-          .map((l) => {
-            const pillClass = l.status === "Aktif" ? "aktif" : "nonaktif";
-            const logoContent = renderLogoBox(l);
-            return `
-            <div class="app-item">
-              <div class="app-left">
-                <div class="logo-wrap">
-                  <div class="logo-box">${logoContent}</div>
-                  <label class="logo-edit" title="Ubah logo perusahaan">
-                    ✎
-                    <input type="file" accept="image/*" onchange="handleLogoChange(event, ${l.id})" />
-                  </label>
+        container.innerHTML = filtered.map(l => {
+          const badgeClass = l.status === 'Aktif' ? 'status-aktif' : 'status-ditutup';
+          const initials = l.position.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+          
+          return `
+            <div class="card p-3 mb-3">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="logo-box">${initials}</div>
+                  <div>
+                    <h6 class="fw-bold mb-1">${escapeHtml(l.position)}</h6>
+                    <div class="text-muted small">
+                      <span class="me-3"><i class="bi bi-geo-alt text-primary"></i> ${escapeHtml(l.location)}</span>
+                      <span class="me-3"><i class="bi bi-tag text-primary"></i> ${escapeHtml(l.category)}</span>
+                      <span><i class="bi bi-cash-stack text-primary"></i> Rp ${escapeHtml(l.salary)}</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="app-info">
-                  <p class="app-company">${escapeHtml(l.company)}</p>
-                  <p class="app-position">${escapeHtml(l.position)}</p>
-                  <div class="app-meta">
-                    <p><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${escapeHtml(l.location || "-")}</p>
-                    <p><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 11 3.83A2 2 0 0 0 9.59 3.17L3 3v6.59a2 2 0 0 0 .59 1.41l9.58 9.59a2 2 0 0 0 2.83 0l4.59-4.59a2 2 0 0 0 0-2.83Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg> ${escapeHtml(l.category)} — ${escapeHtml(l.type)}</p>
-                    <p><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg> ${escapeHtml(l.salary || "-")}</p>
+                
+                <div class="d-flex align-items-center justify-content-between justify-content-md-end gap-3">
+                  <span class="status-badge ${badgeClass}">${escapeHtml(l.status)}</span>
+                  <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary btn-sm" onclick="openEditModal(${l.id})" title="Edit Lowongan">
+                      <i class="bi bi-pencil"></i> Edit
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" onclick="hapusLowongan(${l.id})" title="Hapus Lowongan">
+                      <i class="bi bi-trash"></i>
+                    </button>
                   </div>
                 </div>
               </div>
-              <div class="app-right">
-                <span class="status-pill ${pillClass}">${escapeHtml(l.status)}</span>
-                <button class="btn-primary detail-btn" onclick="lihatDetail(${l.id})">Lihat Detail</button>
-              </div>
-            </div>`;
-          })
-          .join("");
+            </div>
+          `;
+        }).join("");
       }
 
-      function renderEditOptions() {
-        const select = document.getElementById("editSelect");
-        const currentValue = select.value;
-        select.innerHTML = lowonganData
-          .map((l) => `<option value="${l.id}">${escapeHtml(l.company)} — ${escapeHtml(l.position)}</option>`)
-          .join("");
-
-        if (!lowonganData.length) {
-          document.getElementById("editJudul").value = "";
-          document.getElementById("editLokasi").value = "";
-          document.getElementById("editDeskripsi").value = "";
-          return;
-        }
-
-        const stillExists = lowonganData.some((l) => String(l.id) === currentValue);
-        select.value = stillExists ? currentValue : lowonganData[0].id;
-        loadEditForm();
-      }
-
-      function loadEditForm() {
-        const select = document.getElementById("editSelect");
-        const job = lowonganData.find((l) => String(l.id) === select.value);
-        if (!job) return;
-        document.getElementById("editJudul").value = job.position;
-        document.getElementById("editKategori").value = job.category;
-        document.getElementById("editLokasi").value = job.location || "";
-        document.getElementById("editStatus").value = job.status;
-        document.getElementById("editDeskripsi").value = job.description || "";
-
-        const preview = document.getElementById("editLogoPreview");
-        preview.innerHTML = renderLogoBox(job);
-      }
-
-      function handleEditLogoChange(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const select = document.getElementById("editSelect");
-        const job = lowonganData.find((l) => String(l.id) === select.value);
-        if (!job) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          job.logo = e.target.result;
-          document.getElementById("editLogoPreview").innerHTML = `<img src="${job.logo}" alt="Logo ${escapeHtml(job.company)}" />`;
-          renderDaftar();
-          renderHapus();
-        };
-        reader.readAsDataURL(file);
-      }
-
-      function handleLogoChange(event, id) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const job = lowonganData.find((l) => l.id === id);
-        if (!job) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          job.logo = e.target.result;
-          renderDaftar();
-          const editSelect = document.getElementById("editSelect");
-          if (editSelect && String(editSelect.value) === String(id)) {
-            loadEditForm();
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-
-      /* ================== FOTO PROFIL USAHA ================== */
-      let profileAvatarUrl = "img/kopi-kenangan.png";
-
-      function renderProfileAvatar() {
-        const box = document.getElementById("profileAvatarBox");
-        if (profileAvatarUrl) {
-          const initials = escapeHtml(getInitials(document.getElementById("profileNameDisplay").textContent));
-          box.innerHTML = `<img src="${profileAvatarUrl}" alt="Foto profil usaha" onerror="this.parentElement.innerHTML='${initials}'" />`;
-        } else {
-          box.innerHTML = escapeHtml(getInitials(document.getElementById("profileNameDisplay").textContent));
-        }
-      }
-
-      function handleProfileAvatarChange(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          profileAvatarUrl = e.target.result;
-          renderProfileAvatar();
-        };
-        reader.readAsDataURL(file);
-      }
-
-      function simpanEdit() {
-        const select = document.getElementById("editSelect");
-        const job = lowonganData.find((l) => String(l.id) === select.value);
-        if (!job) {
-          alert("Pilih lowongan terlebih dahulu.");
-          return;
-        }
-
-        const judul = document.getElementById("editJudul").value.trim();
-        if (!judul) {
-          alert("Judul lowongan tidak boleh kosong.");
-          return;
-        }
-
-        job.position = judul;
-        job.category = document.getElementById("editKategori").value;
-        job.location = document.getElementById("editLokasi").value.trim();
-        job.status = document.getElementById("editStatus").value;
-        job.description = document.getElementById("editDeskripsi").value.trim();
-
-        renderAll();
-        // Pastikan dropdown Edit tetap menunjuk ke lowongan yang baru disimpan
-        document.getElementById("editSelect").value = job.id;
-        alert("Perubahan berhasil disimpan.");
-      }
-
-      function renderHapus() {
-        const container = document.getElementById("hapusLowonganContainer");
-        if (!lowonganData.length) {
-          container.innerHTML = '<p class="header-note">Tidak ada lowongan untuk dihapus.</p>';
-          return;
-        }
-        container.innerHTML = lowonganData
-          .map(
-            (l) => `
-            <div class="delete-item">
-              <div>
-                <h3 class="delete-title">${escapeHtml(l.company)} — ${escapeHtml(l.position)}</h3>
-                <p class="delete-desc">${escapeHtml(l.category)} — status ${escapeHtml(l.status)}</p>
-              </div>
-              <button class="btn-danger" onclick="hapusLowongan(${l.id})">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
-                Hapus Lowongan
-              </button>
-            </div>`
-          )
-          .join("");
-      }
-
-      function hapusLowongan(id) {
-        const job = lowonganData.find((l) => l.id === id);
-        if (!job) return;
-        const konfirmasi = confirm(
-          `Yakin ingin menghapus lowongan "${job.company} — ${job.position}"? Tindakan ini tidak dapat dibatalkan.`
-        );
-        if (!konfirmasi) return;
-
-        lowonganData = lowonganData.filter((l) => l.id !== id);
-        renderAll();
-      }
-
-      /* ================== TAMBAH LOWONGAN ================== */
-      function previewTambahLogo(event) {
-        const file = event.target.files[0];
-        const row = document.getElementById("tambahLogoPreviewRow");
-        const preview = document.getElementById("tambahLogoPreview");
-        if (!file) {
-          row.style.display = "none";
-          preview.innerHTML = "";
-          return;
-        }
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          preview.innerHTML = `<img src="${e.target.result}" alt="Preview logo" />`;
-          row.style.display = "";
-        };
-        reader.readAsDataURL(file);
+      function renderDashboard() {
+        const container = document.getElementById("dashboardHistoryContainer");
+        container.innerHTML = lowonganData.map(l => `
+          <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+            <div>
+              <h6 class="fw-bold mb-0">${escapeHtml(l.position)}</h6>
+              <small class="text-muted">${l.applicants} Pelamar Terdaftar</small>
+            </div>
+            <span class="status-badge ${l.status === 'Aktif' ? 'status-aktif' : 'status-ditutup'}">${l.status}</span>
+          </div>
+        `).join("");
       }
 
       function tambahLowongan() {
-        const perusahaan = document.getElementById("tambahPerusahaan").value.trim();
         const judul = document.getElementById("tambahJudul").value.trim();
         const kategori = document.getElementById("tambahKategori").value;
         const lokasi = document.getElementById("tambahLokasi").value.trim();
-        const tipe = document.getElementById("tambahTipe").value;
         const gaji = document.getElementById("tambahGaji").value.trim();
-        const deadline = document.getElementById("tambahDeadline").value;
-        const deskripsi = document.getElementById("tambahDeskripsi").value.trim();
 
-        if (!perusahaan || !judul || !lokasi) {
-          alert("Nama Perusahaan, Judul Lowongan, dan Lokasi wajib diisi.");
-          return;
-        }
+        const newJob = {
+          id: Date.now(),
+          position: judul,
+          category: kategori,
+          location: lokasi,
+          salary: gaji,
+          status: "Aktif",
+          applicants: 0
+        };
 
-        function finalisasiTambah(logoDataUrl) {
-          const newJob = {
-            id: nextId++,
-            company: perusahaan,
-            position: judul,
-            category: kategori,
-            location: lokasi,
-            type: tipe,
-            salary: gaji,
-            deadline: deadline,
-            description: deskripsi,
-            status: "Aktif",
-            applicants: 0,
-            logo: logoDataUrl || null,
-            dateOpened: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" }),
-          };
+        lowonganData.unshift(newJob);
+        renderAll();
 
-          lowonganData.push(newJob);
-          renderAll();
-          resetTambahForm();
-          alert("Lowongan baru berhasil ditambahkan.");
-          switchTab("daftar");
-        }
-
-        const fileInput = document.getElementById("tambahLogoInput");
-        const file = fileInput.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e) => finalisasiTambah(e.target.result);
-          reader.readAsDataURL(file);
-        } else {
-          finalisasiTambah(null);
-        }
-      }
-
-      function resetTambahForm() {
-        document.getElementById("tambahPerusahaan").value = "";
-        document.getElementById("tambahLogoInput").value = "";
-        document.getElementById("tambahLogoPreviewRow").style.display = "none";
-        document.getElementById("tambahLogoPreview").innerHTML = "";
+        // Reset form
         document.getElementById("tambahJudul").value = "";
-        document.getElementById("tambahKategori").selectedIndex = 0;
         document.getElementById("tambahLokasi").value = "";
-        document.getElementById("tambahTipe").selectedIndex = 0;
         document.getElementById("tambahGaji").value = "";
-        document.getElementById("tambahDeadline").value = "";
         document.getElementById("tambahDeskripsi").value = "";
+
+        switchTab('daftar');
       }
 
-      /* ================== DETAIL LOWONGAN ================== */
-      function lihatDetail(id) {
-        const job = lowonganData.find((l) => l.id === id);
+      function openEditModal(id) {
+        const job = lowonganData.find(l => l.id === id);
         if (!job) return;
-        alert(
-          `${job.company} — ${job.position}\n` +
-            `Kategori: ${job.category}\n` +
-            `Lokasi: ${job.location || "-"}\n` +
-            `Tipe: ${job.type || "-"}\n` +
-            `Gaji: ${job.salary || "-"}\n` +
-            `Status: ${job.status}\n` +
-            `Pelamar: ${job.applicants}\n\n` +
-            `${job.description || "Tidak ada deskripsi."}`
-        );
+
+        document.getElementById("editId").value = job.id;
+        document.getElementById("editJudul").value = job.position;
+        document.getElementById("editKategori").value = job.category;
+        document.getElementById("editLokasi").value = job.location;
+        document.getElementById("editGaji").value = job.salary;
+        document.getElementById("editStatus").value = job.status;
+
+        editModalInstance.show();
       }
 
-      /* ================== INISIALISASI ================== */
-      document.addEventListener("DOMContentLoaded", renderAll);
+      function simpanEdit() {
+        const id = Number(document.getElementById("editId").value);
+        const job = lowonganData.find(l => l.id === id);
+        if (!job) return;
+
+        job.position = document.getElementById("editJudul").value.trim();
+        job.category = document.getElementById("editKategori").value;
+        job.location = document.getElementById("editLokasi").value.trim();
+        job.salary = document.getElementById("editGaji").value.trim();
+        job.status = document.getElementById("editStatus").value;
+
+        renderAll();
+        editModalInstance.hide();
+      }
+
+      function hapusLowongan(id) {
+        if (confirm("Apakah Anda yakin ingin menghapus lowongan ini?")) {
+          lowonganData = lowonganData.filter(l => l.id !== id);
+          renderAll();
+        }
+      }
+
+      function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, m => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[m]));
+      }
     </script>
   </body>
 </html>
