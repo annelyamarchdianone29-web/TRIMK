@@ -31,13 +31,29 @@
       object-fit: cover;
       display: block;
     }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1) !important;
+    }
   </style>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">PartTimeHub</a>
-        <div class="d-flex justify-content-between align-items-center">
-          <ul class="navbar-nav">
+        <a class="navbar-brand">PartTimeHub</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMenu"
+          aria-controls="navbarMenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto">
             <li class="nav-item">
               <a class="nav-link" href="homepelamar.html">Home</a>
             </li>
@@ -56,50 +72,38 @@
               <a class="nav-link" href="profilpelamar.html">Profil</a>
             </li>
           </ul>
-        </div>
+          <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-bell"></i>
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-person-circle me-1"></i>
+                Profil
+              </button>
 
-        <div class="d-flex align-items-center gap-2">
-          <div class="dropdown">
-            <!-- <button
-              class="btn btn-outline-secondary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-            Notifikasi
-        </button> -->
-            <i class="bi bi-bell me-1"></i>
-          </div>
-
-          <div class="dropdown">
-            <button
-              class="btn btn-primary dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="bi bi-person-circle me-1"></i>
-              Profil
-            </button>
-
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Profil Saya
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="profilpelamar.html">
-                  Edit Profil
-                </a>
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a class="dropdown-item text-danger" href="index.html">
-                  Keluar
-                </a>
-              </li>
-            </ul>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Profil Saya
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="profilpelamar.html">
+                    Edit Profil
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="index.html">
+                    Keluar
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -128,7 +132,7 @@
                 placeholder="Posisi, Perusahaan, atau Kata Kunci..."
               />
               <button
-                class="btn btn-dark px-4 fw-bold rounded-2"
+                class="btn btn-primary px-4 fw-bold rounded-2"
                 id="searchBtn"
               >
                 Cari
@@ -664,7 +668,7 @@
                   </p>
                   <p class="card-text small text-truncate">${job.desc}</p>
                   <div class="d-flex gap-2 mt-auto">
-                    <a href="${job.detailUrl || '#'}" class="btn btn-outline-primary btn-sm flex-fill">Lihat Detail</a>
+                    <a href="${job.detailUrl || "#"}" class="btn btn-outline-primary btn-sm flex-fill">Lihat Detail</a>
                     <button class="btn btn-primary btn-sm flex-fill">Lamar</button>
                   </div>
                 </div>
