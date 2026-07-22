@@ -561,3 +561,9 @@ li.page-item.active .page-link {
 .text-accent {
   color: var(--accent) !important;
 }
+
+
+.badge-job{
+    background-color: var(--primary-light);
+    color: #fff;
+}
