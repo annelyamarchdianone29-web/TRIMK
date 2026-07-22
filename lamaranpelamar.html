@@ -85,7 +85,26 @@
         color:var(--gray-900);font-weight:700;
         border-bottom:2px solid var(--gray-900);padding-bottom:4px;
       }
-      @media (max-width:768px){ .main-nav{display:none;} }
+      @media (max-width:768px){
+        .main-nav{
+          display:none;position:absolute;top:64px;left:0;right:0;
+          background:#fff;border-bottom:1px solid var(--gray-200);
+          flex-direction:column;align-items:flex-start;gap:0;padding:8px 24px 16px;
+          box-shadow:0 4px 6px rgba(0,0,0,.03);
+        }
+        .main-nav.open{display:flex;}
+        .main-nav a{width:100%;padding:10px 0;border-bottom:1px solid var(--gray-100);}
+        .main-nav a::after{display:none;}
+        .main-nav a.active{border-bottom:1px solid var(--gray-100);}
+      }
+
+      .menu-toggle{
+        display:none;background:none;border:1px solid var(--gray-300);border-radius:6px;
+        color:var(--gray-700);padding:6px 8px;cursor:pointer;
+      }
+      @media (max-width:768px){
+        .menu-toggle{display:inline-flex;align-items:center;justify-content:center;}
+      }
 
       .header-actions{display:flex;align-items:center;gap:16px;}
       .icon-btn{
@@ -287,14 +306,19 @@
       <div class="wrap">
         <div class="brand">PartTimeHub</div>
 
-        <nav class="main-nav">
-          <a href="#">Home</a>
-          <a href="#" class="active">Lamaran</a>
-          <a href="#">Lowongan</a>
-          <a href="#">Profil</a>
+        <nav class="main-nav" id="mainNav">
+          <a href="homepelamar.html">Home</a>
+          <a href="lamaranpelamar.html" class="active">Lamaran</a>
+          <a href="lowonganpelamar.html">Lowongan</a>
+          <a href="profilpelamar.html">Profil</a>
         </nav>
 
         <div class="header-actions">
+          <button class="menu-toggle" aria-label="Buka Menu" onclick="toggleMobileMenu()">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+            </svg>
+          </button>
           <button class="icon-btn" aria-label="Notifikasi">
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
@@ -632,6 +656,10 @@
 
     <!-- JavaScript Interaktif Tab -->
     <script>
+      function toggleMobileMenu() {
+        document.getElementById("mainNav").classList.toggle("open");
+      }
+
       function switchTab(tabName) {
         document.querySelectorAll(".tab-content").forEach((content) => {
           content.classList.add("hidden");
