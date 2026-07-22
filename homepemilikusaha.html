@@ -3,87 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home Pemilik Usaha</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    />
+    <title>Home Pemilik Usaha - PartTimeHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <style></style>
   <body>
+
+    <!-- NAVBAR (TIDAK DIUBAH) -->
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand">PartTimeHub</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarMenu"
-          aria-controls="navbarMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarMenu">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="homepemilikusaha.html"
-              >
-                Home</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="pelamarpemilikusaha.html">Pelamar</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="lowonganpemilikusaha.html">Lowongan</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="profilpemilikusaha.html">Profil</a>
-            </li>
+            <li class="nav-item"><a class="nav-link active" href="homepemilikusaha.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="pelamarpemilikusaha.html">Pelamar</a></li>
+            <li class="nav-item"><a class="nav-link" href="lowonganpemilikusaha.html">Lowongan</a></li>
+            <li class="nav-item"><a class="nav-link" href="profilpemilikusaha.html">Profil</a></li>
           </ul>
           <div class="d-flex align-items-center gap-3">
-            <i class="bi bi-bell"></i>
+            <i class="bi bi-bell fs-4"></i>
             <div class="dropdown">
-              <button
-                class="btn btn-primary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="bi bi-person-circle me-1"></i>
-                Profil
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle me-1"></i> Profil
               </button>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                  <a class="dropdown-item" href="profilpemilikusaha.html">
-                    Profil Saya
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="profilpemilikusaha.html">
-                    Edit Profil
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item text-danger" href="index.html">
-                    Keluar
-                  </a>
-                </li>
+                <li><a class="dropdown-item" href="profilpemilikusaha.html">Profil Saya</a></li>
+                <li><a class="dropdown-item" href="profilpemilikusaha.html">Edit Profil</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item text-danger" href="index.html">Keluar</a></li>
               </ul>
             </div>
           </div>
@@ -91,74 +42,238 @@
       </div>
     </nav>
 
+    <!-- MAIN CONTENT -->
+    <main>
+
+                <!-- HERO -->
+<section
+  class="py-4"
+  style="
+    background: linear-gradient(
+      90deg,
+      #b9efdb 0%,
+      #edf8f5 65%,
+      #b7c4d5 100%
+    );
+  "
+>
+  <div class="container">
+    <div class="row align-items-center">
+
+      <!-- KIRI -->
+      <div class="col-lg-7">
+
+        <h1 class="display-4 fw-bold text-dark mb-3">
+          Rekrut Karyawan Part-Time<br>
+          yang Tepat untuk Bisnis Anda
+        </h1>
+
+        <p class="lead text-dark mb-4">
+          Kelola lowongan dan temukan talenta terbaik dengan mudah di satu tempat.
+        </p>
+
+        <div class="d-flex gap-3">
+
+          <a
+            href="pelamarpemilikusaha.html"
+            class="btn btn-outline-dark btn-lg"
+          >
+            Lihat Pelamar
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- KANAN -->
+
+      <div class="col-lg-5 d-flex align-items-center" style="padding-top: 30px;">
+
+        <img
+          src="https://storage.googleapis.com/arsitagx-master-article/article-photo/922/desain-kantor-keren-cover.jpg"
+          class="img-fluid rounded shadow"
+          style="
+            width:100%;
+            height:390px;
+            object-fit:cover;
+          "
+          alt="Recruitment">
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+      <!-- PELAMAR TERBARU -->
+      <section class="py-5 bg-light">
+        <div class="container">
+          <h3 class="fw-bold mb-4">Pelamar Terbaru</h3>
+          <div class="row g-4">
+
+            <!-- Pelamar 1 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card shadow-sm text-center">
+                <div class="card-body">
+                  <img src="https://i.pravatar.cc/150?img=32" class="rounded-circle mb-3" width="80" alt="">
+                  <h6>Rina Sari</h6>
+                  <p class="text-muted small">Barista • Jakarta</p>
+                  <a href="pelamarpemilikusaha.html" class="btn btn-primary btn-sm w-100 mt-2">Lihat Profil</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pelamar 2 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card shadow-sm text-center">
+                <div class="card-body">
+                  <img src="https://i.pravatar.cc/150?img=64" class="rounded-circle mb-3" width="80" alt="">
+                  <h6>Andi Pratama</h6>
+                  <p class="text-muted small">Kasir • Tangerang</p>
+                  <a href="pelamarpemilikusaha.html" class="btn btn-primary btn-sm w-100 mt-2">Lihat Profil</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pelamar 3 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card shadow-sm text-center">
+                <div class="card-body">
+                  <img src="https://i.pravatar.cc/150?img=44" class="rounded-circle mb-3" width="80" alt="">
+                  <h6>Sinta Dewi</h6>
+                  <p class="text-muted small">Staff Event • Jakarta</p>
+                  <a href="pelamarpemilikusaha.html" class="btn btn-primary btn-sm w-100 mt-2">Lihat Profil</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="py-4 bg-white shadow-sm">
+        <div class="container">
+          <div class="row text-center g-4">
+            <div class="col-md-3">
+              <h3 class="fw-bold text-primary">14</h3>
+              <p class="text-muted mb-0">Lowongan Aktif</p>
+            </div>
+            <div class="col-md-3">
+              <h3 class="fw-bold text-primary">248</h3>
+              <p class="text-muted mb-0">Total Pelamar</p>
+            </div>
+            <div class="col-md-3">
+              <h3 class="fw-bold text-primary">67</h3>
+              <p class="text-muted mb-0">Pelamar Hari Ini</p>
+            </div>
+            <div class="col-md-3">
+              <h3 class="fw-bold text-primary">9</h3>
+              <p class="text-muted mb-0">Interview Berlangsung</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            <!-- LOWONGAN AKTIF -->
+      <section class="py-5">
+        <div class="container">
+          <div class="d-flex justify-content-between align-items-end mb-4">
+            <h3 class="fw-bold">Lowongan Aktif</h3>
+            <a href="lowonganpemilikusaha.html" class="text-decoration-none">Lihat Semua →</a>
+          </div>
+          <div class="row g-4">
+
+            <!-- Card 1 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-success">Aktif</span>
+                  <h5 class="mt-3">Barista - Kopi Kenangan</h5>
+                  <p class="text-muted small">Jakarta Selatan • Rp85.000/hari</p>
+                  <p class="mt-2"><strong>12 Pelamar</strong></p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                  <a href="lowonganpemilikusaha.html" class="btn btn-primary w-100">Kelola Lowongan</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-success">Aktif</span>
+                  <h5 class="mt-3">Kasir Weekend</h5>
+                  <p class="text-muted small">Jakarta Pusat • Rp70.000/hari</p>
+                  <p class="mt-2"><strong>8 Pelamar</strong></p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                  <a href="lowonganpemilikusaha.html" class="btn btn-primary w-100">Kelola Lowongan</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-lg-4 col-md-6">
+              <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                  <span class="badge bg-success">Aktif</span>
+                  <h5 class="mt-3">Staff Gudang</h5>
+                  <p class="text-muted small">Tangerang • Rp90.000/hari</p>
+                  <p class="mt-2"><strong>15 Pelamar</strong></p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                  <a href="lowonganpemilikusaha.html" class="btn btn-primary w-100">Kelola Lowongan</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    
+
+    </main>
+
+    <!-- FOOTER -->
     <section class="footer py-5">
       <div class="container">
         <div class="row gy-4 justify-content-between">
           <div class="col-auto">
             <h4 class="fw-bold mb-3">PartTimeHub</h4>
-            <p class="text-secondary mb-0">
-              Platform rekrutmen part-time nomor satu di Indonesia.
-            </p>
+            <p class="text-secondary mb-0">Platform rekrutmen part-time nomor satu di Indonesia.</p>
           </div>
           <div class="col-auto">
             <h6 class="fw-bold mb-3">Tentang</h6>
             <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="#" class="text-decoration-none text-secondary">
-                  Tentang Kami
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-decoration-none text-secondary">
-                  Kebijakan Privasi
-                </a>
-              </li>
+              <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Tentang Kami</a></li>
+              <li><a href="#" class="text-decoration-none text-secondary">Kebijakan Privasi</a></li>
             </ul>
           </div>
           <div class="col-auto">
             <h6 class="fw-bold mb-3">Bantuan</h6>
             <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="#" class="text-decoration-none text-secondary">
-                  Hubungi Kami
-                </a>
-              </li>
-              <li>
-                <a href="#" class="text-decoration-none text-secondary">
-                  Syarat & Ketentuan
-                </a>
-              </li>
+              <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Hubungi Kami</a></li>
+              <li><a href="#" class="text-decoration-none text-secondary">Syarat & Ketentuan</a></li>
             </ul>
           </div>
           <div class="col-auto">
             <h6 class="fw-bold mb-3">Ikuti Kami</h6>
             <div class="d-flex gap-2">
-              <a href="#" class="btn btn-light rounded-circle">
-                <i class="bi bi-globe2"></i>
-              </a>
-              <a href="#" class="btn btn-light rounded-circle">
-                <i class="bi bi-share"></i>
-              </a>
-              <a href="#" class="btn btn-light rounded-circle">
-                <i class="bi bi-instagram"></i>
-              </a>
-              <a href="#" class="btn btn-light rounded-circle">
-                <i class="bi bi-twitter-x"></i>
-              </a>
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-globe2"></i></a>
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-share"></i></a>
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-twitter-x"></i></a>
             </div>
           </div>
         </div>
         <hr class="my-5" />
-        <p class="text-center text-secondary small mb-0">
-          © 2026 PartTimeHub. All rights reserved.
-        </p>
+        <p class="text-center text-secondary small mb-0">© 2026 PartTimeHub. All rights reserved.</p>
       </div>
     </section>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

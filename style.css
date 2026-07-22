@@ -567,3 +567,15 @@ li.page-item.active .page-link {
     background-color: var(--primary-light);
     color: #fff;
 }
+
+
+.btn-accent {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+}
